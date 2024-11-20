@@ -1,0 +1,162 @@
+{% extends 'layouts/meeting_base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="px-3">
+    <div class="page-heading min-height-200 mb-2 mb-md-3">
+        <h2 class="text-white">Availability</h2>
+        <p class="text-white">Configure times when you are available for bookings</p>
+
+        <div class="availability-team">
+            <button class="btn btn-white me-2" type="button">My Availability</button>
+            <button class="btn btn-white" type="button">Team Availability</button>
+        </div>
+    </div>
+
+    <div class="page-content pt-2 pt-md-4">
+        <button class="btn btn-primary" type="button">
+            <span>+</span> New
+        </button>
+        <div class="new-schedule">
+            <div class="new-schedule-wrapper">
+                <h3>Add a new schedule</h3>
+
+                <div class="form-group max-width-200">
+                    <label class="form-control-label" for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Working Hours">
+                </div>
+                <div class="new-schedule-btns">
+                    <button class="btn btn-outline-dark me-2" type="button">Close</button>
+                    <button class="btn btn-outline-dark" type="button">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ul style="list-style: none !important;padding-left:0 !important;">
+            <li>
+                <div class="availability-info">
+                    <h4>Working Hours</h4>
+                    <p class="availability-date">Mon - Fri, 9:00 AM - 5:00 PM</p>
+                    <p class="availability-address">
+                        <i class="bx bx-globe"></i> America/New_York
+                    </p>
+                </div>
+                <div class="availability-edit">
+                    <button class="availability-options" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="availability-edit-btns">
+                        <button class="btn btn-outline-dark btn-sm me-2" type="button">
+                            <i class="bx bx-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" type="button">
+                            <i class="bx bx-message-alt-x"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="availability-info">
+                    <h4>Working Hours</h4>
+                    <p class="availability-date">Mon - Fri, 9:00 AM - 5:00 PM</p>
+                    <p class="availability-address">
+                        <i class="bx bx-globe"></i> America/New_York
+                    </p>
+                </div>
+                <div class="availability-edit">
+                    <button class="availability-options" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="availability-edit-btns">
+                        <button class="btn btn-outline-dark btn-sm me-2" type="button">
+                            <i class="bx bx-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" type="button">
+                            <i class="bx bx-message-alt-x"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="availability-info">
+                    <h4>Working Hours</h4>
+                    <p class="availability-date">Mon - Fri, 9:00 AM - 5:00 PM</p>
+                    <p class="availability-address">
+                        <i class="bx bx-globe"></i> America/New_York
+                    </p>
+                </div>
+                <div class="availability-edit">
+                    <button class="availability-options" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="availability-edit-btns">
+                        <button class="btn btn-outline-dark btn-sm me-2" type="button">
+                            <i class="bx bx-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" type="button">
+                            <i class="bx bx-message-alt-x"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="availability-info">
+                    <h4>Working Hours</h4>
+                    <p class="availability-date">Mon - Fri, 9:00 AM - 5:00 PM</p>
+                    <p class="availability-address">
+                        <i class="bx bx-globe"></i> America/New_York
+                    </p>
+                </div>
+                <div class="availability-edit">
+                    <button class="availability-options" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="availability-edit-btns">
+                        <button class="btn btn-outline-dark btn-sm me-2" type="button">
+                            <i class="bx bx-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" type="button">
+                            <i class="bx bx-message-alt-x"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="availability-info">
+                    <h4>Working Hours</h4>
+                    <p class="availability-date">Mon - Fri, 9:00 AM - 5:00 PM</p>
+                    <p class="availability-address">
+                        <i class="bx bx-globe"></i> America/New_York
+                    </p>
+                </div>
+                <div class="availability-edit">
+                    <button class="availability-options" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="availability-edit-btns">
+                        <button class="btn btn-outline-dark btn-sm me-2" type="button">
+                            <i class="bx bx-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" type="button">
+                            <i class="bx bx-message-alt-x"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

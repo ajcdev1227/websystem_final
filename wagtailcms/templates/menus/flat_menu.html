@@ -1,0 +1,9 @@
+{% load menu_tags %}
+
+{% if show_menu_heading and menu_heading %}<h4 class="text-white mb-4">{{ menu_heading|safe }}</h4>{% endif %}
+
+{% if menu_items %}
+    {% for item in menu_items %}
+        <a class="btn btn-link {{ item.active_class }}" href="{{ item.href }}">{{ item.text }}</a>
+    {% endfor %}
+{% endif %}

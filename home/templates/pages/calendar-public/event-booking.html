@@ -1,0 +1,105 @@
+{% extends 'pages/calendar-public/layout/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'jsCalendar/source/jsCalendar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/calendar-public/event-booking.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/calendar-public/calendar-styles.css'%}">
+    <link rel="stylesheet" href="{% static 'css/calendar-public/schedule.css'%}">
+{% endblock %}
+
+{% block content %}
+
+ <div class="container">
+            <section class="description-section">
+                <hgroup>
+                    <h5 id="scheduler">Meeting with {{ profile.title }}</h5>
+                    <h3 id="event">Pricing Review</h3>
+                    <div class="icon-text-div">
+                        <img src="icons/clock.svg" alt="clock-icon">
+                        <h4 id="duration">{{ event_type.duration_minutes }} min</h4>
+                    </div>
+                </hgroup>
+                <p id=description>{{ event_type.description }}</p>
+            </section>
+            <div class="divider"></div>
+            <section id="calendar-section" class="body-section">
+                <h3>Select a Date & Time</h3>
+                <div id="schedule-div">
+                    <div id="available-times-div"><!-- Available times --></div>
+                    <div id="calendar"></div>
+                </div>
+            </section>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+{#    <div id="event-booking-container" @vue:mounted="mounted()">#}
+{#        <div class="event-info-container">#}
+{#            <h2 class="event-info-title">{{ event_type.title }}</h2>#}
+{#            {% if event_type.description != '' %}#}
+{#                <div class="event-info-description">{{ event_type.description }}</div>#}
+{#            {% endif %}#}
+{#            <p class="event-info-metadata"><i class="icon icon-heart"></i>{{ event_type.duration_minutes }} minutes</p>#}
+{#        </div>#}
+{#        {% verbatim %}#}
+{#        <center v-if="bookingSuccess" class="booking-success">#}
+{#            <h1>Booked!</h1>#}
+{#            <p>Please check your email for confirmation. Make sure to check spam.</p>#}
+{#        </center>#}
+{#        <center class="event-calendar-container" :style="{ pointerEvents: isBooking ? 'none' : 'inherit', display: bookingSuccess ? 'none' : 'block' }">#}
+{#            <p>Please select a date and time to book your meeting.</p>#}
+{#            <div#}
+{#                    id="event-calendar"#}
+{#                    class="event-calendar material-theme gray"#}
+{#            ></div>#}
+{#            <div class="event-calendar-available-times">#}
+{#                <template v-if="isLoadingAvailableTimes">#}
+{#                    <i>Loading available times...</i>#}
+{#                </template>#}
+{##}
+{#                <button#}
+{#                        v-for="time in availableTimes"#}
+{#                        type="button"#}
+{#                        :class="{#}
+{#                            'event-calendar-available-time': true,#}
+{#                            'event-calendar-available-time-selected': selectedTime != null && (time.getHours() * 60) + time.getMinutes() === (selectedTime.getHours() * 60) + selectedTime.getMinutes()#}
+{#                        }"#}
+{#                        @click="selectTime(time)"#}
+{#                >#}
+{#                    {{ time?.toLocaleTimeString(undefined, { timeStyle: 'short' }) }}#}
+{#                </button>#}
+{#            </div>#}
+{#            <template v-if="getSelectedDateTime() != null">#}
+{#                <div class="event-confirm-container">#}
+{#                    <p>Schedule meeting for <b>{{ getSelectedDateTime()?.toLocaleString() }}</b></p>#}
+{#                    <p v-if="bookingError" style="color: red;">{{ bookingError }}</p>#}
+{#                    <form @submit.prevent="bookMeeting()">#}
+{#                        <input type="name" minlength="1" maxlength="200" placeholder="Enter your name" v-model="bookingName" />#}
+{#                        <input type="email" placeholder="Enter your email" v-model="bookingEmail" />#}
+{#                        <input type="submit" :value="isBooking ? 'Booking...' : 'Confirm & Book'" />#}
+{#                    </form>#}
+{#                </div>#}
+{#            </template>#}
+{#        </center>#}
+{#        {% endverbatim %}#}
+{#    </div>#}
+{% endblock %}
+
+{% block extrascript %}
+    <script>
+        const eventTypeDurationMinutes = {{ event_type.duration_minutes }};
+    </script>
+    <script src="{% static '/libs/petite-vue/petite-vue-0.4.1.min.js' %}"></script>
+    <script src="{% static '/jsCalendar/source/jsCalendar.js' %}"></script>
+    <script src="{% static '/js/calendar-public/event-booking.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,332 @@
+{% load i18n static %}
+
+<aside style="background: #F1F1F1; display:none"
+       class="sidenav navbar navbar-vertical navbar-expand-xs border-0  my-0 fixed-start ms-0 " id="sidenav-main">
+    <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+           aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href="{% url 'dashboard' %}">
+            <img src="{% static 'images/logo.png' %}" class="navbar-brand-img h-100" alt="main_logo">
+            <span class="ms-1 font-weight-bold">WebSystem</span>
+        </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse w-auto" style="height: calc(100vh - 170px);" id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+            {% if 'compliance' in request.path %}
+                <li class="nav-item">
+                    <a href="{% url 'compliance' %}"
+                       class="nav-link {% if '/compliance' == request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="icon-shape" fill="#FFFFFF">
+                                        <path class="color-background" fill="#000000"
+                                              d="M22.5,0 C34.9264069,0 45,10.0735931 45,22.5 C45,34.9264069 34.9264069,45 22.5,45 C10.0735931,45 0,34.9264069 0,22.5 C0,10.0735931 10.0735931,0 22.5,0 Z M31.8901808,13.75 L28.75,13.75 L25,23.4375 L18.125,21.25 L16.203125,22.421875 L19.765625,30 L20.9375,28.90625 L24.375,23.125 L31.8901808,13.75 Z M22.5,6.25 C11.4970575,6.25 2.5,15.2470575 2.5,26.25 C2.5,37.2529425 11.4970575,46.25 22.5,46.25 C33.5029425,46.25 42.5,37.2529425 42.5,26.25 C42.5,15.2470575 33.5029425,6.25 22.5,6.25 Z"
+                                              id="Stroke-1"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Queue' %}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'compliance/archive' %}"
+                       class="nav-link {% if '/compliance/archive' == request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                    <g fill-rule="nonzero" transform="translate(-20.000000, -21.000000)" fill="#FFFFFF">
+                                        <g transform="translate(20.000000, 21.000000)">
+                                            <path class="color-background" fill="#000000"
+                                                  d="M28.5,37.594 L23.329,37.594 L25.574,39.84 C24.542,40.232 23.532,40.442 22.5,40.442 C20.572,40.442 18.668,39.593 17.222,38.2 L19.866,35.555 C20.729,36.546 21.939,37.203 23.286,37.458 L25.329,35.416 C26.323,35.434 27.303,34.957 27.888,34.077 L29.846,30.297 L43.737,30.297 C46.388,30.297 48.5,28.185 48.5,25.535 L48.5,7.431 C48.5,4.78 46.388,2.668 43.737,2.668 L15.263,2.668 C12.612,2.668 10.5,4.78 10.5,7.431 L10.5,25.535 C10.5,28.185 12.612,30.297 15.263,30.297 L29.154,30.297 L27.196,34.077 C27.781,34.957 28.761,35.434 29.755,35.416 L31.798,37.459 C33.147,37.203 34.358,36.546 35.221,35.555 L37.865,38.2 C36.419,39.593 34.515,40.442 32.587,40.442 C31.555,40.442 30.545,40.232 29.513,39.84 L31.758,37.594 L26.587,37.594 C26.297,37.594 26.058,37.833 26.058,38.123 L26.058,40.456 C26.058,40.746 26.297,40.986 26.587,40.986 L33.413,40.986 C33.703,40.986 33.942,40.746 33.942,40.456 L33.942,38.123 C33.942,37.833 33.703,37.594 33.413,37.594 L28.5,37.594 Z M43.737,4.835 L15.263,4.835 C13.348,4.835 11.786,6.397 11.786,8.311 L11.786,9 L47.214,9 L47.214,8.311 C47.214,6.397 45.652,4.835 43.737,4.835 L43.737,4.835 Z M33.413,43.178 L26.587,43.178 C26.297,43.178 26.058,43.417 26.058,43.707 L26.058,46.04 C26.058,46.331 26.297,46.571 26.587,46.571 L33.413,46.571 C33.703,46.571 33.942,46.331 33.942,46.04 L33.942,43.707 C33.942,43.417 33.703,43.178 33.413,43.178 L33.413,43.178 Z"
+                                                  id="Combined-Shape"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">
+                            {% trans 'Archive' %}&nbsp;
+                            {% if approved_cnt %}
+                                <span class="bg bg-danger rounded rounded-3 px-1 text-white">{{ approved_cnt }}</span>
+                            {% endif %}
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'compliance/settings' %}"
+                       class="nav-link {% if '/compliance/settings' == request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="icon-shape" fill="#FFFFFF">
+                                        <path class="color-background" fill="#000000"
+                                              d="M22.5,6.25 C29.4254928,6.25 34.7857143,11.6102215 34.7857143,18.5357143 C34.7857143,25.461207 29.4254928,30.8214286 22.5,30.8214286 C15.5745072,30.8214286 10.2142857,25.461207 10.2142857,18.5357143 C10.2142857,11.6102215 15.5745072,6.25 22.5,6.25 Z M26.6964286,17.8571429 L28.125,17.8571429 C28.8278514,17.8571429 29.4642857,17.2207086 29.4642857,16.5178571 C29.4642857,15.8150057 28.8278514,15.1785714 28.125,15.1785714 L26.6964286,15.1785714 C26.6432405,14.7811914 26.5044643,14.3983192 26.3035714,14.0535714 L27.6785714,12.6785714 C28.090665,12.2664778 28.7673921,12.2664778 29.1794857,12.6785714 L30.5535714,14.0535714 C30.3526786,14.3983192 30.2139035,14.7811914 30.1607143,15.1785714 L28.7321429,15.1785714 C28.0292914,15.1785714 27.3928571,15.8150057 27.3928571,16.5178571 C27.3928571,17.2207086 28.0292914,17.8571429 28.7321429,17.8571429 L30.1607143,17.8571429 C30.2139035,18.2545229 30.3526786,18.637395 30.5535714,18.9821429 L29.1794857,20.3571429 C28.7673921,20.7692365 28.090665,20.7692365 27.6785714,20.3571429 L26.3035714,18.9821429 C26.5044643,18.637395 26.6432405,18.2545229 26.6964286,17.8571429 Z M22.5,25 L21.0714286,25 C20.3685771,25 19.7321429,24.3635657 19.7321429,23.6607143 C19.7321429,22.9578629 20.3685771,22.3214286 21.0714286,22.3214286 L22.5,22.3214286 C23.2028514,22.3214286 23.8392857,22.9578629 23.8392857,23.6607143 C23.8392857,24.3635657 23.2028514,25 22.5,25 Z M20.0892857,15.1785714 L18.6607143,15.1785714 C17.9578629,15.1785714 17.3214286,14.5421371 17.3214286,13.8392857 C17.3214286,13.1364343 17.9578629,12.5 18.6607143,12.5 L20.0892857,12.5 C20.7921371,12.5 21.4285714,13.1364343 21.4285714,13.8392857 C21.4285714,14.5421371 20.7921371,15.1785714 20.0892857,15.1785714 Z M37.5,8.92857143 C32.4550816,8.92857143 28.2142857,13.1693673 28.2142857,18.2142857 C28.2142857,23.2592041 32.4550816,27.5 37.5,27.5 C42.5449184,27.5 46.7857143,23.2592041 46.7857143,18.2142857 C46.7857143,13.1693673 42.5449184,8.92857143 37.5,8.92857143 Z M39.9107143,11.3392857 L38.4821429,11.3392857 C37.7792914,11.3392857 37.1428571,11.97572 37.1428571,12.6785714 C37.1428571,13.381423 37.7792914,14.0178571 38.4821429,14.0178571 L39.9107143,14.0178571 C40.6135657,14.0178571 41.25,13.381423 41.25,12.6785714 C41.25,11.97572 40.6135657,11.3392857 39.9107143,11.3392857 Z"
+                                              id="Stroke-1"></path>
+                                    </g>
+                                </g>
+                            </svg>
+
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Settings' %}</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'dashboard' %}" class="nav-link {% if '/' == request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>shop </title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF"
+                                       fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(0.000000, 148.000000)">
+                                                <path class="color-background opacity-6"
+                                                      d="M46.7199583,10.7414583 L40.8449583,0.949791667 C40.4909749,0.360605034 39.8540131,0 39.1666667,0 L7.83333333,0 C7.1459869,0 6.50902508,0.360605034 6.15504167,0.949791667 L0.280041667,10.7414583 C0.0969176761,11.0460037 -1.23209662e-05,11.3946378 -1.23209662e-05,11.75 C-0.00758042603,16.0663731 3.48367543,19.5725301 7.80004167,19.5833333 L7.81570833,19.5833333 C9.75003686,19.5882688 11.6168794,18.8726691 13.0522917,17.5760417 C16.0171492,20.2556967 20.5292675,20.2556967 23.494125,17.5760417 C26.4604562,20.2616016 30.9794188,20.2616016 33.94575,17.5760417 C36.2421905,19.6477597 39.5441143,20.1708521 42.3684437,18.9103691 C45.1927731,17.649886 47.0084685,14.8428276 47.0000295,11.75 C47.0000295,11.3946378 46.9030823,11.0460037 46.7199583,10.7414583 Z"></path>
+                                                <path class="color-background"
+                                                      d="M39.198,22.4912623 C37.3776246,22.4928106 35.5817531,22.0149171 33.951625,21.0951667 L33.92225,21.1107282 C31.1430221,22.6838032 27.9255001,22.9318916 24.9844167,21.7998837 C24.4750389,21.605469 23.9777983,21.3722567 23.4960833,21.1018359 L23.4745417,21.1129513 C20.6961809,22.6871153 17.4786145,22.9344611 14.5386667,21.7998837 C14.029926,21.6054643 13.533337,21.3722507 13.0522917,21.1018359 C11.4250962,22.0190609 9.63246555,22.4947009 7.81570833,22.4912623 C7.16510551,22.4842162 6.51607673,22.4173045 5.875,22.2911849 L5.875,44.7220845 C5.875,45.9498589 6.7517757,46.9451667 7.83333333,46.9451667 L19.5833333,46.9451667 L19.5833333,33.6066734 L27.4166667,33.6066734 L27.4166667,46.9451667 L39.1666667,46.9451667 C40.2482243,46.9451667 41.125,45.9498589 41.125,44.7220845 L41.125,22.2822926 C40.4887822,22.4116582 39.8442868,22.4815492 39.198,22.4912623 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Dashboard' %}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'editor-list' %}"
+                       class="nav-link {% if '/editor-list' == request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Site Builder</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF"
+                                       fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(0.000000, 148.000000)">
+                                                <path class="color-background"
+                                                      d="M18,0 L5,0 C2.23857625,0 0,2.23857625 0,5 L0,35 C0,37.7614237 2.23857625,40 5,40 L40,40 C42.7614237,40 45,37.7614237 45,35 L45,5 C45,2.23857625 42.7614237,0 40,0 L27,0 L18,0 Z M20,4 L25,4 L25,9 C25,9.55228475 24.5522847,10 24,10 L21,10 C20.4477153,10 20,9.55228475 20,9 L20,4 Z M11,4 L16,4 L16,9 C16,9.55228475 15.5522847,10 15,10 L12,10 C11.4477153,10 11,9.55228475 11,9 L11,4 Z M30,10 L30,31.437 C30,32.6709375 28.9634375,33.7171875 27.7295,33.7171875 L17.2705,33.7171875 C16.0365625,33.7171875 15,32.6709375 15,31.437L15,10 L30,10 Z M35,4 L40,4 L40,9 C40,9.55228475 39.5522847,10 39,10 L36,10 C35.4477153,10 35,9.55228475 35,9 L35,4 Z"
+                                                      id="Combined-Shape" fill="#000000" opacity="0.8"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Site Builder' %}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {% if 'tables' in request.path %} active {% endif %}" data-bs-toggle="collapse"
+                       href="#collapseExample"
+                            {% if 'contacts' in request.path or 'groups' in request.path or 'email' in request.path or 'forms' in request.path %}
+                       aria-expanded="true" {% else %} aria-expanded="false" {% endif %}  role="button"
+                       aria-controls="collapseExample">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>office</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF"
+                                       fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g id="office" transform="translate(153.000000, 2.000000)">
+                                                <path class="color-background opacity-6"
+                                                      d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"></path>
+                                                <path class="color-background"
+                                                      d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">CRM</span>
+                    </a>
+                    <ul class="navbar-nav {% if 'contacts' in request.path or 'groups' in request.path or 'email' in request.path or 'forms' in request.path %} show {% else %} collapse {% endif %}"
+                        id="collapseExample">
+                        <li class="nav-item">
+                            <a href="{% url 'contacts' %}"
+                               class="nav-link {% if 'contacts' in request.path %} active {% endif %}">
+                                <div class="icon-shape icon-sm  text-center me-2 d-flex align-items-center justify-content-center"></div>
+                                <span class="nav-link-text ms-1">{% trans 'Contacts' %}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'groups' %}"
+                               class="nav-link {% if 'groups' in request.path %} active {% endif %}">
+                                <div class="icon-shape icon-sm  text-center me-2 d-flex align-items-center justify-content-center"></div>
+                                <span class="nav-link-text ms-1">{% trans 'Groups' %}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'email' %}"
+                               class="nav-link {% if 'email' in request.path %} active {% endif %}">
+                                <div class="icon-shape icon-sm  text-center me-2 d-flex align-items-center justify-content-center"></div>
+                                <span class="nav-link-text ms-1">{% trans 'Email' %}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'forms' %}"
+                               class="nav-link {% if 'forms' in request.path %} active {% endif %}">
+                                <div class="icon-shape icon-sm  text-center me-2 d-flex align-items-center justify-content-center"></div>
+                                <span class="nav-link-text ms-1">{% trans 'Forms' %}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'chat' %}" class="nav-link {% if 'chat' in request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>shop</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF"
+                                       fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(0.000000, 148.000000)">
+                                                <path class="color-background opacity-6" d="M22.5,0C10.086,0,0,10.088,0,22.5C0,34.914,10.086,45,22.5,45c12.413,0,22.5-10.086,22.5-22.5
+                                      C45,10.088,34.913,0,22.5,0z M22.5,41.775C11.191,41.775,2.225,32.809,2.225,21.5C2.225,10.19,11.191,1.225,22.5,1.225
+                                      c11.309,0,20.275,8.965,20.275,20.275C42.775,32.809,33.809,41.775,22.5,41.775z"/>
+                                                <path class="color-background" d="M31.704,15.022c-0.323-4.068-2.899-6.692-6.976-7.015c-0.104-0.008-0.209-0.012-0.312-0.012L17.05,8.994v5.635H12.25
+                                      c-0.414,0-0.75,0.335-0.75,0.75v4.5c0,0.414,0.336,0.75,0.75,0.75h6.75V26.5c0,0.414,0.336,0.75,0.75,0.75h4.5
+                                      c0.414,0,0.75-0.336,0.75-0.75v-4.5h5.635l1.365-2.787c0.126-0.316,0.198-0.654,0.198-1.007
+                                      C31.963,15.732,31.879,15.368,31.704,15.022z M27.864,12.582c0.154,0.03,0.305,0.098,0.441,0.202
+                                      c0.139,0.105,0.253,0.252,0.334,0.432c0.091,0.189,0.136,0.406,0.129,0.625l-0.246,3.188l-2.946-1.879
+                                      c-0.249-0.159-0.544-0.225-0.839-0.191c-0.295,0.034-0.575,0.17-0.788,0.39l-2.5,2.5c-0.338,0.339-0.337,0.888,0.002,1.227
+                                      c0.17,0.169,0.392,0.256,0.615,0.256s0.444-0.087,0.613-0.256l2.146-2.145l2.854,1.826c0.064,0.041,0.132,0.074,0.203,0.096
+                                      c0.068,0.021,0.137,0.031,0.207,0.031c0.147,0,0.29-0.043,0.41-0.125c0.129-0.084,0.237-0.205,0.313-0.355l0.272-0.557
+                                      L27.864,12.582z"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Chat' %}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'meetings' %}"
+                       class="nav-link {% if 'meetings' in request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Meetings</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF"
+                                       fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(0.000000, 148.000000)">
+                                                <path class="color-background"
+                                                      d="M24.5,35 L22.5,35 C19.7382812,35 17.5,32.7617188 17.5,30 L17.5,25 L9.5,25 C6.73828125,25 4.5,22.7617188 4.5,20 L4.5,10 C4.5,7.23828125 6.73828125,5 9.5,5 L31.5,5 C34.2617188,5 36.5,7.23828125 36.5,10 L36.5,15 L44.5,15 C47.2617188,15 49.5,17.2382812 49.5,20 L49.5,30 C49.5,32.7617188 47.2617188,35 44.5,35 L42.5,35 L42.5,37.5 C42.5,38.328125 41.828125,39 41,39 L35,39 L35,37.5 L35,37.5 L26,37.5 L26,39 L20,39 C19.171875,39 18.5,38.328125 18.5,37.5 L18.5,37.5 Z M9.5,7 C7.56640625,7 6,8.56640625 6,10 L6,20 C6,21.9335938 7.56640625,23.5 9.5,23.5 L17.5,23.5 L17.5,7 L9.5,7 Z M31.5,7 L33.5,7 L33.5,23.5 L41.5,23.5 C43.4335938,23.5 45,21.9335938 45,20 L45,10 C45,8.06640625 43.4335938,6.5 41.5,6.5 L31.5,6.5 Z M22.5,15 L22.5,19 L39.5,19 L39.5,15 L22.5,15 Z"
+                                                      id="Combined-Shape" fill="#000000"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Meetings' %}</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="{% url 'tv' %}"
+                       class="nav-link {% if 'tv' in request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Live Stream</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF"
+                                       fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(0.000000, 148.000000)">
+                                                <path class="color-background" fill="#000000"
+                                                      d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm-2 16V8l8 4-8 4z"/>
+                                                <circle class="color-background" cx="26" cy="30" r="3"
+                                                        fill="#000000"></circle>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Live Stream' %}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'socialsystem' %}"
+                       class="nav-link {% if 'socialsystem' in request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                                 fill="#FFFFFF">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF"
+                                       fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(0.000000, 148.000000)">
+                                                <path class="color-background"
+                                                      d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17.94V14C13 13.45 12.55 13 12 13C11.45 13 11 13.45 11 14V17.94C10.34 17.72 9.68 17.53 9 17.38V14C9 13.45 8.55 13 8 13C7.45 13 7 13.45 7 14V17.37C5.16 16.63 4 15.11 4 13.35C4 10.96 5.79 9 8 9H9V6H11V9H14C16.21 9 18 10.96 18 13.35C18 15.11 16.84 16.63 15 17.37V14C15 13.45 14.55 13 14 13C13.45 13 13 13.45 13 14V17.94Z"
+                                                      fill="#000000"/>
+                                                <path class="color-background"
+                                                      d="M9.18 7.08C9.06 7.08 8.97 7.07 8.88 7.06C9 7.24 9.1 7.43 9.19 7.63L10.2 8.69H8V16H10.2L9.18 17.04C9.06 17.04 8.97 17.03 8.89 17.02C8.99 17.21 9.09 17.42 9.19 17.64L10.2 18.7H8.5C8.22 18.7 8 18.93 8 19.21V19.7C8 19.98 8.22 20.2 8.5 20.2H11.5C11.78 20.2 12 19.98 12 19.7V9.33C12 9.05 11.77 8.82 11.49 8.81L9.18 7.08Z"
+                                                      fill="#000000"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'Social System' %}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/cms_auth"
+                       class="nav-link {% if 'cms' in request.path %} active {% endif %}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                                 fill="#FFFFFF">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <path class="color-background"
+                                            fill="#000000"
+                                          d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,18.48c-3.79,0-6.87-3.08-6.87-6.87c0-3.79,3.08-6.87,6.87-6.87s6.87,3.08,6.87,6.87C18.87,15.4,15.79,18.48,12,18.48z"/>
+                                    <path class="color-background"
+                                            fill="#000000"
+                                          d="M12,7c-0.28,0-0.5,0.22-0.5,0.5v3.67L10.41,10.3c-0.2-0.2-0.51-0.2-0.71,0s-0.2,0.51,0,0.71l1.79,1.79c0.09,0.09,0.21,0.13,0.35,0.13c0.14,0,0.27-0.05,0.35-0.13l1.79-1.79c0.2-0.2,0.2-0.51,0-0.71s-0.51-0.2-0.71,0L12,11.17V7.5C12.5,7.22,12.28,7,12,7z"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">{% trans 'CMS' %}</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="sidenav-footer mx-3">
+        <a class="btn bg-gradient-primary mt-3 w-100"
+           href="{% url 'settingsgear' %}">Settings Gear</a>
+    </div>
+</aside>

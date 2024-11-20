@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+// start own grad system
+
+.g-container {
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  @media (min-width: 576px) {
+    & {
+      max-width: 540px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    & {
+      max-width: 720px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    & {
+      max-width: 960px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    & {
+      max-width: 1140px;
+    }
+  }
+  @media (min-width: 1400px) {
+    & {
+      max-width: 1320px;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+// end own resat system

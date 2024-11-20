@@ -1,0 +1,371 @@
+{% extends 'admin/layouts/base.html' %}
+{% load main_tags %}
+{% load static %}
+{% block title %}Tenant{% endblock %}
+{% block content %}
+    <div class="container-fluid" xmlns:x-on="http://www.w3.org/1999/xhtml" xmlns:x-bind="http://www.w3.org/1999/xhtml">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Tenant" %}
+        {% endblock pagetitle %}
+
+        {% include 'admin/components/message.html' %}
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3>Admin Options for tenant <span class="text-primary">{{ tenant.email }}</span></h3>
+                        <form id="enableform" action="{% url 'tenant' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-check mt-2 mb-2">
+                                <input name="action" type="hidden" value="enable-production">
+                                <input name="id" type="hidden" value="{{ tenant.id }}">
+                                <input name="approved" type="hidden" value="{{ tenant.approved }}">
+                                <input class="form-check-input" {% enabledTenant tenant.customer_id %} type="checkbox"
+                                       id="tenantChk">
+                                <label class="form-check-label" for="tenantChk">
+                                    Enable Production for tenant
+                                </label>
+                            </div>
+                        </form>
+
+                        <form id="enable-self-managed-compliance-form" action="{% url 'tenant' %}" method="post">
+                            {% csrf_token %}
+                            {# enable self managed or managed compliance #}
+                            <div class="form-check mt-2 mb-2">
+                                <input name="action" type="hidden" value="enable-managed-compliance">
+                                <input name="username" type="hidden" value="{{ tenant.username }}">
+                                <input
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        name="enable-self-managed-compliance"
+                                        id="enable-self-managed-compliance"
+                                        {% enable_self_managed_compliance tenant.username %}
+                                />
+                                <label for="enable-self-managed-compliance">
+                                    Allow tenant administrators to manage their own compliance cases? (Self-managed compliance)
+                                </label>
+                            </div>
+                        </form>
+
+                        <form id="is-compliance-officer-form" action="{% url 'tenant' %}" method="post">
+                            {% csrf_token %}
+                            {# set whether the user is an officer #}
+                            <div class="form-check mt-2 mb-2">
+                                <input name="action" type="hidden" value="is-compliance-officer">
+                                <input name="id" type="hidden" value="{{ tenant.id }}">
+                                <input
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        name="is-compliance-officer"
+                                        id="is-compliance-officer"
+                                        {% if tenant.role == 4 %}
+                                            checked
+                                        {% endif %}
+                                />
+                                <label for="is-compliance-officer">
+                                    Grant Compliance Officer Permissions? (Manage cases for other tanants, etc.)
+                                </label>
+                            </div>
+                        </form>
+
+                        <div class="mt-3 text-end">
+                            <a class="btn btn-danger waves-effect waves-light" href="{% url 'tenants' %}">Back To Tenant
+                                View...</a>
+                            <a href="{% url 'dashboard' tenant.id %}" class="btn btn-primary waves-effect waves-light">Go
+                                to user tenant as admin!</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% if tenant.role == 4 %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Tenants Assigned to Officer</h3>
+                            <table>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                                {% for assigned in assigned_tenants %}
+                                    <tr>
+                                        <td>{{ assigned.tenant_name }}</td>
+                                        <td>
+                                            <form action="{% url 'tenant' %}" method="POST">
+                                                <input type="hidden" name="action" value="remove-assigned-tenant" />
+                                                <input type="hidden" name="officer-id" value="{{ tenant.id }}" />
+                                                <input type="hidden" name="tenant-id" value="{{ assigned.id }}" />
+                                                <input type="submit" value="Remove" />
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <form action="{% url 'tenant' %}" method="POST">
+                                        <input type="hidden" name="action" value="add-assigned-tenant" />
+                                        <input type="hidden" name="officer-id" value="{{ tenant.id }}" />
+
+                                        <td>
+                                            <input type="email" name="email" placeholder="Tenant Email" />
+                                        </td>
+                                        <td>
+                                            <input type="submit" value="Add" />
+                                        </td>
+                                    </form>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <ul class="nav nav-tabs nav-tabs-custom nav-success nav-justified mb-3" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#onboarding_info" role="tab">
+                                    Onboarding Info
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#meeting_info" role="tab">
+                                    Meeting Info
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content text-muted">
+                            <div class="tab-pane active" id="onboarding_info" role="tabpanel">
+                                <div x-data="tenantOptions" class="row">
+                                    <div class="col-md-6">
+                                        <div class="mt-2">
+                                            <label for="user_url" class="form-label">User's URL</label>
+                                            <input
+                                                    x-model="user_url"
+                                                    name="user_url"
+                                                    x-on:input="changeText"
+                                                    type="text" class="form-control" id="user_url">
+                                        </div>
+
+                                        <div class="mt-lg-2">
+                                            <label for="dns_settings" class="form-label">DNS Settings</label>
+                                            <input
+                                                    x-model="dns_settings"
+                                                    x-on:input="changeText"
+                                                    type="text" disabled class="form-control" id="dns_settings">
+                                        </div>
+
+                                        <div class="mt-lg-2">
+                                            <label for="color_palette" class="form-label">What color palette they
+                                                use</label>
+                                            <select
+                                                    x-model="color_palette"
+                                                    x-on:change="changeText"
+                                                    class="form-select mb-3" id="color_palette"
+                                                    aria-label="Default select example">
+                                                <option selected></option>
+                                                <option value="Aqua">Aqua</option>
+                                                <option value="Stonemason">Stonemason</option>
+                                                <option value="Greenleaf">Greenleaf</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mt-lg-2">
+                                            <label for="plan" class="form-label">Plan</label>
+                                            <select
+                                                    x-model="plan"
+                                                    x-on:change="changeText"
+                                                    class="form-select mb-3" id="plan">
+                                                <option selected></option>
+                                                <option value="basic">Basic</option>
+                                                <option value="premium">Premium</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mt-2">
+                                            <label for="billing_info" class="form-label">Billing Information</label>
+                                            <input
+                                                    x-model="billing_info"
+                                                    x-on:input="changeText"
+                                                    type="text" class="form-control" id="billing_info"
+                                                    placeholder="xxxx xxxx xxxxxx">
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="youtube_acc_link" class="form-label">Youtube account
+                                                link</label>
+                                            <input
+                                                    x-model="youtube_acc_link"
+                                                    x-on:input="changeText"
+                                                    type="text" disabled class="form-control" id="youtube_acc_link">
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="twilio_acc" class="form-label">Twilio account</label>
+                                            <input
+                                                    x-model="twilio_acc"
+                                                    x-on:input="changeText"
+                                                    type="text" placeholder="+1-(xxx)xxx-xxxx" class="form-control"
+                                                    id="twilio_acc">
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="rtmp" class="form-label">RTMP KEY</label>
+                                            <input
+                                                    x-model="rtmp"
+                                                    x-on:input="changeText"
+                                                    type="text" class="form-control"
+                                                    id="rtmp">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="meeting_info" role="tabpanel">
+                                {% if tenant.meeting %}
+                                    <form action="{% url 'update_meeting_info' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mt-2">
+                                                    <label for="lock_meeting" class="form-label">Lock Meeting From User
+                                                        Interaction?</label>
+                                                    <select name="lock_meeting" class="form-select" id="lock_meeting">
+                                                        <option></option>
+                                                        <option {% if tenant.meeting.lock_meeting == "Yes" %}
+                                                            selected{% endif %} value="Yes">Yes
+                                                        </option>
+                                                        <option {% if tenant.meeting.lock_meeting == "No" %}
+                                                            selected{% endif %} value="No">No
+                                                        </option>
+                                                        <option {% if tenant.meeting.lock_meeting == "Debug" %}
+                                                            selected{% endif %} value="Debug">Debug
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mt-2">
+                                                    <label for="onboarding_meeting_url" class="form-label">Onboarding
+                                                        Meeting URL
+                                                        Name</label>
+                                                    <input value="{{ tenant.meeting.meeting_link }}"
+                                                           name="onboarding_meeting_url" type="text"
+                                                           class="form-control"
+                                                           id="onboarding_meeting_url">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mt-2">
+                                                    <label for="enable_user_to_join" class="form-label">Enable User to
+                                                        Join Onboarding Meeting?</label>
+                                                    <select name="enable_user_to_join" class="form-select"
+                                                            id="enable_user_to_join">
+                                                        <option></option>
+                                                        <option {% if tenant.meeting.enable_user_to_join == "Yes" %}
+                                                            selected{% endif %}
+                                                            value="Yes">Yes
+                                                        </option>
+                                                        <option {% if tenant.meeting.enable_user_to_join == "No" %}
+                                                            selected{% endif %}
+                                                            value="No">No
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="{{ tenant.meeting.id }}" name="meeting_id">
+                                            <div class="col-md-12 mt-2">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extralib %}
+    <!-- cleave.js -->
+    <script src="{% static 'velzon/assets/libs/cleave.js/cleave.min.js' %}"></script>
+    <!-- form masks init -->
+    {#    <script src="{% static 'velzon/assets/js/pages/form-masks.init.js' %}"></script>#}
+
+    <script src="{% static 'js/libs/axios.min.js' %}" defer></script>
+    <script defer src="{% static 'js/libs/alpine.min.js' %}"></script>
+{% endblock extralib %}
+
+{% block extrajs %}
+    <script>
+        var cleaveBlocks = new Cleave("#billing_info", {
+            blocks: [4, 4, 6],
+            {#uppercase: !0,#}
+            numericOnly: !0,
+        });
+        var twilioPhon = new Cleave("#twilio_acc", {
+            delimiters: ["+1-(", ")", "-"],
+            blocks: [0, 3, 3, 4],
+            numericOnly: !0,
+        });
+        window.document.getElementById('tenantChk').addEventListener("click", (event) => {
+            document.getElementById("enableform").submit();
+        });
+        window.document.getElementById('enable-self-managed-compliance').addEventListener("click", (event) => {
+            document.getElementById("enable-self-managed-compliance-form").submit();
+        });
+        window.document.getElementById('is-compliance-officer').addEventListener('click', () => {
+            document.getElementById('is-compliance-officer-form').submit();
+        });
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('tenantOptions', () => ({
+                tenant_id: {{ tenant.id }},
+                user_url: '{{ tenant.tenant_option.tenant_url }}',
+                dns_settings: "{{ tenant.tenant_option.dns_settings }}",
+                billing_info: "{{ tenant.tenant_option.billing_info }}",
+                youtube_acc_link: "{{ tenant.tenant_option.youtube_acc_link }}",
+                twilio_acc: "{{ tenant.tenant_option.twilio_acc }}",
+                color_palette: "{{ tenant.tenant_option.color_palette }}",
+                plan: "{{ tenant.tenant_option.plan }}",
+                rtmp: "{{ tenant.tenant_option.rtmp }}",
+
+                changeText() {
+                    let self = this;
+                    let params = new URLSearchParams();
+                    params.append('tenant_id', self.tenant_id);
+                    params.append('user_url', self.user_url);
+                    params.append('dns_settings', self.dns_settings);
+                    params.append('billing_info', self.billing_info);
+                    params.append('youtube_acc_link', self.youtube_acc_link);
+                    params.append('twilio_acc', self.twilio_acc);
+                    params.append('color_palette', self.color_palette);
+                    params.append('plan', self.plan);
+                    params.append('rtmp', self.rtmp)
+
+                    axios.post('{% url 'save_tenant_option' %}', params, {
+                        headers: {"X-CSRFToken": "{{ csrf_token }}"},
+                    }).then(function (response) {
+                        // handle success
+
+                    }).catch(function (error) {
+                        // handle error
+                    }).finally(function () {
+
+                    });
+                }
+            }))
+        })
+
+    </script>
+{% endblock extrajs %}

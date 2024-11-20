@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row" width="100%" style="height: calc(100vh - 6.75rem)">
+        <iframe src="{% url 'vvveb' page_id %}"></iframe>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+{% endblock content %}
+
+
+{% block scripts %}
+{% endblock scripts %}

@@ -1,0 +1,67 @@
+{% load static wagtailuserbar webpack_loader %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>
+        {% block title %}
+            {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+        {% endblock %}
+        {% block title_suffix %}
+            {% with self.get_site.site_name as site_name %}
+                {% if site_name %}- {{ site_name }}{% endif %}
+            {% endwith %}
+        {% endblock %}
+    </title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Layout config Js -->
+    <script src="{% static 'velzon/assets/js/layout.js' %}"></script>
+    <!-- Bootstrap Css -->
+    <link href="{% static 'velzon/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Icons Css -->
+    <link href="{% static 'velzon/assets/css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link href="{% static 'velzon/assets/css/app.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- custom Css-->
+    <link href="{% static 'velzon/assets/css/custom.min.css' %}" rel="stylesheet" type="text/css"/>
+    {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+<div class="container">
+    {% wagtailuserbar %}
+    {% include 'blog/components/navbar.html' %}
+    <div class="row">
+        <div class="col-md-12">
+            <main role="main" class="px-2 mb-4">
+                {% block content %}{% endblock %}
+            </main>
+            {#            {% include 'blog/components/sidebar.html' %}#}
+        </div>
+    </div>
+    {#    {% include 'blog/components/footer.html' %}#}
+</div>
+</body>
+
+<!-- JAVASCRIPT -->
+<script src="{% static 'velzon/assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'velzon/assets/libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'velzon/assets/libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'velzon/assets/libs/feather-icons/feather.min.js' %}"></script>
+<script src="{% static 'velzon/assets/js/pages/plugins/lord-icon-2.1.0.js' %}"></script>
+<script src="{% static 'velzon/assets/js/plugins.js' %}"></script>
+
+{% block extra_js %}
+
+{% endblock %}
+</html>
+
+
+
+

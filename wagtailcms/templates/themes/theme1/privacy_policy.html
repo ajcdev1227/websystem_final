@@ -1,0 +1,26 @@
+{% extends "themes/theme1/base.html" %}
+
+{% load wagtailimages_tags wagtailcore_tags static %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+
+{% image self.cover_image original as cover_background %}
+<div class="container-fluid page-header mb-5 wow fadeIn" style="background: url({{ cover_background.url }}) top left no-repeat;" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 text-heading mb-4 animated slideInDown">{{ self.title }}</h1>
+    </div>
+</div>
+
+<div class="container-fluid mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="paragraph text-paragraph mb-5">
+            {{ self.content|richtext }}
+        </div>
+
+        <p class="paragraph">{{ self.updated_at|date:"M d, Y" }}</p>
+    </div>
+</div>
+
+{% endblock content %}

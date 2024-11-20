@@ -1,0 +1,16 @@
+{% load static wagtailiconchooser_tags %}
+
+<div class="container-fluid facts-section my-5 py-5" style="background: linear-gradient(var(--primary-color-95), var(--primary-color-95)), url({% static "images/theme1/facts_section_background.png" %});">
+    <div class="container py-5">
+        <div class="row justify-content-center g-5">
+            {% for fact in value.facts %}
+            <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                {% svg_icon name=fact.icon classname="fact-icon text-white mb-3" %}
+                <h1 class="display-4 text-white" data-toggle="counter-up">{{ fact.number }}</h1>
+                <span class="fs-5 text-white">{{ fact.text }}</span>
+                <hr class="bg-white w-25 mx-auto mb-0">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

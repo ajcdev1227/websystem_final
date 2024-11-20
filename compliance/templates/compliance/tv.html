@@ -1,0 +1,35 @@
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <div class="container-fluid py-4">
+
+
+    </div>
+{% endblock content %}
+
+{% block extrascript %}
+      <div id="jaas-container"></div>
+    <script src='https://8x8.vc/external_api.js' async></script>
+    <style>html, body, #jaas-container {  }</style>
+    <script type="text/javascript">
+        window.onload = () => {
+            var room = "DataForge"
+            const api = new JitsiMeetExternalAPI("8x8.vc", {
+                roomName:"{{ JITSI_APP_ID }}/" + room,
+                parentNode: document.querySelector('#jaas-container'),
+                configOverwrite: {
+                    brandingRoomAlias:room,
+                  },
+
+                jwt:"eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtYzRjOTU1MTIzOTljNGRiOGI0NjcyNDRjOThhNDk1ODUvZTI4NmYyLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MDUwOTE1NzQsImV4cCI6MTcwNTA5ODc3NCwibmJmIjoxNzA1MDkxNTY5LCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtYzRjOTU1MTIzOTljNGRiOGI0NjcyNDRjOThhNDk1ODUiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOmZhbHNlLCJzaXAtb3V0Ym91bmQtY2FsbCI6ZmFsc2UsInRyYW5zY3JpcHRpb24iOnRydWUsInJlY29yZGluZyI6dHJ1ZX0sInVzZXIiOnsiaGlkZGVuLWZyb20tcmVjb3JkZXIiOmZhbHNlLCJtb2RlcmF0b3IiOnRydWUsIm5hbWUiOiJ1dWlkIiwiaWQiOiJhdXRoMHw2NTBhMjU2ZWQxOGUxMTY4ZTQzMWJhMzMiLCJhdmF0YXIiOiIiLCJlbWFpbCI6InV1aWRAd29ybGRvZm1haWwuY29tIn19LCJyb29tIjoiRGF0YUZvcmdlIn0.L87p6SosKPvfLYlUM4MCjrR3vcJwIC3ZV9t67G5tjg9Ziez3QU-Gu37LlsiGXDbNCRbYqR516fFF3i-s1NSkh2WPakrElD2g69RLvFC_Br6nnAn7C54yyGuZ6ScEbu2PYR5QqqM_FuLJYvjx2lR9YVazKR1HVxWK4VL27QM-3lmf4gT-NPjr9nWh5B99DYZFsWfOYek5suIEwPYenYPgJCLsQlILb1AXtW-5Lwufhdo0hZaJYnV5VUWdTMa3AXbLURxxaO5VxLwyZFYVXWLsVnj89XdxboSiKgzaVoYse_JKGLqFMqMOlQ7n-ihMbztJjvraUAJsj330ZxYWguwP1g"
+                //jwt:"eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtYzRjOTU1MTIzOTljNGRiOGI0NjcyNDRjOThhNDk1ODUvZTI4NmYyLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MDUwMTE3NTUsImV4cCI6MTcwNTAxODk1NSwibmJmIjoxNzA1MDExNzUwLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtYzRjOTU1MTIzOTljNGRiOGI0NjcyNDRjOThhNDk1ODUiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOmZhbHNlLCJzaXAtb3V0Ym91bmQtY2FsbCI6ZmFsc2UsInRyYW5zY3JpcHRpb24iOnRydWUsInJlY29yZGluZyI6ZmFsc2V9LCJ1c2VyIjp7ImhpZGRlbi1mcm9tLXJlY29yZGVyIjpmYWxzZSwibW9kZXJhdG9yIjp0cnVlLCJuYW1lIjoidXVpZCIsImlkIjoiYXV0aDB8NjUwYTI1NmVkMThlMTE2OGU0MzFiYTMzIiwiYXZhdGFyIjoiIiwiZW1haWwiOiJ1dWlkQHdvcmxkb2ZtYWlsLmNvbSJ9fSwicm9vbSI6IkRhdGFGb3JnZSJ9.OFX9L2UHSVYCTrEGo1Wsi7mV1pBSGmZxc2V7v2Nvn0E3euL4lQXn1nWDkNgxHe9UuD1FoDI1b-2EdDO3stVvSr2DHJAuq3gCHcjkAmBQWCgNNay3LDKbgknqV3Nt3jjwGecGVD1sz4nx_qsrH5BeHtb0-Wbxo0A1yrYWdtzEMZQ_AoJo7fJdvWlT0EDlq3e2nzxERjLAJpvcnJF9DASvugroY98bf30QQkB_r_-Zasps9P4USUIbvhnXpAylYdaLpnzrxTsuGRC4FSV_-ShVKTrc7YBkEsvbV8z3bn_bkh7F1B0nc5DiG2itkdqAyQsPl7slEvQo4IrllBH_VvtM8g"
+            });
+        }
+    </script>
+{% endblock extrascript %}
+
+
+
+#1 generating a key that allows the user to basically create their own meetings
+#2 generating a room name for the user's tenant
+#3 being able to share a "branding" link like testsite.net/meet/goheremeeting1

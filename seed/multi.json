@@ -1,0 +1,114 @@
+[
+{
+    "model": "home.domain",
+    "pk": 1,
+    "fields": {
+        "domain": "auth.localhost",
+        "tenant": 1,
+        "is_primary": true
+    }
+},
+{
+    "model": "home.domain",
+    "pk": 2,
+    "fields": {
+        "domain": "admin.localhost",
+        "tenant": 2,
+        "is_primary": true
+    }
+},
+{
+    "model": "home.domain",
+    "pk": 3,
+    "fields": {
+        "domain": "home.localhost",
+        "tenant": 3,
+        "is_primary": true
+    }
+},
+{
+    "model": "home.client",
+    "pk": 1,
+    "fields": {
+        "schema_name": "public",
+        "tenant_name": "Public",
+        "tenant_uuid": "8eaf4eac-2198-47f9-9988-ee4e8e5d7ec9",
+        "domain_url": "auth.localhost",
+        "domain_host": "",
+        "paid_until": "2100-12-31",
+        "on_trial": false,
+        "created_on": "2023-11-06"
+    }
+},
+{
+    "model": "home.client",
+    "pk": 2,
+    "fields": {
+        "schema_name": "admin",
+        "tenant_name": "a",
+        "tenant_uuid": "8be99182-292d-4ad3-86d1-35e920567c93",
+        "domain_url": "admin.localhost:8000",
+        "domain_host": "admin.localhost",
+        "paid_until": "2100-12-05",
+        "on_trial": true,
+        "created_on": "2023-11-06"
+    }
+},
+{
+    "model": "home.client",
+    "pk": 3,
+    "fields": {
+        "schema_name": "home",
+        "tenant_name": "a",
+        "tenant_uuid": "ef2b8693-fdd2-45d8-90fa-74377072fd9d",
+        "domain_url": "home.localhost:8000",
+        "domain_host": "home.localhost",
+        "paid_until": "2100-12-05",
+        "on_trial": true,
+        "created_on": "2023-11-06"
+    }
+},
+{
+    "model": "home.client",
+    "pk": 5,
+    "fields": {
+        "schema_name": "auth",
+        "tenant_name": "a",
+        "tenant_uuid": "ef4e82c8-aa97-4a43-b5f6-7cdcb0935068",
+        "domain_url": "auth.localhost:8000",
+        "domain_host": "auth.localhost",
+        "paid_until": "2100-12-05",
+        "on_trial": true,
+        "created_on": "2023-11-06"
+    }
+},
+{
+    "model": "home.customuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$qbflftXpyarPMkxygFmkfQ$gRsHgWjafTYkWRxmXZP7Bhgn3vav0h3OSNr0eQ4Tn/8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "gomak0887@gmail.com",
+        "first_name": "",
+        "last_name": "",
+        "email": "gomak0887@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-06T16:48:28.608Z",
+        "phonenumber": "",
+        "company": null,
+        "c_members": "",
+        "display_name": null,
+        "customer_id": "99a061",
+        "approved": 0,
+        "role": 2,
+        "group": 1,
+        "calendar_id": "",
+        "nylas_access_token": "",
+        "domain_url": "1",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

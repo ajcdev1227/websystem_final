@@ -1,0 +1,388 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns:x-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}">
+
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'assets/calendar/style.css' %}">
+
+    <style>
+        .btn {
+            --bs-btn-padding-x: 1.5rem;
+            --bs-btn-padding-y: 0.75rem;
+           --bs-btn-font-size: 0.75rem;
+            --bs-btn-font-weight: 700;
+            --bs-btn-line-height: 1.4;
+            --bs-btn-color: #67748e;
+            --bs-btn-bg: transparent;
+            --bs-btn-border-width: 1px;
+            --bs-btn-border-color: transparent;
+            --bs-btn-border-radius: 0.5rem;
+            --bs-btn-box-shadow: 0 4px 7px -1px rgba(0, 0, 0, 0.11), 0 2px 4px -1px rgba(0, 0, 0, 0.07);
+            --bs-btn-disabled-opacity: 0.65;
+            --bs-btn-focus-box-shadow: 0 0 0 0.2rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+            display: inline-block;
+            padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+            font-family: var(--bs-btn-font-family);
+            font-size: var(--bs-btn-font-size);
+            font-weight: var(--bs-btn-font-weight);
+            line-height: var(--bs-btn-line-height);
+            color: var(--bs-btn-color);
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+            border-radius: var(--bs-btn-border-radius);
+            background-color: var(--bs-btn-bg);
+            transition: all 0.15s ease-in;
+            border-color: #d0cbcb;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn {
+                transition: none;
+            }
+        }
+
+        .btn:hover {
+            color: var(--bs-btn-hover-color);
+            background-color: var(--bs-btn-hover-bg);
+        }
+
+
+        /* Example CSS */
+        input[type="date"], input[type="time"], select[name="timezone"] {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.4rem;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #d2d6da;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.5rem;
+            transition: box-shadow 0.15s ease, border-color 0.15s ease;
+        }
+
+        label {
+            /* Customize label styles as needed */
+        }
+
+    </style>
+    <style>
+        .time-slot-item {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 30px;
+            background: #E4EFF1;
+            color: #3D6E71;
+            font-weight: 600;
+            font-size: 12pt;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .time-slot-item.middle-line {
+            text-decoration: line-through;
+            cursor: not-allowed;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+
+        }
+
+        .time-slot-item.active {
+            background: #c8f0f6;
+        }
+
+        /* For Firefox */
+        .scrollbar {
+            scrollbar-width: thin;
+            height: 250px;
+            overflow-y: scroll;
+            -webkit-scrollbar-width: thin; /* for Chrome and Safari */
+        }
+    </style>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <div class="container">
+        <div class="mt-2 text-right">
+            <a href="{% url 'logout' %}" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none me-1">Logout</span>
+            </a>
+        </div>
+    </div>
+{% endif %}
+<div class="container">
+    <div class="card mt-1" x-data="calendar">
+        <div class="card-body">
+            {% include 'message.html' %}
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Kickoff Meeting</h3>
+                    <span id="prev"><i class="fa-solid fa-"></i></span>
+                    <p>Welcome! In this meeting we are going to collect additional information to complete your account
+                        setup. Helpful information to have on hand:
+                    </p>
+                    <div>· Current website URL</div>
+                    <div>· Firm brand colors</div>
+                    <div>· Logo file</div>
+
+                </div>
+                <div class="col-md-5">
+                    <div class="content">
+                        <header>
+                            <p class="current-date"></p>
+                            <div class="icons">
+                                <span id="prev"><i class="fa-solid fa-angle-left"></i></span>
+                                <span id="next"><i class="fa-solid fa-angle-right"></i></span>
+                            </div>
+                        </header>
+                        <div class="calendar">
+                            <ul class="weeks">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                            <ul class="days">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Tuesday, April 2023</h5>
+                    <div class="scrollbar">
+                        <template x-for="(date, i) in initDates.am">
+                            <div class="form-check mb-1">
+                                <div class="time-slot-item"
+                                     @click="OnItemClickedAM(i)"
+                                     :class="!date.checked || (date.selected && date.user_id !== user_id) ?
+                                     'middle-line' : date.selected && date.user_id == user_id ? 'active' : ''"
+                                     x-text="date.time"
+                                     x-bind:data="date.time">
+                                    10:30am
+                                </div>
+                            </div>
+                        </template>
+
+                        <template x-for="(date, i) in initDates.pm">
+                            <div class="form-check mb-1">
+                                <div class="time-slot-item"
+                                     @click="OnItemClickedPM(i)"
+                                     :class="!date.checked || (date.selected && date.user_id !== user_id) ?
+                                     'middle-line' : date.selected && date.user_id == user_id ? 'active' : ''"
+                                     x-text="date.time"
+                                     x-bind:data="date.time">
+                                    10:30am
+                                </div>
+                            </div>
+                        </template>
+
+                        {#                        <div class="time-slot-item middle-line" data="10:45">#}
+                        {#                            10:45am#}
+                        {#                        </div>#}
+                        {##}
+                        {#                        <div class="time-slot-item" data="14:30">#}
+                        {#                            2:30pm#}
+                        {#                        </div>#}
+                    </div>
+
+
+                    <form method="post" action="{% url 'enterdetail' %}">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="{{ form.date.id_for_label }}">Date</label>
+                            {{ form.date }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.time.id_for_label }}">Time</label>
+                            {{ form.time }}
+                        </div>
+                        {##}
+                        <div class="form-group">
+                            {#                            <label for="{{ form.timezone.id_for_label }}">Timezone</label>#}
+                            {{ form.timezone }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.available_times }}
+                        </div>
+
+                        <div class="form-group" style="text-align: center; margin-top: 10px">
+                            <input class="btn bg-gradient-info" type="submit" value="Continue">
+                        </div>
+                    </form>
+
+                    {#                    <div class="form-group" style="text-align: center; margin-top: 30px">#}
+                    {#                        <a class="btn btn-primary">Continue</a>#}
+                    {#                    </div>#}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="dates" name="dates" value="{{ dates }}">
+
+<script src="{% static 'js/libs/axios.min.js' %}" defer></script>
+<script defer src="{% static 'js/libs/alpine.min.js' %}"></script>
+<script src="{% static 'assets/calendar/script.js' %}"></script>
+<script>
+
+    function SelectTime(times, pos, user_id) {
+        times.map((item, i) => {
+            if (i === pos) {
+                item.selected = true;
+                item.user_id = user_id;
+            } else {
+                item.selected = false;
+                item.user_id = 0;
+            }
+        })
+    }
+
+    function UpdateFormView(item, changedAvailableDates) {
+        if (item) {
+            window.document.getElementById("id_time").value = _24format(item.time);
+            window.document.getElementById("id_available_times").value = JSON.stringify(changedAvailableDates);
+        } else {
+            window.document.getElementById("id_time").value = "";
+            window.document.getElementById("id_available_times").value = "";
+        }
+    }
+
+    const initDatesState = {
+        am: [
+            {time: '06:00 AM', checked: false, selected: false, user_id: 0},
+            {time: '06:30 AM', checked: false, selected: false, user_id: 0},
+            {time: '07:00 AM', checked: false, selected: false, user_id: 0},
+            {time: '07:30 AM', checked: false, selected: false, user_id: 0},
+            {time: '08:00 AM', checked: false, selected: false, user_id: 0},
+            {time: '08:30 AM', checked: false, selected: false, user_id: 0},
+            {time: '09:00 AM', checked: false, selected: false, user_id: 0},
+            {time: '09:30 AM', checked: false, selected: false, user_id: 0},
+            {time: '10:00 AM', checked: false, selected: false, user_id: 0},
+            {time: '10:30 AM', checked: false, selected: false, user_id: 0},
+            {time: '11:00 AM', checked: false, selected: false, user_id: 0},
+            {time: '11:30 AM', checked: false, selected: false, user_id: 0},
+        ],
+        pm: [
+            {time: '12:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '12:30 PM', checked: false, selected: false, user_id: 0},
+            {time: '01:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '01:30 PM', checked: false, selected: false, user_id: 0},
+            {time: '02:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '03:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '03:30 PM', checked: false, selected: false, user_id: 0},
+            {time: '04:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '04:30 PM', checked: false, selected: false, user_id: 0},
+            {time: '05:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '05:30 PM', checked: false, selected: false, user_id: 0},
+            {time: '06:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '06:30 PM', checked: false, selected: false, user_id: 0},
+            {time: '07:00 PM', checked: false, selected: false, user_id: 0},
+            {time: '07:30 PM', checked: false, selected: false, user_id: 0},
+            {time: '08:00 PM', checked: false, selected: false, user_id: 0},
+        ]
+    };
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('calendar', () => ({
+            user_id: '{{ request.user.id }}',
+            scheduled_date: '{{ scheduled_date }}',
+            initDates: JSON.parse(JSON.stringify(initDatesState)),
+
+            init() {
+                // I get called before the element using this data initializes.
+                scheduled_date = this.scheduled_date;
+            },
+
+            async OnClickedSelectedDate(date) {
+                const year = currentYear;
+                const month = String(currentMonth + 1).padStart(2, '0');
+                const day = String(date).padStart(2, '0');
+                const formattedDate = `${year}-${month}-${day}`;
+                await this.GetAvailableTimes(formattedDate);
+
+                const item = this.initDates.am.find(item => item.selected && item.user_id === this.user_id) ||
+                    this.initDates.pm.find(item => item.selected && item.user_id === this.user_id);
+                UpdateFormView(item, this.initDates);
+            },
+
+            OnItemClickedAM(pos) {
+                const item = this.initDates.am[pos];
+                if (!item.checked || (item.selected && item.user_id !== this.user_id))
+                    return;
+
+                SelectTime(this.initDates.am, pos, this.user_id);
+                UpdateFormView(item, this.initDates);
+            },
+            OnItemClickedPM(pos) {
+                const item = this.initDates.pm[pos];
+                if (!item.checked || (item.selected && item.user_id !== this.user_id))
+                    return;
+
+                SelectTime(this.initDates.pm, pos, this.user_id);
+                UpdateFormView(item, this.initDates);
+            },
+            async GetAvailableTimes(date) {
+                let self = this;
+                let params = new URLSearchParams();
+                params.append('date', date);
+                await axios.post('{% url 'getavailabletime' %}', params, {
+                        headers: {"X-CSRFToken": "{{ csrf_token }}"},
+                    }
+                ).then(function (response) {
+                    // handle success
+                    const {message, data} = response.data;
+                    if (data != null) {
+                        const {times} = data;
+                        self.initDates = JSON.parse(times);
+                    } else {
+                        self.initDates = JSON.parse(JSON.stringify(initDatesState));
+                    }
+
+                }).catch(function (error) {
+                    // handle error
+                })
+            }
+        }));
+    })
+
+
+    window.addEventListener("load", function () {
+        // Code to be executed when the page is fully loaded
+        var localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        window.document.getElementById("id_timezone").value = localTimeZone;
+    });
+</script>
+</body>
+</html>

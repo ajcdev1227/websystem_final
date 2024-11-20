@@ -1,0 +1,20 @@
+{% extends "themes/theme1/base.html" %}
+
+{% load static %}
+
+{% block body_class %}homepage{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{#these act as replacers for the base theme#}
+{% block content %}
+
+    {% for block in self.body %}
+
+        {{ block }}
+
+    {% endfor %}
+
+{% endblock content %}

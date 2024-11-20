@@ -1,0 +1,166 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+    <style>
+        .customer {
+            background: #EAFAF0;
+            border-radius: 15px;
+            padding: 8px 25px;
+            font-size: 12pt;
+        }
+
+        .customer .id {
+            padding: 3px;
+            color: #84C58B;
+            background: #d2f5df;
+            border-radius: 10px;
+        }
+
+        .house {
+            color: #84C58B;
+        }
+    </style>
+{% endblock extrastyle %}
+
+{% block content %}
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-md-8 col-lg-8">
+                <h5>Profile Information</h5>
+                <div class="row">
+                    <div class="customer">
+                        Customer ID: <span class="id">{{ user.customer_id }}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstname">
+                                First Name
+                            </label>
+                            <input class="form-control" type="text" id="firstname">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastname">
+                                Last Name
+                            </label>
+                            <input class="form-control" type="text" id="lastname">
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="companyname">
+                                Company Name
+                            </label>
+                            <input class="form-control" type="text" value="{{ user.company.company }}" id="companyname">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="members">
+                                How many members in company?
+                            </label>
+                            <input class="form-control" type="text" value="{{ user.c_members }}" id="members">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="website_url">
+                                Website URL
+                            </label>
+                            <input class="form-control" type="text" id="website_url">
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Contact Information</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="primary_email">
+                                Primary Email
+                            </label>
+                            <input class="form-control"
+                                   value="{{ user.email }}"
+                                   type="text" id="primary_email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="primary_phone">
+                                Primary Phone
+                            </label>
+                            <input class="form-control"
+                                   type="text" id="primary_phone">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="secondary_email">
+                                Secondary Email
+                            </label>
+                            <input class="form-control" type="text" id="secondary_email">
+                        </div>
+                    </div>
+                </div>
+
+                <h5>Onboarding Information</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                User's URL
+                            </label>
+                            <input class="bg-white" disabled type="text" value="{{ user.tenant_option.tenant_url }}">
+                        </div>
+                        <div class="form-group">
+                            <label>DNS Settings</label>
+                            <input class="bg-white" disabled type="text" value="{{ user.tenant_option.dns_settings }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>What color palette they use</label>
+                            <input class="bg-white" disabled type="text" value="{{ user.tenant_option.color_palette }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Plan</label>
+                            <input class="bg-white" disabled type="text" value="{{ user.tenant_option.plan }}">
+                        </div>
+                    </div>
+
+                     <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                Billing Information
+                            </label>
+                            <input class="bg-white" disabled type="text" value="{{ user.tenant_option.billing_info }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Youtube account link</label>
+                            <input class="bg-white" disabled type="text" value="{{ user.tenant_option.youtube_acc_link }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Twilio account</label>
+                            <input class="bg-white" disabled type="text" value="{{ user.tenant_option.twilio_acc }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Connect Social Media</h5>
+                <h6>Facebook</h6>
+                <h6>Linkedin</h6>
+                <h6>Twitter</h6>
+            </div>
+        </div>
+
+        <div class="row">
+
+        </div>
+        {#{% include "includes/footer.html" %}#}
+    </div>
+{% endblock content %}

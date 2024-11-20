@@ -1,0 +1,46 @@
+    {% load static %}
+<!-- Navbar -->
+<nav class="navbar-main navbar-expand-lg px-0 shadow-none premium-green" id="navbarBlur"
+     navbar-scroll="true">
+    <div class="container-fluid py-2 px-1 d-flex align-items-center">
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 py-1" id="navbar">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-3 me-sm-6 me-5 d-flex align-items-center">
+                <li class="breadcrumb-item fs-6 px-3"><a class="text-white" href="javascript:;">WebSystem</a></li>
+                <li class="fs-3 text-white active" aria-current="page">
+                    | {{title}}
+                </li>
+            </ol>
+
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center text-white">
+                 <div class="ms-md-auto pe-md-3 d-flex align-items-center text-white">
+{#                     <a href="http://compliance.fod:8000" class="nav-link text-white font-weight-bold px-0">#}
+{#                            <!--<i class="fa fa-user me-sm-1"></i>-->#}
+{#                            <span class="d-sm-inline d-none me-3">Compliance</span>#}
+{#                     </a>#}
+                </div>
+                 <li class="nav-item dropdown pe-3 d-flex align-items-center">
+                    <a href="http://compliance.websystemcontrol.com" class="btn btn-default bg-gradient-primary btn-sm">
+                        Compliance
+                    <!-- Compliance Count -->
+                        {% if compliance_cnt is not 0 %}
+                            <span class="bg bg-success rounded rounded-3 px-1">{{ compliance_cnt }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+{#                <span>{{ request.user.email }}</span>#}
+            </div>
+
+            <ul class="navbar-nav  justify-content-end">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item d-flex align-items-center">
+                        <a href="{% url 'logout' %}" class="nav-link text-white font-weight-bold px-0">
+                            <i class="fa fa-user me-sm-1"></i>
+                            <span class="d-sm-inline d-none me-3">Logout</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->

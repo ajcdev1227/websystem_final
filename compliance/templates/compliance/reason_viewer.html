@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .container {
+            margin: auto;
+            width: 575px;
+            padding: 32px;
+            align-items: flex-start;
+            gap: 30px;
+            border-radius: 15px;
+            background: #FFF;
+            box-shadow: 0 4px 40px 0 #0000001A;
+        }
+
+        .title {
+            text-align: center;
+            color: #141414;
+            font-size: 30px;
+            font-family: Poppins, serif;
+            font-weight: 600;
+        }
+
+        .text {
+            margin-top: 20px;
+            color: #141414;
+            font-size: 21px;
+            font-family: Poppins, serif;
+            font-weight: 500;
+        }
+
+        .btn-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn {
+            border-radius: 9px;
+            background: #FF0080;
+            padding: 12px;
+            margin-top: 20px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            color: #fff;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            background-color: #cb0c9f;
+            border-color: #cb0c9f;
+        }
+
+        .bg-gradient-primary {
+            background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="title">
+        Your page {{ page_name }} has been denied.
+    </div>
+
+    <div class="text">
+        Reason:
+    </div>
+
+    <div class="text">
+        {{ submission.approval_officer_note }}
+    </div>
+
+    <div class="text">
+        Please update to the standards or communicate directly with the officer here
+    </div>
+
+    <div class="text">testemail@gmail.com</div>
+</div>
+</body>
+</html>

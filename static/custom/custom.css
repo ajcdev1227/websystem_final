@@ -1,0 +1,170 @@
+.light-green {
+    background-color: #D7F6F1;
+}
+
+.standard-green {
+    background-color: #98D2D4;
+}
+
+.premium-green {
+    background-color: #007074;
+}
+
+.nav-card-light {
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #98D2D4;
+    height: 130px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-card-light:hover {
+    background-color: #82c1c4;
+}
+
+.nav-card {
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #007074;
+    height: 130px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-card:hover {
+    background-color: #005b63;
+}
+
+.text-green {
+    color: #007074
+}
+
+.text-light {
+    color: #D7F6F1
+}
+
+.text-light:hover {
+    color: #007074
+}
+
+.text-green:hover {
+    color: #005a5f;
+}
+
+.green-hr {
+    height: 3px;
+    background-color: #899696;
+}
+
+/* ====== meetings page ========= */
+
+.container {}
+
+.container-header {
+    /* height: 100px;
+    display: flex; */
+}
+
+.container-footer {}
+
+.btn-green {
+    background-color: #007074;
+    color: white;
+    height: 40px;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.btn-green:active {
+    background-color: #93d6da;
+    color: white;
+}
+
+.btn-grey {
+    background-color: #696969;
+    color: white;
+    height: 40px;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.btn-grey:active {
+    background-color: rgb(213, 214, 214);
+    color: white;
+}
+
+.event-card {
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: whitesmoke;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px;
+    color: #007074
+}
+
+.event-card:hover {
+    background-color: #e4f6f7;
+}
+
+.event-card-active {
+    border-top: 3px solid #007074;
+}
+
+.event-card-deactive {
+    border-top: 3px solid #a4a5a5;
+}
+
+.nav-item .active{
+    color: white;
+    background-color: #007074;
+}
+
+#exTab1 .tab-content {
+    color : white;
+    background-color: #428bca;
+    padding : 5px 15px;
+  }
+  
+  #exTab2 h3 {
+    color : white;
+    background-color: #428bca;
+    padding : 5px 15px;
+  }
+  
+  /* remove border radius for the tab */
+  
+  #exTab1 .nav-pills > li > a {
+    border-radius: 0;
+  }
+  
+  /* change border radius for the tab , apply corners on top*/
+  
+  #exTab3 .nav-pills > li > a {
+    border-radius: 4px 4px 0 0 ;
+  }
+  
+  #exTab3 .tab-content {
+    color : white;
+    background-color: #428bca;
+    padding : 5px 15px;
+  }

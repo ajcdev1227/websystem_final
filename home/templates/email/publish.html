@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .container {
+            margin: auto;
+            width: 575px;
+            padding: 32px;
+            align-items: flex-start;
+            gap: 30px;
+            border-radius: 15px;
+            background: #FFF;
+            box-shadow: 0 4px 40px 0 #0000001A;
+        }
+
+        .title {
+            text-align: center;
+            color: #141414;
+            font-size: 30px;
+            font-family: Poppins, serif;
+            font-weight: 600;
+        }
+
+        .text {
+            margin-top: 20px;
+            color: #141414;
+            font-size: 21px;
+            font-family: Poppins, serif;
+            font-weight: 500;
+        }
+
+        .btn-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn {
+            border-radius: 9px;
+            background: #FF0080;
+            padding: 12px;
+            margin-top: 20px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            color: #fff;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            background-color: #cb0c9f;
+            border-color: #cb0c9f;
+        }
+
+        .bg-gradient-primary {
+            background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="title">
+        Please Review and Approve
+    </div>
+    <div class="text">
+        Dear {{ name }}, a new change has been made to your site <a href="{{ link }}">{{ slug }}</a>.
+        Please click the link to review and approve.
+    </div>
+
+    <div class="text">
+        In the link, it should be a tiny url it should show the old page on the left, and the new pending draft on the
+        right (SIDE BY SIDE COMPARISON)
+    </div>
+
+    <div class="text">
+        As well as two approve or deny buttons below. Remember this is only for ONE time, so they cannot approve or deny
+        it again. for the same page. Either approve or denied.
+        Then user will have to make another update to that page to approve or deny again
+    </div>
+
+    <div class="text">
+        If they approve there shouldn't be any form box that pops up
+        If DENY, put up box and have placeholder text "Please provide context for denial"
+    </div>
+
+    <div class="text">
+        And that denial gets populated back as a comment in the compliance queue, the denial comment can right next to
+        status,
+        it can open up a new pop-out window that explains the reason
+    </div>
+
+    <div class="text">
+        If the compliance officer approves it, the officer gets a notification "Thank you! The page will be live
+        shortly."
+    </div>
+
+    <div class="text">
+        This is where we will work on next after everything is done to make sure the pages can get populated properly on
+        a
+        live domain, but dont worry about that now
+    </div>
+
+    <div class="text">
+        This all happens in the officer form link
+    </div>
+    <div class="btn-container">
+        <a style="color: white" href="{{ link }}"
+           class="btn btn-primary bg-gradient-primary">Click This Link</a>
+    </div>
+</div>
+</body>
+</html>

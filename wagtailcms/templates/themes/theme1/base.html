@@ -1,0 +1,197 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>
+        {% block title %}
+        {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+        {% endblock %}
+        {% block title_suffix %}
+        {% wagtail_site as current_site %}
+        {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+        {% endblock %}
+    </title>
+    {% if page.search_description %}
+    <meta name="description" content="{{ page.search_description }}" />
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {# Force all links in the live preview panel to be opened in a new tab #}
+    {% if request.in_preview_panel %}
+    <base target="_blank">
+    {% endif %}
+
+    {% if settings.wagtailcms.ThemeSettings.headline_font == "Arial" %}
+    <link href="https://fonts.googleapis.com/cssmy2?family=Arial:wght@400;500&display=swap" rel="stylesheet">
+    {% elif settings.wagtailcms.ThemeSettings.headline_font == "Helvetica" %}
+    <link href="https://fonts.googleapis.com/cssmy2?family=Arial:wght@400;500&display=swap" rel="stylesheet">
+    {% elif settings.wagtailcms.ThemeSettings.headline_font == "Roboto" %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    {% elif settings.wagtailcms.ThemeSettings.headline_font == "Open Sans" %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@300..800;1,300..800&display=swap" rel="stylesheet">
+    {% elif settings.wagtailcms.ThemeSettings.headline_font == "Lato" %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    {% endif %}
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/theme1/animate.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/theme1/owl.carousel.min.css" %}" />
+
+    {# Make sure to see if fonts have some glitches where the actual site theme keeps certain fonts #}
+
+    {# Global stylesheets #}
+    <link rel="stylesheet" type="text/css" href="{% static "css/theme1/style.css" %}" />
+    <style>
+        {% if settings.wagtailcms.ThemeSettings.headline_font == "Arial" %}
+        html,
+        body {
+            font-family: Arial !important;
+        }
+        {% elif settings.wagtailcms.ThemeSettings.headline_font == "Roboto" %}
+        html,
+        body {
+            font-family: "Roboto", sans-serif !important;
+        }
+        {% elif settings.wagtailcms.ThemeSettings.headline_font == "Open Sans" %}
+        html,
+        body {
+            font-family: "Open Sans", sans-serif !important;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings: "wdth" 100;
+        }
+        {% elif settings.wagtailcms.ThemeSettings.headline_font == "Lato" %}
+        html,
+        body {
+            font-family: "Lato", sans-serif !important;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        {% endif %}
+
+        :root {
+        {% if settings.wagtailcms.ThemeSettings.primary_color %}
+            --primary-color: {{ settings.wagtailcms.ThemeSettings.primary_color }};
+            --primary-color-95: {{ settings.wagtailcms.ThemeSettings.primary_color }}F2;
+            --primary-color-light: {{ settings.wagtailcms.ThemeSettings.primary_color }}26;
+            --primary-color-light-hover: {{ settings.wagtailcms.ThemeSettings.primary_color }}4C;
+        {% endif %}
+        {% if settings.wagtailcms.ThemeSettings.cta_color %}
+            --cta-color: {{ settings.wagtailcms.ThemeSettings.cta_color }};
+        {% endif %}
+        {% if settings.wagtailcms.ThemeSettings.heading_color %}
+            --heading-color: {{ settings.wagtailcms.ThemeSettings.heading_color }};
+        {% endif %}
+        {% if settings.wagtailcms.ThemeSettings.paragraph_color %}
+            --paragraph-color: {{ settings.wagtailcms.ThemeSettings.paragraph_color }};
+        {% endif %}
+        {% if settings.wagtailcms.ThemeSettings.footer_color %}
+            --footer-color: {{ settings.wagtailcms.ThemeSettings.footer_color }};
+        {% endif %}
+        }
+
+        ::selection {
+            background: var(--primary-color-light);
+        }
+    </style>
+
+    {% for block in settings.wagtailcms.ThemeSettings.global_style_and_scripts_head %}
+    {{ block|safe }}
+    {% endfor %}
+
+    {% if settings.wagtailcms.WebsiteSettings.google_analytics_key %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{settings.wagtailcms.WebsiteSettings.google_analytics_key}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{settings.wagtailcms.WebsiteSettings.google_analytics_key}}');
+    </script>
+    {% endif %}
+
+    {% if settings.wagtailcms.WebsiteSettings.ms_clarity_key %}
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "{{settings.wagtailcms.WebsiteSettings.ms_clarity_key}}");
+    </script>
+    {% endif %}
+
+    {% block extra_css %}
+    {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    {# {% wagtailuserbar %} #}
+    {# adding main menu system into base 1.22.24#}
+
+    {# in every base we will have a different custom menu and custom sub menu#}
+
+    {% if messages %}
+    <div class="position-relative">
+        <div class="toast show position-absolute bg-white" role="alert" aria-live="assertive" aria-atomic="true" style="top:120px;margin-left:auto;margin-right:auto;left:0;right:0;text-align:center;z-index:1000;">
+            <div class="toast-header">
+                <strong class="me-auto">Notifications</strong>
+                <button type="button" class="btn btn-sm mb-1" data-bs-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% for message in messages %}
+            <div class="toast-body">
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% include 'themes/theme1/navbar.html' %}
+
+    {% block content %}
+
+
+    {% endblock %}
+
+    {% include 'themes/theme1/footer.html' %}
+
+    {# Global javascript #}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    {% for block in settings.wagtailcms.ThemeSettings.global_style_and_scripts_end %}
+    {{ block|safe }}
+    {% endfor %}
+
+    <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/theme1/waypoints.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/theme1/counterup.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/theme1/wow.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/theme1/main.js' %}"></script>
+
+    {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</body>
+</html>

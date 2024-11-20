@@ -1,0 +1,12 @@
+[
+  {
+    "model": "home.CustomUser",
+    "pk": 1,
+    "fields": {
+      "email": "gomak0887@gmail.com",
+      "username": "gomak0887@gmail.com",
+      "password": "pbkdf2_sha256$600000$wjgQ34ePc2x7SzWTjF03nA$pNPxIAQiBqzy5Uy9N1GHmevVeyT1HYNJB7wvD2lnyhI=",
+      "role": 1
+    }
+  }
+]

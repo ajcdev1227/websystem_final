@@ -1,0 +1,473 @@
+{% load i18n static %}
+
+<aside id="sidenav-main"
+  class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 ps">
+  <div class="sidenav-header">
+    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true"
+      id="iconSidenav mb-1"></i>
+
+    <a class="navbar-brand m-0" href="/">
+      <img src="/images/converge-cx-sm.png" width="180" height="24" class="navbar-brand-img h-100" alt="">
+    </a>
+  </div>
+
+  <hr class="horizontal dark mt-0">
+
+  <div class="collapse navbar-collapse w-auto h-auto ps" id="sidenav-collapse-main">
+    <ul class="navbar-nav">
+
+      <!-- modules - NEW - 1/22/24 -->
+      <li class="nav-item bg-gray-100x">
+        <a data-bs-toggle="collapse" href="#applications-sdbr" class="nav-link" aria-controls="applications-sdbr" role="button"
+          aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-th-large text-info text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Applications</span>
+        </a>
+
+        <div class="collapse" id="applications-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link ms-0" href="/">
+                <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                  <i class="fa fa-users text-muted text-sm opacity-8 mb-1" aria-hidden="true"></i>
+                </div>
+                <!--<span class="sidenav-normal">Contacts & Marketing</span>-->
+                <span class="sidenav-normal">CRM</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link ms-0" href="#">
+                <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                  <i class="fa fa-globe text-muted text-sm opacity-8 mb-1" aria-hidden="true"></i>
+                </div>
+                <span class="sidenav-normal">Website Engine</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link ms-0" href="#">
+                <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                  <i class="fa fa-laptop text-muted text-sm opacity-8 mb-1" aria-hidden="true"></i>
+                </div>
+                <span class="sidenav-normal">Virtual Meetings</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link ms-0" href="#">
+                <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                  <i class="fa fa-magic text-muted text-sm opacity-8 mb-1" aria-hidden="true"></i>
+                </div>
+                <span class="sidenav-normal">Magellan AI</span>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+      </li>
+      <!-- END modules -->
+
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a href="/" class="nav-link" aria-controls="dashboard-sdbr" role="button" aria-expanded="false">
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-dashboard text-blue-1 text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+          <span class="nav-link-text ms-1">CRM Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Contacts -->
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#leads-sdbr" class="nav-link" aria-controls="leads-sdbr" role="button" aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-users text-primary text-sm opacity-7 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Leads / Contacts</span>
+        </a>
+
+        <div class="collapse" id="leads-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/leads/">
+                <span class="sidenav-mini-icon"> V </span>
+                <span class="sidenav-normal">View</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/leads/add.php">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal">Add</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/leads/trash.php">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal">Trash</span>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+      </li>
+      <!-- END Contacts -->
+
+      <!-- Communications -->
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#comms-sdbr" class="nav-link" aria-controls="comms-sdbr" role="button" aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-comments-o text-warning text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Communications</span>
+        </a>
+
+        <div class="collapse" id="comms-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/comms/emails.php">
+                <span class="sidenav-mini-icon"> E </span>
+                <span class="sidenav-normal">Emails</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/comms/sms.php">
+                <span class="sidenav-mini-icon"> S </span>
+                <span class="sidenav-normal">SMSs</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/comms/inquiries.php">
+                <span class="sidenav-mini-icon"> I </span>
+                <span class="sidenav-normal">Inquiries</span>
+              </a>
+            </li>
+
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="/comms/calls.php">
+                <span class="sidenav-mini-icon"> C </span>
+                <span class="sidenav-normal">Calls</span>
+              </a>
+            </li>
+            -->
+
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="/calls/">
+                <span class="sidenav-mini-icon"> V </span>
+                <span class="sidenav-normal">Voice Messages</span>
+              </a>
+            </li>
+            -->
+          </ul>
+        </div>
+      </li>
+      <!-- END Communications -->
+
+      <!-- Tasks -->
+      <li class="nav-item">
+        <a href="/tasks/" class="nav-link" aria-controls="tasks-sdbr" role="button" aria-expanded="false">
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-calendar-check-o text-success text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+          <span class="nav-link-text ms-1">Tasks</span>
+        </a>
+      </li>
+
+      <!-- automation -->
+      <li class="nav-item">
+        <a href="/automation/" class="nav-link" aria-controls="automation-sdbr" role="button" aria-expanded="false">
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-robot text-danger text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+          <span class="nav-link-text ms-1">Automations</span>
+        </a>
+      </li>
+
+      <!-- campaigns -->
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#campaigns-sdbr" class="nav-link" aria-controls="campaigns-sdbr" role="button"
+          aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-bullhorn text-primary text-sm opacity-7 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Campaigns &amp; Lists</span>
+        </a>
+
+        <div class="collapse" id="campaigns-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/campaigns/">
+                <span class="sidenav-mini-icon"> C </span>
+                <span class="sidenav-normal">Campaigns</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/lists/">
+                <span class="sidenav-mini-icon"> L </span>
+                <span class="sidenav-normal">Lists</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <!-- END campaigns -->
+
+      <!-- events -->
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#events-sdbr" class="nav-link" aria-controls="events-sdbr" role="button" aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-calendar text-orange text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Events &amp; Venues</span>
+        </a>
+
+        <div class="collapse" id="events-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/events/">
+                <span class="sidenav-mini-icon"> E </span>
+                <span class="sidenav-normal">Events</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/events/venues.php">
+                <span class="sidenav-mini-icon"> V </span>
+                <span class="sidenav-normal">Venues</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <!-- END events -->
+
+      <!-- templates -->
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#templates-sdbr" class="nav-link" aria-controls="templates-sdbr" role="button"
+          aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-file-text text-blue-1 text-sm opacity-9 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Templates</span>
+        </a>
+
+        <div class="collapse" id="templates-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/templates/">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal">All</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/templates/?type=email">
+                <span class="sidenav-mini-icon"> E </span>
+                <span class="sidenav-normal">Email</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/templates/?type=sms">
+                <span class="sidenav-mini-icon"> S </span>
+                <span class="sidenav-normal">SMS</span>
+              </a>
+            </li>
+
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="/templates/?type=voice">
+                <span class="sidenav-mini-icon"> V </span>
+                <span class="sidenav-normal">Voice Recordings</span>
+              </a>
+            </li>
+            -->
+
+          </ul>
+        </div>
+      </li>
+      <!-- END templates -->
+
+      <!-- assets -->
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#assets-sdbr" class="nav-link" aria-controls="assets-sdbr" role="button" aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-picture-o text-primary text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Assets</span>
+        </a>
+
+        <div class="collapse" id="assets-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/images.php">
+                <span class="sidenav-mini-icon"> I </span>
+                <span class="sidenav-normal">Images</span>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+      </li>
+      <!-- END assets -->
+
+      <!-- moderation -->
+      <li class="nav-item">
+        <hr class="horizontal dark">
+        <!--<h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">DOCS</h6>-->
+      </li>
+
+      <!-- users -->
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#users-sdbr" class="nav-link" aria-controls="users-sdbr" role="button" aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-user text-body text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Account &amp; Users</span>
+        </a>
+
+        <div class="collapse" id="users-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/users/">
+                <span class="sidenav-mini-icon"> U </span>
+                <span class="sidenav-normal">Users</span>
+              </a>
+            </li>
+
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="/users/add.php">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal">Add User</span>
+              </a>
+            </li>
+            -->
+
+            <li class="nav-item">
+              <a class="nav-link" href="/users/groups.php">
+                <span class="sidenav-mini-icon"> G </span>
+                <span class="sidenav-normal">Groups</span>
+              </a>
+            </li>
+
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="/users/group-add.php">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal">Add Group</span>
+              </a>
+            </li>
+            -->
+          </ul>
+        </div>
+      </li>
+      <!-- END users -->
+
+      <!-- settings -->
+      <li class="nav-item mb-3">
+        <a data-bs-toggle="collapse" href="#settings-sdbr" class="nav-link" aria-controls="settings-sdbr" role="button"
+          aria-expanded="false">
+
+          <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-cog text-body text-sm opacity-10 mb-1" aria-hidden="true"></i>
+          </div>
+
+          <span class="nav-link-text ms-1">Settings</span>
+        </a>
+
+        <div class="collapse" id="settings-sdbr">
+          <ul class="nav ms-4">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/edit.php">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal">Account</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/email/accounts.php">
+                <span class="sidenav-mini-icon"> E </span>
+                <span class="sidenav-normal">Email Setup</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/edit.php#twilio">
+                <span class="sidenav-mini-icon"> S </span>
+                <span class="sidenav-normal">SMS Setup</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/settings/tags.php">
+                <span class="sidenav-mini-icon"> T </span>
+                <span class="sidenav-normal">Tags</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/settings/sources.php">
+                <span class="sidenav-mini-icon"> L </span>
+                <span class="sidenav-normal">Lead Sources</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/settings/posting-leads-auto.php">
+                <span class="sidenav-mini-icon"> L </span>
+                <span class="sidenav-normal">Lead Posting</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/settings/lead-forwarding.php">
+                <span class="sidenav-mini-icon"> L </span>
+                <span class="sidenav-normal">Lead Forwarding</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <!-- END settings -->
+    </ul>
+    <!-- //navbar-nav-->
+  </div>
+</aside>

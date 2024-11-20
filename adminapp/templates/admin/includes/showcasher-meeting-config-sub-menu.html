@@ -1,0 +1,14 @@
+<ul class="nav nav-pills nav-primary mb-3" role="tablist">
+    <li class="nav-item waves-effect waves-light">
+        <a class="nav-link {% if '/showcasedashboard/' == request.path %} active {% endif %}"
+                       href="{% url 'showcasedashboard' %}">Links</a>
+    </li>
+    <li class="nav-item waves-effect waves-light">
+        <a class="nav-link {% if '/scheduler/' == request.path %} active {% endif %}"
+           href="{% url 'scheduler' %}">Scheduler</a>
+    </li>
+    <li class="nav-item waves-effect waves-light">
+        <a class="nav-link {% if '/connectcalendar/' == request.path %} active {% endif %}"
+           href="{% url 'connectcalendar' %}">Connect your Calendar</a>
+    </li>
+</ul>

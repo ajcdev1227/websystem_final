@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+
+
+.content{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+header{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .current-date{
+    font-size: 25px;
+    font-weight: 700;
+}
+
+header .icons{
+    color: grey;
+    display: flex;
+    gap: 1rem;
+}
+
+header .icons span i{
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #f9f6f6;
+    border-radius: 50%;
+}
+header .icons span i:hover{
+    background-color: #bdbdbd;
+    color: antiquewhite;
+}
+/* ============================================== */
+.calendar{
+    padding: 1rem;
+}
+.calendar .weeks li{
+    /* font-size: 18px; */
+    font-weight: 600;
+}
+.calendar ul{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.calendar ul li{
+    width: calc(100%/7);
+}
+.calendar .days li{
+    z-index: 1;
+    cursor: pointer;
+    margin-top: 30px;
+    position: relative;
+}
+.days li::before{
+    z-index: -1;
+    position: absolute;
+    content: "";
+    width: 40px;
+    height: 40px;
+    background-color: #eae8e8;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.days li.inactive{
+    color: #ada9a9;
+}
+.days li:hover::before{
+    background-color: #d6d2d2;
+}
+
+.days li.selected::before{
+    content: "●";
+    color: grey;
+    padding-top: 19px;
+}
+
+.days li.today::before{
+    content: "●";
+    color: grey;
+    padding-top: 19px;
+}
+
+.days li.item{
+    color: #0068FF;
+}
+
+.days li.active::before{
+    background-color: #0068FF;
+}
+
+.days li.active{
+    color: white;
+}
+
+.days li.today.active::before{
+    content: "●";
+    color: white;
+    padding-top: 19px;
+}

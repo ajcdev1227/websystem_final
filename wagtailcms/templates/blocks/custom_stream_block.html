@@ -1,0 +1,9 @@
+<!-- your_project/your_app/templates/custom_stream_block.html -->
+<div class="custom-stream-block">
+    <!-- Customize the appearance as needed -->
+    {% for child in value %}
+        <div class="custom-block">
+            {{ child.render }}
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,49 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+{% block title %}
+    Schedule Call
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .sub-title {
+            width: 30%;
+        }
+
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <main class="main-content  mt-0" xmlns:x-bind="http://www.w3.org/1999/xhtml"
+          xmlns:x-on="http://www.w3.org/1999/xhtml">
+        <section x-data="step1_form">
+            <div class="page-header min-vh-75">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 mx-auto">
+                            <h3 class="sub-title mx-auto mt-3" style="text-align: center">
+                                Welcome Back
+                            </h3>
+                            <p class="text-center mx-auto" style="width: 50%">Your system is currently being build out
+                                by one of our account managers. We will notify
+                                you once complete. If you have any questions please email info @</p>
+                            <div class="text-center mt-6">
+                                <img height="350" src="{% static 'images/img-pending.png' %}" alt="success">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+
+{% block user_scripts %}
+    <script>
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('step1_form', () => ({}))
+        })
+    </script>
+{% endblock %}

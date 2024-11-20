@@ -1,0 +1,61 @@
+{% extends 'admin/layouts/base.html' %}
+{% load main_tags %}
+{% load static %}
+
+{% block title %}Meeting{% endblock %}
+{% block extrahead %}
+    <script src='https://8x8.vc/{{ JITSI_APP_ID }}/external_api.js' async></script>
+    <style>
+        #jaas-container {
+            height: 99.2vh;
+            margin: 0;
+            background-color: #000;
+        }
+    </style>
+    <script type="text/javascript">
+        let api = null
+        window.onload = () => {
+            api = new JitsiMeetExternalAPI("8x8.vc", {
+                roomName: "{{ JITSI_APP_ID }}/{{ meeting_link }}",
+                parentNode: document.querySelector('#jaas-container'),
+                // Make sure to include a JWT if you intend to record,
+                // make outbound calls or use any other premium features!
+                jwt: '{{JITSI_APP_JWT_KEY}}'
+            });
+
+        }
+    </script>
+{% endblock extrahead %}
+{% block content %}
+    <div class="container-fluid">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Meeting" %}
+        {% endblock pagetitle %}
+
+        <a class="btn btn-primary mb-2" href="javascript:start()">Start Streaming</a>
+
+        {% include 'admin/components/message.html' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div id="jaas-container"></div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extrajs %}
+    <script>
+        function start() {
+            api.executeCommand('startRecording', {
+                mode: 'stream', //recording mode, either `local`, `file` or `stream`.
+                dropboxToken: '', //dropbox oauth2 token.
+                onlySelf: true,  //Whether to only record the local streams. Only applies to `local` recording mode.
+                shouldShare: true, //whether the recording should be shared with the participants or not. Only applies to certain jitsi meet deploys.
+                rtmpStreamKey: '70hb-k587-t5vs-363v-18ht', //the RTMP stream key.
+                rtmpBroadcastID: '', //the RTMP broadcast ID.
+                youtubeStreamKey: '', //the youtube stream key.
+                youtubeBroadcastID: '' //the youtube broacast ID.
+            });
+        }
+    </script>
+{% endblock extrajs %}

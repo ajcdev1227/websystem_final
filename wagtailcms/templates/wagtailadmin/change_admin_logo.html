@@ -1,0 +1,33 @@
+{% extends "wagtailadmin/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<main class="content-wrapper w-overflow-x-hidden" id="main">
+    <div class="content">
+        <div class="nice-padding">
+
+            <div id="avatar-content" class="w-panel__content">
+
+                <h1>Change Admin Logo</h1>
+
+                <div class="avatar-panel w-flex w-flex-wrap w-items-center w-mt-5">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="button" style="float:right">Upload</button>
+                    </form>
+                </div>
+
+
+
+            </div>
+            
+        </div>
+    </div>
+</main>
+
+
+
+
+{% endblock %}

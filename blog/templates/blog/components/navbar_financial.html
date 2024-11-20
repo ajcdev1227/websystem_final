@@ -1,0 +1,38 @@
+{% load menu_tags %}
+<header class="c-header c-header-modern c-header-modern--base c-header--optimized scrolled">
+    <div id="broker-check" class="floating-broker-check">
+      <a href="//brokercheck.finra.org/" target="_blank"><img src="//static.fmgsuite.com/site/templates/global/img/brokerCheck-bar-logo.png" alt="Broker Check" /></a>
+    </div>
+
+    <div class="c-header--overylay" style="">
+      <div class="c-header__container o-container" style="">
+        <div class="c-header__inner">
+          <div class="c-template__logo">
+            <a href="https://www.philafinancial.com/" class="c-logo--link"><img id="agentLogo" src="//static.fmgsuite.com/media/TransparentLogo/variantSize/f3da09b2-397b-4357-b858-ab079e0ee74b.png" class="c-logo--image img-responsive" alt="Financial Group of Philadelphia, Inc. Home" /></a>
+          </div>
+
+          <div class="c-header-content c-header-no-topbar">
+            <nav id="mainNav" data-tag="qa-nav-007" class="c-topnav__navbar c-nav-Modern c-nav-text--center c-header--optimized" style="">
+              <div class="c-topnav__outer-wrapper">
+                <div class="c-topnav__navbar-btn">
+                  <button type="button" class="c-navbar__toggle js-navbar__toggle">
+                    <span class="sr-only">Menu</span>
+                    <div class="c-hambuger-bar c-center-bar"></div>
+                  </button>
+                </div>
+                <div class="c-template__logo--mobile">
+                  <a href="https://www.philafinancial.com/" class="c-logo--link"><img id="agentLogoMobile" src="//static.fmgsuite.com/media/TransparentLogo/variantSize/f3da09b2-397b-4357-b858-ab079e0ee74b.png" class="c-logo--image img-responsive" alt="Financial Group of Philadelphia, Inc. Home" /></a>
+                </div>
+
+                <div class="c-topnav__navwrapper js-circle-nav">
+                    {% main_menu template="menu/main_desktop_menu_financial.html" %}
+                </div>
+                <div class="c-circle js-circle__expand"></div>
+                <!-- /.navbar-collapse -->
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>

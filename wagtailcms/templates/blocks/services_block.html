@@ -1,0 +1,46 @@
+{% load wagtailimages_tags %}
+
+<div class="container-xxl service py-5">
+    <div class="container">
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Services</p>
+            <h1 class="display-5 text-heading mb-5">{{ value.title }}</h1>
+        </div>
+        <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-lg-4">
+                <div class="nav nav-pills d-flex justify-content-between w-100 h-100 me-4">
+                    {% for tab in value.tabs %}
+                    <button class="nav-link w-100 d-flex align-items-center text-start border p-4{% if forloop.first %} active{% endif %}{% if not forloop.last %} mb-4{% endif %}" data-bs-toggle="pill"
+                        data-bs-target="#tab-pane-{{forloop.counter}}" type="button">
+                        <h5 class="m-0"><i class="fa fa-bars text-primary me-3"></i>{{ tab.tab_title }}</h5>
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="tab-content w-100">
+                    {% for tab in value.tabs %}
+                    <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="tab-pane-{{forloop.counter}}">
+                        <div class="row g-4">
+                            <div class="col-md-6" style="min-height: 350px;">
+                                <div class="position-relative h-100">
+                                    {% image tab.image fill-500x500 class="img-fluid rounded" height="auto" %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="text-heading mb-4">{{ tab.title }}</h3>
+                                <p class="text-paragraph mb-4">{{ tab.text }}</p>
+                                {% for bullet_point in tab.bullet_points %}
+                                <p><i class="fa fa-check text-primary me-3"></i><span class="text-paragraph">{{ bullet_point.text }}</span></p>
+                                {% endfor %}
+
+                                <a href="{{ tab.cta_url }}" class="btn btn-primary py-3 px-5 mt-3">{{ tab.cta_text }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

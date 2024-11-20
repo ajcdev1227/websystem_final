@@ -1,0 +1,115 @@
+{% extends 'layouts/meeting_base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="px-3">
+    <div class="page-heading min-height-200 mb-2 mb-md-3">
+        <div class="booking-title">
+            <h2 class="text-white">Bookings</h2>
+            <p class="text-white">See upcoming and past events booked through your event type links</p>
+        </div>
+    </div>
+
+    <div class="nav-wrapper position-relative end-0">
+        <ul class="nav nav-pills nav-fill py-1" role="tablist">
+            <li class="nav-item">
+                <a data-tab="upcoming-tab" class="nav-link mb-0 px-0 py-2 active" data-bs-toggle="tab" href="#upcoming-bookings" role="tab"
+                   aria-controls="profile" aria-selected="true">
+                    Upcoming
+                </a>
+            </li>
+            <li class="nav-item">
+                <a data-tab="past-tab" class="nav-link mb-0 px-0 py-2" data-bs-toggle="tab" href="#past-bookings" role="tab"
+                   aria-controls="dashboard" aria-selected="false">
+                    Past
+                </a>
+            </li>
+            <li class="nav-item">
+                <a data-tab="cancelled-tab" class="nav-link mb-0 px-0 py-2" data-bs-toggle="tab" href="#cancelled-bookings" role="tab"
+                   aria-controls="dashboard" aria-selected="false">
+                    Cancelled
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="upcoming-bookings" role="tabpanel" aria-labelledby="upcoming-tab">
+                <div class="row pt-4">
+                    {% for booking in upcoming_bookings %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header p-0 px-4 pt-4 position-relative z-index-1">
+                                <h5 class="card-title h5 d-block text-darker">
+                                    {{ booking.event_type.title|default:"Meeting" }} with
+                                    {{ booking.scheduler_name|default:"scheduler" }}
+                                </h5>
+                                <p class="availability-date">
+                                    {{ booking.start_ts|default:"Start time" }} - {{ booking.end_ts|default:"End time" }}
+                                </p>
+                                <p class="availability-address mb-2">
+                                    <i class="bx bx-globe"></i> America/New_York
+                                </p>
+                            </div>
+                            <div class="card-body pt-2">
+                                {% comment %} <button class="availability-options" type="button">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button> {% endcomment %}
+
+                                <div class="availability-edit-btns">
+                                    <a href="{{ booking.meeting_link }}" class="btn btn-primary w-100 mb-0" type="button">
+                                        <i class="bx bx-edit"></i> Launch Virtual Meeting
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="past-bookings" role="tabpanel" aria-labelledby="past-tab">
+                <div class="row pt-4">
+                    {% for booking in past_bookings %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header p-0 px-4 pt-4 position-relative z-index-1">
+                                <h5 class="card-title h5 d-block text-darker">
+                                    {{ booking.event_type.title|default:"Meeting" }} with
+                                    {{ booking.scheduler_name|default:"scheduler" }}
+                                </h5>
+                                <p class="availability-date">
+                                    {{ booking.start_ts|default:"Start time" }} - {{ booking.end_ts|default:"End time" }}
+                                </p>
+                                <p class="availability-address mb-2">
+                                    <i class="bx bx-globe"></i> America/New_York
+                                </p>
+                            </div>
+                            <div class="card-body pt-2">
+                                {% comment %} <button class="availability-options" type="button">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button> {% endcomment %}
+
+                                <div class="availability-edit-btns">
+                                    <a href="{{ booking.meeting_link }}" class="btn btn-primary w-100 mb-0" type="button">
+                                        <i class="bx bx-edit"></i> Launch Virtual Meeting
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="cancelled-bookings" role="tabpanel" aria-labelledby="cancelled-tab">
+                <div class="pt-4">
+                    You have no cancelled bookings. Your cancelled bookings will show up here.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- this is for user only?-->
+    <script src='https://8x8.vc/{{ JITSI_APP_ID }}/external_api.js' async></script>
+    <style>
+        html, body, #jaas-container {
+            height: 99.2vh;
+            margin: 0;
+            background-color: #000;
+        }
+    </style>
+    <script type="text/javascript">
+        const options = {
+          frameConfig: {
+            constraints: {
+              video: true,  // Enable camera access
+              audio: true   // Enable microphone access
+            }
+          }
+    };
+        window.onload = () => {
+            const api = new JitsiMeetExternalAPI("8x8.vc", {
+                roomName: "{{ JITSI_APP_ID }}/{{ meeting_id }}",
+                parentNode: document.querySelector('#jaas-container'),
+                // Make sure to include a JWT if you intend to record,
+                // make outbound calls or use any other premium features!
+                kid: '{{ key_id }}',
+                jwt: '{{ jwt }}',
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="jaas-container"></div>
+</body>
+</html>

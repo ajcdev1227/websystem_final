@@ -1,0 +1,59 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+{% block title %}
+    Confirmed
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <section>
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-3 col-md-6">
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                {% include 'message.html' %}
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12">
+                                        <h5 class="text-center">Confirmed</h5>
+                                        <p class="text-center">You're kickoff has been scheduled.</p>
+                                        <hr>
+                                        <h5 class="text-center">Kickoff meeting with WebSystem</h5>
+                                        <p class="text-center">{{ start_time }}
+                                            - {{ end_time }}, {{ date }}</p>
+                                        <p class="text-center">
+                                            <i class="fa fa-map-marker"></i> {{ timezone }}
+                                        </p>
+                                        <p class="text-center"><i class="fa fa-video-camera"></i> Video conferencing
+                                            details to follow</p>
+                                        <h6 class="text-center">A calendar invitation has sent to your email
+                                            address.</h6>
+
+{#                                        <div class="text-center mt-5">#}
+{#                                            <form action="{% url 'schedulemeeting' %}" method="get">#}
+{#                                                <input type="hidden" name="meeting_id" value="{{ meeting.id }}">#}
+{#                                                <button type="submit" class="btn btn-primary mx-auto">#}
+{#                                                    Schedule Meeting#}
+{#                                                </button>#}
+{#                                            </form>#}
+{#                                        </div>#}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block user_scripts %}
+
+{% endblock %}

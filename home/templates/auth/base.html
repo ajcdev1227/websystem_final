@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}">
+
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{% static 'css/argon-dashboard.css' %}" rel="stylesheet"/>
+    <link id="pagestyle_dark" href="{% static 'css/dark-theme-core.css' %}" rel="stylesheet"/>
+
+    <style>
+        .card {
+            box-shadow: 0 0px 15px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-with-icon.email::after {
+            background-image: url("{% static 'images/ico-user.png' %}");
+        }
+
+        .input-with-icon.lock::after {
+            background-image: url("{% static 'images/ico-unlock.png' %}");
+        }
+
+        .input-with-icon.phone::after {
+            background-image: url("{% static 'images/ico-telephone.png' %}");
+        }
+
+        .input-with-icon.company::after {
+            background-image: url("{% static 'images/ico-home.png' %}");
+        }
+
+        .input-with-icon.members::after {
+            background-image: url("{% static 'images/ico-members.png' %}");
+        }
+    </style>
+
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+    {% include 'includes/scripts.html' %}
+
+</head>
+<body class="">
+{% if request.user.is_authenticated %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-end mt-2">
+                    <a href="{% url 'logout' %}" class="nav-link text-body font-weight-bold px-0">
+                        <i class="fa fa-user me-sm-1"></i>
+                        <span class="d-sm-inline d-none me-1">Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+{% block content %}{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block scripts %}{% endblock scripts %}
+
+
+{#<script>#}
+{#    var win = navigator.platform.indexOf('Win') > -1;#}
+{#    if (win && document.querySelector('#sidenav-scrollbar')) {#}
+{#        var options = {#}
+{#            damping: '0.5'#}
+{#        }#}
+{#        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);#}
+{#    }#}
+{#</script>#}
+<!-- Github buttons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.2/perfect-scrollbar.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{% static 'js/soft-ui-dashboard.min.js' %}"></script>
+{% block user_scripts %}{% endblock %}
+</body>
+</html>

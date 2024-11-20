@@ -1,0 +1,88 @@
+{% extends 'layouts/base-green.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-start align-items-center mx-4">
+        <h3 style="color: #007074">Welcome Back,</h3> <span class="premium-green fs-5 px-2 mx-3 text-white">{{ request.user.username }}</span>
+    </div>
+    <div class="mt-4 mx-4">
+        <!-- Row 1 - 4 cards on sm and above, 2 cards on less than sm -->
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+{#                   <!-- <a href="{% url 'contacts' %}" class="fs-4 text-light">Contact Management</a>-->#}
+                    <a href="{% url 'contacts' %}" class="fs-4 text-light">Contact Management</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+                    <a href="{% url 'cms_auth' %}" class="fs-4 text-light">Website Engine</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+                    <a href="https://www.slaywriter.com/dashboard/login.php" class="fs-4 text-light">AI Tool</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+                    <a href="{% url 'social_management' %}" class="fs-4 text-light">Social Management</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+                    <!--<a href="{% url 'automations' %}" class="fs-4 text-light">Automations</a>-->
+                    <a href="https://www.glasshouseinteractive.com/crm/workflows?tkn=k6x4s9d3wl8dvx2" class="fs-4 text-light">Automations</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+                    <a href="{% url 'meetings' %}" class="fs-4 text-light">Virtual Meetings</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+                    <a href="https://www.glasshouseinteractive.com/crm/campaigns?tkn=k6x4s9d3wl8dvx2" class="fs-4 text-light">Campaign Builder</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card">
+                   <!-- <a href="{% url 'events' %}" class="fs-4 text-light">Events</a> -->
+                    <a href="https://www.glasshouseinteractive.com/crm/events?tkn=k6x4s9d3wl8dvx2" class="fs-4 text-light">Events</a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="green-hr">
+
+        <div class="row mt-4">
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card-light">
+                    <a href="{% url 'settingsgear' %}" class="fs-4 text-green">Account Settings</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card-light">
+                    <a href="{% url 'help_docs' %}" class="fs-4 text-green">Help Docs</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card-light">
+                    <a href="{% url 'customer_support' %}" class="fs-4 text-green">Customer Support</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="nav-card-light">
+                    <a href="{% url 'video_walkthroughs' %}" class="fs-4 text-green">Video Walkthroughs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#{% include "includes-green/footer.html" %}#}
+</div>
+{% endblock content %}

@@ -1,0 +1,144 @@
+{% extends 'layouts/base-green.html' %}
+{% load static %}
+{% load main_tags %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block extrahead %}
+
+<script src='https://8x8.vc/{{ JITSI_APP_ID }}/external_api.js' async></script>
+    <style>
+        #jaas-container {
+            height: 99.2vh;
+            margin: 0;
+            background-color: #000;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = () => {
+            const api = new JitsiMeetExternalAPI("8x8.vc", {
+                roomName: "{{ JITSI_APP_ID }}/{{ meeting_link }}",
+                externalConnectUrl: 'https://localhost:8000/',
+                parentNode: document.querySelector('#jaas-container'),
+                // Make sure to include a JWT if you intend to record,
+                // make outbound calls or use any other premium features!
+                //jwt: '{{JITSI_APP_JWT_KEY}}'
+            });
+
+            api.addEventListeners({
+              videoConferenceLeft: () => {
+                  // Redirect to the desired URL after leaving the meeting
+                  setTimeout(() => {
+                    window.location.href = "{% url 'meetings/instant' %}";
+                  }, 500)
+              },
+          });
+        }
+    </script>
+
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="container-header px-2 pt-4 pb-0">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-8 col-lg-9 title h3 text-green my-2">Create Meetings</div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-end mt-2">
+          <a href="{% url 'meetings' %}" class="btn btn-green float-right">go to meetings</a>
+        </div>
+      </div>
+    </div>
+    <div class="container-body">
+      <div class="nav-wrapper position-relative end-0">
+         <ul class="nav nav-pills nav-fill nav-green p-1" role="tablist" style="background-color: #ecfffc;">
+          {% for meeting_type in meeting_types_instance %}
+            <li class="nav-item">
+              <a class="nav-link mb-0 px-0 py-1 {% if forloop.first %}active{% endif %}" data-bs-toggle="tab" href="#{{ meeting_type|lower|replace_space_to_dash }}" role="tab" aria-controls="{{ meeting_type|lower|replace_space_to_dash }}" aria-selected="{{ forloop.first|yesno:'true,false' }}">{{ meeting_type }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="tab-content">
+          <div id="personal_meetings" class="tab-pane {% if selected_meeting_type == meeting_types.0 %}active{% endif %}">
+            Personal Meetings
+          </div>
+
+
+          {% comment %} CONSULTATIONS {% endcomment %}
+
+          <div id="consultations" class="tab-pane {% if selected_meeting_type == meeting_types.1 %}active{% endif %} py-2">
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Partner</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Time</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Meeting Link</th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in consultations %}
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-xs">{{ row.title }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">{{ row.partner_name }}</p>
+                        <p class="text-xs text-secondary mb-0">{{ row.partner_email }}</p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold">{{ row.date }} - {{ row.time }}</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="badge badge-sm badge-success">{{ row.meeting_link }}</span>
+                      </td>
+                      <td class="align-middle">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <a href="{% url '/meetings/consultation' %}" id="bttBtn" class="btn btn-green d-flex justify-content-center align-items-center px-0">
+              <i class="fas fa-plus"></i>&nbsp; Create New Meeting
+            </a>
+
+          </div>
+
+          <div id="instant_meetings" class="tab-pane {% if selected_meeting_type == meeting_types.2 %}active{% endif %}">
+            {%if created_meeting == meeting_types.2 %}
+              <div id="jaas-container" class="mt-2"></div>
+            {% else %}m
+              <div class="vh-100 d-flex justify-content-center align-items-center">
+                  <a href="{% url 'meetings/instant' %}" class="btn btn-green">Create New Meeting</a>
+              </div>
+
+            {% endif %}
+          </div>
+
+          <div id="schedular" class="tab-pane {% if selected_meeting_type == meeting_types.3 %}active{% endif %}">Scheduler</div>
+        </div>
+      </div>
+    </div>
+    <div class="container-footer"></div>
+
+    <div class="container-footer"></div>
+  </div>
+
+{% endblock %}
+
+

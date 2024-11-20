@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .container {
+            margin: auto;
+            width: 575px;
+            padding: 32px;
+            align-items: flex-start;
+            gap: 30px;
+            border-radius: 15px;
+            background: #FFF;
+            box-shadow: 0 4px 40px 0 #0000001A;
+        }
+
+        .title {
+            text-align: center;
+            color: #141414;
+            font-size: 30px;
+            font-family: Poppins, serif;
+            font-weight: 600;
+        }
+
+        .text {
+            margin-top: 20px;
+            color: #141414;
+            font-size: 21px;
+            font-family: Poppins, serif;
+            font-weight: 500;
+        }
+
+        .btn-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn {
+            border-radius: 9px;
+            background: #FF0080;
+            padding: 12px;
+            margin-top: 20px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            color: #fff;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            background-color: #cb0c9f;
+            border-color: #cb0c9f;
+        }
+
+        .bg-gradient-primary {
+            background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="title">
+        Your meeting with {{ event_type.user.display_name }} has been booked!
+    </div>
+
+    <div class="text">
+       Here is some information about your meeting.
+    </div>
+
+    <div class="text">
+        Title: {{ event_type.title }}
+    </div>
+
+    <div class="text">
+        Description:
+        <br/>
+        <pre>{{ event_type.description }}</pre>
+    </div>
+
+    <div class="text">
+        Meeting link: <a href="{{ meeting_url }}">{{ meeting_url }}</a>
+    </div>
+
+{#    <div>#}
+{#        <a href="{{ schema }}://{{ domain }}/meeting/{{meeting.meeting_link }}">#}
+{#            {{ schema }}://{{ domain }}/meeting/{{meeting.meeting_link }}#}
+{#        </a>#}
+{#    </div>#}
+
+{#    <div class="btn-container">#}
+{#        <a style="color: white" href="{{ schema }}://{{ domain }}/meeting/{{meeting.meeting_link }}"#}
+{#           class="btn btn-primary bg-gradient-primary">Click This Link</a>#}
+{#    </div>#}
+</div>
+</body>
+</html>

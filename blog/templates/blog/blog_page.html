@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    {% for post in page.get_children.specific %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="d-flex mb-4">
+                    <div class="flex-shrink-0">
+                        {% if post.header_image %}
+                            {% image post.header_image original as header_image %}
+                            <a href="{% pageurl post %}">
+                                <img height="50" src="{{ header_image.url }}">
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="flex-grow-1 ms-3 overflow-hidden">
+                        <a href="{% pageurl post %}">{{ post.title }}</a>
+                        <p class="text-muted mb-0">Posted on {{ post.last_published_at }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <h1>THis is base page. I will change it later. </h1>
+
+{% endblock %}

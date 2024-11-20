@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Testimonial</p>
+            <h1 class="display-5 text-heading mb-5">{{ value.section_title }}</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
+            {% for testimonial in value.testimonials %}
+            <div class="testimonial-item">
+                <div class="testimonial-text border rounded p-4 pt-5 mb-5">
+                    <div class="btn-square bg-white border rounded-circle">
+                        <i class="fa fa-quote-right fa-2x text-primary"></i>
+                    </div>
+                    <p class="text-paragraph mt-4">{{ testimonial.text }}</p>
+                </div>
+                {% image testimonial.image fill-200x200 class="img-fluid rounded-circle mb-3" %}
+                <h4 class="text-heading">{{ testimonial.author }}</h4>
+                <span class="text-paragraph">{{ testimonial.profession }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

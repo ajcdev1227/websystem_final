@@ -1,0 +1,109 @@
+{% extends 'pages/calendar-public/layout/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="section">
+        <div class="container-default width-100 w-container">
+            <div class="inner-container _650px center">
+                <div data-w-id="d319a49e-3dab-bffa-58ab-574717d995b6"
+                     style="transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;"
+                     class="card form-card pd-88px---80px"><h1 class="heading">{{ profile.title }}'s Scheduling Page</h1>
+
+                    <div class="paragraph-large mb-24">
+                        Welcome to my scheduling page. Please follow the instructions to add an event to my calendar.
+
+                    </div>
+{#                    <div class="flex-vertical align-center text-center">#}
+{#                        <div class="inner-container _420px"><a data-w-id="2d174d6b-8c33-0362-d71a-4c18ccab6c62"#}
+{#                                                               href="/sales"#}
+{#                                                               class="btn-primary small width-100 tbpad w-button">Sales#}
+{#                            &amp;&nbsp;Marketing<span class="line-rounded-icon link-icon-right color-neutral-400"#}
+{#                                                      style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; color: rgb(156, 163, 175);"></span></a><a#}
+{#                                data-w-id="83936c46-a390-3486-0af2-27b8c83f41a8" href="/cs"#}
+{#                                class="btn-primary small width-100 tbpad w-button">Customer Success<span#}
+{#                                class="line-rounded-icon link-icon-right color-neutral-400"></span></a><a#}
+{#                                data-w-id="5b231508-7c05-c251-dfb4-6d733c8847df" href="/careers"#}
+{#                                class="btn-primary small width-100 tbpad w-button">Recruiting<span#}
+{#                                class="line-rounded-icon link-icon-right color-neutral-400"></span></a><a#}
+{#                                data-w-id="ff3b2db6-4238-61f9-37e9-e034e9cbd36a" href="/edu"#}
+{#                                class="btn-primary small width-100 tbpad w-button">Education<span#}
+{#                                class="line-rounded-icon link-icon-right color-neutral-400"></span></a><a#}
+{#                                id="w-node-_549b57c7-c161-14cf-a92a-6f0d4196f665-6f38b9cd"#}
+{#                                data-w-id="549b57c7-c161-14cf-a92a-6f0d4196f665" href="/embed-options"#}
+{#                                class="btn-primary small width-100 tbpad w-button">See all embed options<span#}
+{#                                class="line-rounded-icon link-icon-right color-neutral-400"#}
+{#                                style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; color: rgb(156, 163, 175);"></span></a>#}
+{#                        </div>#}
+
+                     {% for events in event_types %}
+                <div class="flex-vertical align-center text-center">
+
+                    <div class="event-type-details">
+
+
+                            <h3>{{ events.title }}</h3>
+{#                            <p>{{ events.location }}</p>#}
+                            <p>{{ events.description }}</p>
+{#                            <p>{{ events.duration_minutes }} minute meeting</p>#}
+                            <a href="/{{ profile.url }}/{{ events.slug }}"><button type="button" class="">Schedule with me</button></a>
+
+                    </div>
+                </div>
+                {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{#<div class="container">#}
+{#  <header>#}
+{#    <img src="calendly-logo.png" alt="Calendly Logo" id="logo">#}
+{#    <h1>Embed Demo Site</h1>#}
+{#    <p>Select a demo experience to demonstrate how you can embed Calendly on your own website</p>#}
+{#  </header>#}
+{#  <section id="buttons">#}
+{#    <button class="demo-button">Sales & Marketing</button>#}
+{#    <button class="demo-button">Customer Success</button>#}
+{#    <button class="demo-button">Recruiting</button>#}
+{#    <button class="demo-button">Education</button>#}
+{#    <button class="demo-button" id="embed-options">See all embed options</button>#}
+{#  </section>#}
+{#</div>#}
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="col-md-7">#}
+{#            <div class="card py-5">#}
+{#                {% for events in event_types %}#}
+{#                <div class="event-types-container">#}
+{#                    <div class="event-type">#}
+{##}
+{#                        <div class="event-type-details">#}
+{#                            <h3>{{ events.title }}</h3>#}
+{#                            <p>{{ events.location }}</p>#}
+{#                            <p>{{ events.description }}</p>#}
+{#                            <p>{{ events.duration_minutes }} minute meeting</p>#}
+{#                        </div>#}
+{##}
+{#                        <div class="book-meeting-btn">#}
+{#                            <a href="/{{ profile.url }}/{{ events.slug }}"><button type="button" class="">Book Meeting</button></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#        </div>#}
+
+{#        <div class="col-md-5">#}
+{#            <div class="card py-5">#}
+{#                <div class="py-5">#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+</div>
+
+{% endblock %}

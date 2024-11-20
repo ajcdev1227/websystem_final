@@ -1,0 +1,190 @@
+{% extends 'layouts/base.html' %}
+{% load main_tags %}
+{% load static %}
+{% block title %}Site Builder{% endblock %}
+
+{% block extrastyle %}
+    <link href="{% static 'libs/sortable/css/jquery-ui.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'libs/sortable/css/treeSortable.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/sortable/style.css' %}">
+    <style>
+        tbody .padding-td {
+            padding: 0.75rem 1.5rem;
+        }
+    </style>
+{% endblock extrastyle %}
+
+{% block content %}
+    <div class="container-fluid py-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show alert-sm {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}"
+                     role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">×</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <h3>Site Builder</h3>
+        </div>
+
+        <div class="row">
+            <div class="d-flex justify-content-between">
+                <span></span>
+{#                <form method="GET">#}
+{#                    <div class="d-flex align-items-center">#}
+{#                        <input class="form-control input-field input-sm me-2" type="search" name="q"#}
+{#                               value="{{ request.GET.q }}"#}
+{#                               placeholder="Search Here..." aria-label="Search">#}
+{#                        <button class="btn btn-outline-success btn-sm mb-0" type="submit">Search</button>#}
+{#                    </div>#}
+{#                </form>#}
+                <div>
+                    <button data-bs-toggle="modal" data-bs-target="#modal_create_new_page"
+                            class="btn btn-outline-primary bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New
+                        Page
+                    </button>
+                </div>
+            </div>
+
+             <ul id="left-tree"></ul>
+{#            <div class="col-md-12">#}
+{#                <div class="card-body px-0 pt-0 pb-2">#}
+{#                    <div class="table-responsive p-0">#}
+{#                        <table class="table align-items-center mb-0">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+{#                                    Page Name#}
+{#                                </th>#}
+{#                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+{#                                    URL#}
+{#                                </th>#}
+{#                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+{#                                    Status#}
+{#                                </th>#}
+{#                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+{#                                    Date Created#}
+{#                                </th>#}
+{#                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+{#                                    Date Updated#}
+{#                                </th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            {% for post in posts %}#}
+{#                                <tr>#}
+{#                                    <td class="padding-td">#}
+{#                                        <a href="{% url 'editor' post.id %}">{{ post.page_name }}</a>#}
+{#                                    </td>#}
+{##}
+{#                                    <td class="padding-td">#}
+{#                                        {{ post.url }}#}
+{#                                    </td>#}
+{##}
+{#                                    <td class="padding-td">#}
+{#                                        {{ post.status }}#}
+{#                                    </td>#}
+{#                                    <td class="padding-td">#}
+{#                                        {{ post.created_at }}#}
+{#                                    </td>#}
+{#                                    <td class="padding-td">#}
+{#                                        {{ post.updated_at }}#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% if posts.has_other_pages %}#}
+{#                    <nav aria-label="Page navigation">#}
+{#                        <ul class="pagination justify-content-center">#}
+{#                            {% if posts.has_previous %}#}
+{#                                <li class="page-item">#}
+{#                                    <a class="page-link" href="?page={{ posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">#}
+{#                                        ‹#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                            {% else %}#}
+{#                                <li class="page-item disabled"><a class="page-link" href="#!">#}
+{#                                    ‹#}
+{#                                </a>#}
+{#                                </li>#}
+{#                            {% endif %}#}
+{#                            {% for num in posts.paginator.page_range %}#}
+{#                                {% if posts.number == num %}#}
+{#                                    <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a></li>#}
+{#                                {% elif num > posts.number|add:'-4' and num < posts.number|add:'4' %}#}
+{#                                    <li class="page-item"><a class="page-link" href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a>#}
+{#                                    </li>#}
+{#                                {% elif num == 1 or num == posts.paginator.num_pages %}#}
+{#                                    <li class="page-item"><a class="page-link"#}
+{#                                                             href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a>#}
+{#                                    </li>#}
+{#                                {% elif num == posts.number|add:'-5' or num == posts.number|add:'5' %}#}
+{#                                    <li class="page-item divider"><span>...</span></li>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                            {% if posts.has_next %}#}
+{#                                <li class="page-item">#}
+{#                                    <a class="page-link" href="?page={{ posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">#}
+{#                                        ›#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                            {% else %}#}
+{#                                <li class="page-item disabled">#}
+{#                                    <a class="page-link" href="#!">#}
+{#                                        ›#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                            {% endif %}#}
+{#                        </ul>#}
+{#                    </nav>#}
+{#                {% endif %}#}
+{#            </div>#}
+        </div>
+    </div>
+
+    <div class="modal fade soft-ui-modal" id="modal_create_new_page" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{% url 'create_page' %}" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Enter your desired page name</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <div class="input-with-icon email">
+                                <label for="page_name">Page Name</label>
+                                <input id="page_name" required type="text" name="page_name" class="form-control"
+                                       placeholder="Type in...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% csrf_token %}
+{% endblock content %}
+
+{% block extrascript %}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="{% static 'libs/sortable/js/treeSortable.js' %}"></script>
+    <script src="{% static 'libs/sortable/js/script.js' %}"></script>
+{% endblock extrascript %}

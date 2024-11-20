@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>jsCalendar</title>
+		<meta name="description" content="jsCalendar example">
+		<meta name="author" content="GramThanos">
+
+		<!-- jsCalendar -->
+		<link rel="stylesheet" type="text/css" href="../source/jsCalendar.css">
+		<script type="text/javascript" src="../source/jsCalendar.js"></script>
+
+		<!--[if lt IE 9]>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+
+		<!-- Button -->
+		<button id="my-button-1">Refresh Calendar 1</button>
+		<!-- My calendar element -->
+		<div id="my-calendar-1"></div>
+		<!-- Create the calendar -->
+		<script type="text/javascript">
+			// Create the calendar
+			var myCalendar1 = jsCalendar.new("#my-calendar-1");
+			// Get the button
+			var button1 = document.getElementById("my-button-1");
+			// Add a button event
+			button1.addEventListener("click", function(){
+				// Refresh
+				myCalendar1.refresh();
+			}, false);
+		</script>
+
+		<!-- Button -->
+		<button id="my-button-2">Refresh Calendar 2</button>
+		<!-- My calendar element -->
+		<div id="my-calendar-2" data-date="12/12/2023"></div>
+		<!-- Create the calendar -->
+		<script type="text/javascript">
+			let date2 = new Date('12/12/2023');
+			// Create the calendar
+			var myCalendar2 = jsCalendar.new("#my-calendar-2");
+			// Get the button
+			var button2 = document.getElementById("my-button-2");
+			// Add a button event
+			button2.addEventListener("click", function(){
+				// Go to next month
+				date2.setMonth(date2.getMonth() + 1);
+				// Refresh
+				myCalendar2.refresh(date2);
+			}, false);
+		</script>
+
+
+	</body>
+</html>

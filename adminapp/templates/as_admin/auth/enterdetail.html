@@ -1,0 +1,73 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+{% block title %}
+    Enter Details
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <section x-data="step1_form" class="bg-success" style="height: 100vh">
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-2 col-md-8">
+                        <div class="card mt-7">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-4">
+                                <h4>Kickoff Meeting</h4>
+                                <p>
+                                    <i class="fa fa-clock-o"></i> 50 mins
+                                </p>
+                                <p>
+                                    <i class="fa fa-video-camera"></i> Video conferencing details provided upon confirmation.
+                                </p>
+
+                                <p>
+                                    <i class="fa fa-calendar"></i> {{ schedule.time }} - {{ schedule.end_time }}, {{ schedule.date }}
+                                </p>
+
+                                <p>
+                                    <i class="fa fa-map-marker"></i> {{ schedule.timezone }}
+                                </p>
+                            </div>
+                            <div class="col-xl-5 col-md-5">
+                                <h4>Enter Detail</h4>
+                                <div class="form-group">
+                                    <label for="name">Name*</label>
+                                    <input id="name" value="{{ user.first_name }} {{ user.last_name }}" type="text" required class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email*</label>
+                                    <input id="email" type="email" value="{{ user.email }}" required class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="textarea">xyz...</label>
+                                    <textarea id="textarea" type="email" required class="form-control" rows="5"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <a class="btn btn-primary" href="{% url 'confirmed' %}">Schedule Meeting</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block user_scripts %}
+
+{% endblock %}

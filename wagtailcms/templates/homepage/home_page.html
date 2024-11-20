@@ -1,0 +1,119 @@
+{% extends 'base_financial.html' %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load menu_tags %}
+{% load custom_filters %}
+
+{% block content %}
+  {% for item in menu_items %}
+    {{item.text}}
+  {% endfor %}
+
+<section id="section_0" class="section section_SimpleText None ScaleToFit dev-heroText-Aurora dev-scrollIn visible" 
+  {% if page.bg_image %} {% image page.bg_image original as header_image %}
+  style="background-image: url({{header_image.url}})" {% endif %}>
+  <div class="overlay">
+    <div class="o-container c-customsection__container" style="">
+      <div class="{% if page.intro_position != 'left' %} o-grid__collapse {% endif %} c-grid__collapse--SimpleText"
+        data-section-type="SimpleText">
+        <div id="box1" class="c-text__section box Text u-text-align--{{page.talk_button_position}}">
+          <h2 id="section1-box1-title" class="js-simple-editable" data-section-id="1" data-box-id="1"
+            data-box-type="title">{{ page.intro|richtext }}</h2>
+          <div id="section1-box1-paragraph" class="box-copy js-complex-editable" data-section-id="1" data-box-id="1"
+            data-box-type="content">
+            <p>{{ page.sub_intro|richtext }}</p>
+          </div>
+          <a href="https://www.philafinancial.com/contact" class="c-btn c-text__btn sectionButtonHover" style=""
+            data-section-id="1" data-box-id="1" data-box-type="button" data-button="" data-remove-href=""><span
+              class="button" data-section-id="1" data-box-id="1" data-box-type="button">Let's Talk</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-socialMedia"></div>
+</section>
+
+
+
+<section id="section_1" class="section section_SimpleText None None dev-underlineSup">
+  <div class="overlay">
+
+    <div class="o-container c-customsection__container" style="padding-bottom:20px;">
+      <div class="o-grid__collapse c-grid__collapse--SimpleText" data-section-type="SimpleText">
+        <div id="box1" class="c-text__section box Text  u-text-align--Center">
+
+          <h2 id="section10-box1-title" class="js-simple-editable" data-section-id="10" data-box-id="1"
+            data-box-type="title"><sup>{{ page.services_heading }}</sup><br>{{ page.services_heading_sub }}
+          </h2>
+          <div id="section10-box1-paragraph" class="box-copy js-complex-editable " data-section-id="10" data-box-id="1"
+            data-box-type="content">
+            <p class="text-white">{{ page.services_description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section id="section_2"
+  class="section section_Boxes None c-box__count--4 dev-boxes-Clickable-Base dev-boxes-CustomBox-Base dev-boxes-HoverEffect-RevealText dev-boxes-Icon-Base dev-scrollIn dev-boxAnimation dev-fadeUp dev-RemoveIconLink visible">
+  <div class="overlay">
+
+    <div class="o-container c-customsection__container" style="padding-top:20px;padding-bottom:0px;">
+      <div class="o-grid__collapse c-grid__collapse--Boxes    " data-section-type="Boxes">
+        {% for card in page.services_grid_card %}
+          <div class="box c-grid__item Icon  c-box-text__align--None" style="background-image: url({{page.services_grid_card.image.url}})">
+            <div class="c-section-boxes__inner-box" data-boxes-sortable="" data-content-type="none" data-section-id="7"
+              data-box-id="1">
+
+
+              <div class="c-box__icon svg-wrapper png briefcase" data-icon="" data-svg="/media/icons/icons-briefcase.svg" data-section-id="7" data-box-id="1">
+                <a href="https://www.philafinancial.com/resource-center/retirement" class="c-box-icon--link" data-remove-href="">
+                    <i class="c-box-icon c-icn--briefcase" style=""></i>
+                </a>
+            </div>
+              
+              </div>
+              <h2 id="section7-box1-title" class="c-box__title js-simple-editable " data-section-id="7" data-box-id="1"
+                data-box-type="title">{{ page.services_grid_card.title }}</h2>
+              <div id="section7-box1-paragraph" class="c-box__paragraph js-complex-editable" data-section-id="7"
+                data-box-id="1" data-box-type="content">
+                <p><span style="font-weight: 400;" data-mce-style="font-weight: 400;">{{ page.services_grid_card.description }}</span></p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        
+      </div>
+    </div>
+  </div>
+  
+  
+</section> -->
+
+<!-- {% if page.services_expend_button|length is not 0 %}
+<section id="section_4" class="section section_SimpleText None None dev-afterHero">
+  <div class="overlay">
+
+    <div class="o-container c-customsection__container" style="padding-top:20px;padding-bottom:20px;">
+      <div class="o-grid__collapse c-grid__collapse--SimpleText    " data-section-type="SimpleText">
+        <div id="box1" class="c-text__section box Text  u-text-align--Center">
+          <a href="https://www.philafinancial.com/our-services" class="c-btn c-text__btn sectionButtonHover" style=""
+            data-section-id="11" data-box-id="1" data-box-type="button" data-button="" data-remove-href="">
+            <span class="button" data-section-id="11" data-box-id="1" data-box-type="button">{{page.services_expend_button}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+{% endif %} -->
+
+
+{{ page.section }}
+
+
+{% endblock %}
+

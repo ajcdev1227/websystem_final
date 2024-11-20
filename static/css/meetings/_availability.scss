@@ -1,0 +1,208 @@
+// main
+
+.availability-wrapper {
+  padding: 5px 15px 10px 15px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 5px;
+  height: 100%;
+  .availability-header {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    gap: 10px;
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: start;
+    }
+    .availability-title {
+      h2 {
+        font-size: 1.1rem;
+      }
+      p {
+        font-size: 0.8rem;
+        color: #717171;
+      }
+    }
+    .availability-new-team {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      .availability-team {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 4px;
+        button {
+          padding: 5px 10px;
+          border-radius: 4px;
+          background-color: transparent;
+          transition: all 0.3s ease-in-out;
+          &.active,
+          &:hover {
+            background-color: #e8e8e8;
+          }
+        }
+      }
+      .availability-new {
+        background-color: #000;
+        color: #fff;
+        padding: 9px 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+    .new-schedule {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(122, 122, 122, 0.5);
+      z-index: 9999;
+      transition: all 0.3s ease-in-out;
+      padding: 10px;
+      &.active {
+        display: flex;
+      }
+      .new-schedule-wrapper {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        width: 500px;
+        h3 {
+          margin-bottom: 10px;
+        }
+        label {
+          display: block;
+          font-size: 0.8rem;
+          margin-bottom: 5px;
+        }
+        input {
+          width: 100%;
+          padding: 5px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 0.9rem;
+          &:focus {
+            border-color: #000;
+          }
+        }
+        .new-schedule-btns {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 5px;
+          margin-top: 15px;
+          .close-schedule {
+            padding: 10px 15px;
+            border-radius: 5px;
+          }
+          .continue-schedule {
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #000;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .availability-content {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 100%;
+    overflow: auto;
+    // padding: 5px;
+    ul {
+      li {
+        border-bottom: 1px solid #ccc;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: #f3f3f3;
+        }
+        .availability-info {
+          .availability-date {
+            font-size: 0.8rem;
+          }
+          .availability-address {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+          }
+        }
+        .availability-edit {
+          position: relative;
+          .availability-options {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            border: 1px solid #ccc;
+            width: 35px;
+            height: 35px;
+            justify-content: center;
+            background-color: #fff;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+            &:hover {
+              background-color: #f3f3f3;
+            }
+            span {
+              display: block;
+              width: 4px;
+              height: 4px;
+              background-color: #444;
+            }
+          }
+          .availability-edit-btns {
+            display: none;
+            align-items: start;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            padding: 5px;
+            width: 120px;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            gap: 5px;
+            z-index: 444;
+            &.active {
+              display: flex;
+            }
+            border-radius: 5px;
+            button {
+              width: 100%;
+              text-align: left;
+              padding: 10px 6px;
+              background-color: #f3f3f3;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              transition: all 0.3s ease-in-out;
+              &:hover {
+                background-color: #dedede;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,409 @@
+{% load i18n static %}
+
+<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main">
+    <div class="sidenav-heaer">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+            aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href="/">
+            <img src="{% static 'images/logo.gif' %}" class="navbar-brand-img h-100" alt="main_logo">
+            <span class="ms-1 font-weight-bold">WebSystem</span>
+        </a>
+    </div>
+
+    <hr class="horizontal dark mt-0">
+
+    <div class="collapse navbar-collapse w-auto h-auto" style="height: calc(100vh - 170px);" id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="/" class="nav-link{% if '/' == request.path %} active{% endif %}" role="button">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Queue' %}</span>
+                </a>
+            </li>
+
+            <!-- Applications -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#applications" class="nav-link collapsed" aria-controls="applications" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Applications' %}</span>
+                </a>
+                <div class="collapse" id="applications" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> C </span>
+                                <span class="sidenav-normal"> CRM </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> W </span>
+                                <span class="sidenav-normal"> Website Engine </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> V </span>
+                                <span class="sidenav-normal"> Virtual Meetings </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> A </span>
+                                <span class="sidenav-normal"> AI Tool </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- CRM Dashboard -->
+            <li class="nav-item">
+                <a href="/crm/" class="nav-link{% if '/crm' == request.path %} active{% endif %}" role="button">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'CRM Dashboard' %}</span>
+                </a>
+            </li>
+
+            <!-- Leads/Contacts -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#leadsContacts" class="nav-link collapsed" aria-controls="leadsContacts" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Leads/Contacts' %}</span>
+                </a>
+                <div class="collapse" id="leadsContacts" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> V </span>
+                                <span class="sidenav-normal"> View </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> A </span>
+                                <span class="sidenav-normal"> Add </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> T </span>
+                                <span class="sidenav-normal"> Trash </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Communications -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#communications" class="nav-link collapsed" aria-controls="communications" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Communications' %}</span>
+                </a>
+                <div class="collapse" id="communications" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> E </span>
+                                <span class="sidenav-normal"> Emails </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> S </span>
+                                <span class="sidenav-normal"> SMSs </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> I </span>
+                                <span class="sidenav-normal"> Inquiries </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Tasks -->
+            <li class="nav-item">
+                <a href="/tasks/" class="nav-link{% if '/tasks' == request.path %} active{% endif %}" role="button">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-success text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Tasks' %}</span>
+                </a>
+            </li>
+
+            <!-- Automations -->
+            <li class="nav-item">
+                <a href="/automations/" class="nav-link{% if '/automations' == request.path %} active{% endif %}" role="button">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-success text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Automations' %}</span>
+                </a>
+            </li>
+
+            <!-- Campaigns & Lists -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#campaignsAndLists" class="nav-link collapsed" aria-controls="campaignsAndLists" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Campaigns & Lists' %}</span>
+                </a>
+                <div class="collapse" id="campaignsAndLists" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> C </span>
+                                <span class="sidenav-normal"> Campaigns </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> L </span>
+                                <span class="sidenav-normal"> Lists </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Events & Venues -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#eventsAndVenues" class="nav-link collapsed" aria-controls="eventsAndVenues" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Events & Venues' %}</span>
+                </a>
+                <div class="collapse" id="eventsAndVenues" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> E </span>
+                                <span class="sidenav-normal"> Events </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> V </span>
+                                <span class="sidenav-normal"> Venues </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Templates -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#templates" class="nav-link collapsed" aria-controls="templates" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Templates' %}</span>
+                </a>
+                <div class="collapse" id="templates" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> A </span>
+                                <span class="sidenav-normal"> All </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> E </span>
+                                <span class="sidenav-normal"> Email </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> S </span>
+                                <span class="sidenav-normal"> SMS </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Assets -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#assets" class="nav-link collapsed" aria-controls="assets" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Assets' %}</span>
+                </a>
+                <div class="collapse" id="assets" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> I </span>
+                                <span class="sidenav-normal"> Images </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <hr class="horizontal dark">
+            </li>
+
+            <!-- Accounts & Users -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#accountsAndUsers" class="nav-link collapsed" aria-controls="accountsAndUsers" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Accounts & Users' %}</span>
+                </a>
+                <div class="collapse" id="accountsAndUsers" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> A </span>
+                                <span class="sidenav-normal"> Accounts </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> U </span>
+                                <span class="sidenav-normal"> Users </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Settings -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#settings" class="nav-link collapsed" aria-controls="settings" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Settings' %}</span>
+                </a>
+                <div class="collapse" id="settings" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> E </span>
+                                <span class="sidenav-normal"> Email Accounts </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> S </span>
+                                <span class="sidenav-normal"> SMS Setup </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> T </span>
+                                <span class="sidenav-normal"> Tags </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> L </span>
+                                <span class="sidenav-normal"> Lead Sources </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Applications -->
+            <li class="nav-item">
+                <a href="/archive/" class="nav-link{% if '/archive' == request.path %} active{% endif %}" role="button">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">
+                        {% trans 'Archive' %}&nbsp;
+                        {% if approved_cnt %}<span
+                            class="bg bg-danger rounded rounded-3 px-1 text-white">{{ approved_cnt }}</span>{% endif %}
+                    </span>
+                </a>
+            </li>
+
+            <!-- Applications -->
+            <li class="nav-item">
+                <a href="/compliance/settings/" class="nav-link{% if '/compliance/settings' == request.path %} active{% endif %}"
+                    role="button">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-archive-2 text-success text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{% trans 'Settings' %}</span>
+                </a>
+            </li>
+
+            <!-- Applications -->
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link collapsed" aria-controls="pagesExamples" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Pages</span>
+                </a>
+                <div class="collapse" id="pagesExamples" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" aria-expanded="false" href="#profileExample">
+                                <span class="sidenav-mini-icon"> P </span>
+                                <span class="sidenav-normal"> Profile <b class="caret"></b></span>
+                            </a>
+                            <div class="collapse" id="profileExample" style="">
+                                <ul class="nav nav-sm flex-column ps-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/pages/profile/overview.html">
+                                            <span class="sidenav-mini-icon text-xs"> P </span>
+                                            <span class="sidenav-normal"> Profile Overview </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> N </span>
+                                <span class="sidenav-normal"> Notifications </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidenav-mini-icon"> C </span>
+                                <span class="sidenav-normal"> Chat </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>

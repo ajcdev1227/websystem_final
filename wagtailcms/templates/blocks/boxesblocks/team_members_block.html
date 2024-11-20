@@ -1,0 +1,33 @@
+{% load wagtailimages_tags %}
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Team</p>
+            <h1 class="display-5 text-heading mb-5">{{ value.section_title }}</h1>
+        </div>
+        <div class="row justify-content-center g-4">
+            {% for team_member in value.team_members %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item">
+                    {% image team_member.image fill-500x500 class="img-fluid rounded" %}
+                    <div class="team-text">
+                        <h4 class="mb-0">{{ team_member.name }}</h4>
+                        <div class="team-social d-flex">
+                            {% if team_member.facebook %}
+                            <a class="btn btn-square rounded-circle mx-1" href="{{ team_member.facebook }}"><i class="fab fa-facebook-f"></i></a>
+                            {% endif %}
+                            {% if team_member.twitter %}
+                            <a class="btn btn-square rounded-circle mx-1" href="{{ team_member.twitter }}"><i class="fab fa-twitter"></i></a>
+                            {% endif %}
+                            {% if team_member.instagram %}
+                            <a class="btn btn-square rounded-circle mx-1" href="{{ team_member.instagram }}"><i class="fab fa-instagram"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+def create_tenant_superuser():
+    ...
+
+
+def create_tenant_backup():
+    ...

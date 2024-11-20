@@ -1,0 +1,54 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+{% block title %}
+    Success
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .sub-title{
+            width: 30%;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <main class="main-content  mt-0" xmlns:x-bind="http://www.w3.org/1999/xhtml"
+          xmlns:x-on="http://www.w3.org/1999/xhtml">
+        <section x-data="step1_form">
+            <div class="page-header min-vh-75">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xl-12 col-md-12 mx-auto">
+                            <h1 class="creating text-center mt-4">Success</h1>
+                            <h5 class="sub-title mx-auto mt-2" style="text-align: center">
+                                Next step. Time to schedule a kickoff call to begin your
+                                    system build out.
+                            </h5>
+                            <div class="text-center mt-6">
+                                <img height="350" src="{% static 'images/img-success.png' %}" alt="success">
+                            </div>
+                            <div class="text-center btn-continue mt-5">
+                                <a href="{% url 'nylas_auth' %}" type="button" class="btn bg-gradient-info mt-1 mb-0">
+                                    Continue
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+
+{% block user_scripts %}
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('step1_form', () => ({
+
+            }))
+        })
+    </script>
+{% endblock %}

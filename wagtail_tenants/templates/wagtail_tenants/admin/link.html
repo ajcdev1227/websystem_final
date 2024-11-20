@@ -1,0 +1,8 @@
+{% extends "wagtailadmin/generic/edit.html" %}
+{% load i18n %}
+
+
+{% block header %}
+{% trans "Link superuser to tenant" as link_superuser_to_tenant %}
+{% include "wagtailadmin/shared/header.html" with title=link_superuser_to_tenant icon="user" only %}
+{% endblock %}

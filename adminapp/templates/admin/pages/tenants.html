@@ -1,0 +1,120 @@
+{% extends 'admin/layouts/base.html' %}
+{% block title %}Tenants{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Tenants" %}
+        {% endblock pagetitle %}
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex flex-row-reverse">
+                            <form method="GET">
+                                <div class="d-flex">
+                                    <input class="form-control input-field input-sm me-2" type="search" name="q"
+                                           value="{{ request.GET.q }}"
+                                           placeholder="Search Here..." aria-label="Search">
+                                    <button class="btn btn-outline-success btn-sm mb-0" type="submit">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% if tenants|length is not 0 %}
+                        <div class="card-body">
+                            <table class="table table-hover table-nowrap mb-0">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tenants</th>
+                                    <th scope="col">Enabled</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for tenant in tenants %}
+                                    <tr>
+                                        <td>#{{ tenant.customer_id }}</td>
+                                        <td>
+                                            <a href="{% url 'tenants' tenant.customer_id %}">
+                                                {{ tenant.username }}'s tenant
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if tenant.approved %}
+                                                <span class="badge rounded-pill badge-outline-primary">Enabled</span>
+                                            {% else %}
+                                                <span class="badge rounded-pill badge-outline-danger">Pending</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% if tenants.has_other_pages %}
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+                                    {% if tenants.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="?page=
+                                                       {{ tenants.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                                                ‹
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled"><a class="page-link" href="#!">
+                                            ‹
+                                        </a>
+                                        </li>
+                                    {% endif %}
+                                    {% for num in tenants.paginator.page_range %}
+                                        {% if tenants.number == num %}
+                                            <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a>
+                                            </li>
+                                        {% elif num > tenants.number|add:'-4' and num < tenants.number|add:'4' %}
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="?page=
+                                                           {{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a>
+                                            </li>
+                                        {% elif num == 1 or num == tenants.paginator.num_pages %}
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="?page=
+                                                           {{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a>
+                                            </li>
+                                        {% elif num == tenants.number|add:'-5' or num == tenants.number|add:'5' %}
+                                            <li class="page-item divider"><span>...</span></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if tenants.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="?page=
+                                                       {{ tenants.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                                                ›
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#!">
+                                                ›
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        {% endif %}
+                    {% else %}
+                        <div class="card-body">
+                            <h1 class="text-center mt-10">Nothing available.</h1>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

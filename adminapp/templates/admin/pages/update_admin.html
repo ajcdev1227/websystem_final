@@ -1,0 +1,95 @@
+{% extends 'admin/layouts/base.html' %}
+{% load main_tags %}
+{% load static %}
+{% load main_tags %}
+{% block title %}Udate Admin{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Add Admin" %}
+        {% endblock pagetitle %}
+
+        {% include 'admin/components/message.html' %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{% url 'update_post_admin' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ admin.id }}" name="user_id">
+                            <div class="row">
+                                <div class="col-md-6 mt-1">
+                                    <label for="firstname" class="form-label">First Name</label>
+                                    <input type="text" name="firstname" value="{{ admin.first_name }}"
+                                           class="form-control" id="firstname">
+                                </div>
+
+                                <div class="col-md-6 mt-1">
+                                    <label for="lastname" class="form-label">Last Name</label>
+                                    <input type="text" name="lastname" value="{{ admin.last_name }}"
+                                           class="form-control" id="lastname">
+                                </div>
+                            </div>
+
+                            <div class="mt-1">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" value="{{ admin.email }}" class="form-control"
+                                       id="email">
+                            </div>
+
+                            <div class="mt-1">
+                                <label for="group" class="form-label">Group</label>
+                                <select class="form-control form-select" name="group" id="group">
+                                    <option></option>
+                                    {% for i in cnt_group|create_range %}
+                                        <option {% if i == admin.group %}selected{% endif %}
+                                                value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            {#                            <div class="mt-1">#}
+                            {#                                <label for="password" class="form-label">Password</label>#}
+                            {#                                <input required type="password" name="password" class="form-control" id="password">#}
+                            {#                            </div>#}
+
+                            <div class="mt-4 d-flex justify-content-between">
+                                <a class="btn btn-success" href="javascript:history.go(-1)">Back</a>
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Change Password
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'change_admin_password' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ admin.id }}" name="user_id">
+                            <div class="mt-1">
+                                <label for="password" class="form-label">Password</label>
+                                <input required type="password" name="password" class="form-control" id="password">
+                            </div>
+
+                            <div class="mt-4 text-center">
+                                <button class="btn btn-danger" type="submit">Change Password</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extrajs %}
+
+{% endblock extrajs %}

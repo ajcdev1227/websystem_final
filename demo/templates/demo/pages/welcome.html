@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="{% static 'velzon/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+
+<div class="row text-center mt-5">
+    <h1>Welcome to project</h1>
+    <div class="col-md-6">
+        <a href="{{ request.scheme }}://{{ signup }}" class="btn btn-primary">Sign Up!</a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ request.scheme }}://{{ appointment }}" class="btn btn-success">Get Demo!</a>
+    </div>
+</div>
+</body>
+</html>

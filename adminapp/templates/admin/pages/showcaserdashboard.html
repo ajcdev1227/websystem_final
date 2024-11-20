@@ -1,0 +1,82 @@
+{% extends 'admin/layouts/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Booked Demos" %}
+        {% endblock pagetitle %}
+
+        <div class="row">
+            {% include 'admin/includes/meeting-config-sub-menu.html' %}
+
+            {% for meeting in meetings %}
+                <div class="col-xxl-3 col-sm-6 col-md-4 project-card">
+                    <div class="card card-height-100">
+                        <div class="card-body">
+                            <div class="d-flex flex-column h-100">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-muted mb-4">Group {{ request.user.group }}</p>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <h5 class="mb-1 fs-15">
+                                        <a href="#" class="text-dark">
+                                            {{ meeting.name }}
+                                        </a>
+                                    </h5>
+                                    <p class="text-muted text-truncate-two-lines mb-3">
+                                        60 mins, One-on-One
+                                    </p>
+                                    <input type="text"
+                                           class="w-100"
+                                           id="linkInput_{{ meeting.id }}"
+                                           value="{{ domain }}{% url 'meeting' %}?id={{ meeting.meeting_link }}">
+                                </div>
+                                <div class="mt-auto">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end card body -->
+                        <div class="card-footer bg-transparent border-top-dashed py-2">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <a href="javascript:copyLink('linkInput_{{ meeting.id }}')">
+                                        <i class="las la-copy"></i>
+                                        Copy Link
+                                    </a>
+                                </div>
+                                <div class="text-muted">
+                                    {#                                    <i class="ri-calendar-event-fill me-1 align-bottom"></i> 10 Jul, 2021#}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card footer -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock content %}
+
+{% block extrajs %}
+    <script>
+        function copyLink(id) {
+            // Get the input element
+            var linkInput = document.getElementById(id);
+
+            // Select the text inside the input element
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the selected text to the clipboard
+            document.execCommand("copy");
+
+            // Optionally, provide feedback to the user
+            alert("Link copied to clipboard!");
+        }
+    </script>
+{% endblock extrajs %}

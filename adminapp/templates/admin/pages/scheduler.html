@@ -1,0 +1,192 @@
+{% extends 'admin/layouts/base.html' %}
+{% load main_tags %}
+{% load static %}
+
+{% block title %}Meeting Config{% endblock %}
+{% block extrahead %}
+{% endblock extrahead %}
+
+
+{% block content %}
+    <div class="container-fluid" x-data="schedular">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Schedular" %}
+        {% endblock pagetitle %}
+
+        {% include 'admin/components/message.html' %}
+
+        <div class="row">
+            {% include 'admin/includes/meeting-config-sub-menu.html' %}
+
+            <div class="col-md-6 mt-1">
+                <input type="text" class="form-control" data-provider="flatpickr" data-date-format="Y-m-d"
+                       x-model="selectedDate"
+                       x-on:change="OnChangedDate"
+                       x-ref="selDate"
+                       data-deafult-date="" data-inline-date="true">
+            </div>
+
+            <div class="col-md-6 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2 text-center">
+                            <div class="col-md-6">
+                                <button @click="OnClickedBtnCheckAll" class="btn btn-outline-primary btn-sm w-100">Check
+                                    All
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="" class="btn btn-primary btn-sm w-100">Make Default</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <template x-for="(date, i) in initDates.am">
+                                    <div class="form-check mb-1">
+                                        <input
+                                                @click="OnItemClickedAM(i)"
+                                                x-bind:checked="date.checked"
+                                                class="form-check-input" type="checkbox"
+                                                x-bind:id="i">
+                                        <label class="form-check-label" x-bind:for="i" x-text="date.time"></label>
+                                    </div>
+                                </template>
+                            </div>
+                            <div class="col-md-6">
+                                <template x-for="(date, i) in initDates.pm">
+                                    <div class="form-check mb-1">
+                                        <input
+                                                @click="OnItemClickedPM(i)"
+                                                x-bind:checked="date.checked"
+                                                class="form-check-input" type="checkbox" x-bind:id="50 + i">
+                                        <label class="form-check-label" x-bind:for="50 + i" x-text="date.time"></label>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <button type="button" @click="OnClickedBtnSaveAvailableTime"
+                                        class="btn btn-success btn-sm w-100">Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extralib %}
+    <script src="{% static 'velzon/assets/libs/@simonwep/pickr/pickr.min.js' %}"></script>
+    <script src="{% static 'velzon/assets/js/pages/form-pickers.init.js' %}"></script>
+
+    <script src="{% static 'js/libs/axios.min.js' %}" defer></script>
+    <script defer src="{% static 'js/libs/alpine.min.js' %}"></script>
+{% endblock extralib %}
+{% block extrajs %}
+    <script>
+        const initDatesState = {
+            am: [
+                {time: '06:00 AM', checked: false, selected: false, user_id: 0},
+                {time: '06:30 AM', checked: false, selected: false, user_id: 0},
+                {time: '07:00 AM', checked: false, selected: false, user_id: 0},
+                {time: '07:30 AM', checked: false, selected: false, user_id: 0},
+                {time: '08:00 AM', checked: false, selected: false, user_id: 0},
+                {time: '08:30 AM', checked: false, selected: false, user_id: 0},
+                {time: '09:00 AM', checked: false, selected: false, user_id: 0},
+                {time: '09:30 AM', checked: false, selected: false, user_id: 0},
+                {time: '10:00 AM', checked: false, selected: false, user_id: 0},
+                {time: '10:30 AM', checked: false, selected: false, user_id: 0},
+                {time: '11:00 AM', checked: false, selected: false, user_id: 0},
+                {time: '11:30 AM', checked: false, selected: false, user_id: 0},
+            ],
+            pm: [
+                {time: '12:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '12:30 PM', checked: false, selected: false, user_id: 0},
+                {time: '01:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '01:30 PM', checked: false, selected: false, user_id: 0},
+                {time: '02:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '03:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '03:30 PM', checked: false, selected: false, user_id: 0},
+                {time: '04:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '04:30 PM', checked: false, selected: false, user_id: 0},
+                {time: '05:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '05:30 PM', checked: false, selected: false, user_id: 0},
+                {time: '06:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '06:30 PM', checked: false, selected: false, user_id: 0},
+                {time: '07:00 PM', checked: false, selected: false, user_id: 0},
+                {time: '07:30 PM', checked: false, selected: false, user_id: 0},
+                {time: '08:00 PM', checked: false, selected: false, user_id: 0},
+            ]
+        };
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('schedular', () => ({
+                selectedDate: 0,
+                user_id: '{{ request.user.id }}',
+                initDates: JSON.parse(JSON.stringify(initDatesState)),
+                OnChangedDate() {
+                    let tempvalue = '';
+                    this.$watch('selectedDate', (value, oldValue) => {
+                        if (tempvalue === '' || tempvalue !== oldValue) {
+                            this.GetAvailableTimes(this.selectedDate);
+                        }
+                        tempvalue = value;
+                    });
+
+                },
+                OnItemClickedAM(pos) {
+                    this.initDates.am[pos].checked = !this.initDates.am[pos].checked;
+                    this.initDates.am[pos].user_id = this.user_id;
+                },
+                OnItemClickedPM(pos) {
+                    this.initDates.pm[pos].checked = !this.initDates.pm[pos].checked;
+                    this.initDates.pm[pos].user_id = this.user_id;
+                },
+                OnClickedBtnCheckAll() {
+                    this.initDates.am.map(item => {
+                        item.checked = true;
+                        item.user_id = this.user_id;
+                    });
+                    this.initDates.pm.map(item => {
+                        item.checked = true;
+                        item.user_id = this.user_id;
+                    });
+                },
+                OnClickedBtnSaveAvailableTime() {
+                    let params = new URLSearchParams();
+                    params.append('date', this.selectedDate)
+                    params.append('times', JSON.stringify(this.initDates))
+                    axios.post('{% url 'save_available_time' %}', params, {
+                        headers: {"X-CSRFToken": "{{ csrf_token }}"},
+                    }).then(function (response) {
+                        // handle success
+                        const {message} = response.data;
+                        alert(message);
+                    }).catch(function (error) {
+                        // handle error
+                    })
+                },
+                GetAvailableTimes(date) {
+                    let self = this;
+                    let params = new URLSearchParams();
+                    params.append('date', date);
+                    axios.post('{% url 'getavailabletime' %}', params, {
+                        headers: {"X-CSRFToken": "{{ csrf_token }}"},
+                    }).then(function (response) {
+                        // handle success
+                        const {message, data} = response.data;
+                        if (data != null) {
+                            const {times} = data;
+                            self.initDates = JSON.parse(times);
+                        } else {
+                            self.initDates = JSON.parse(JSON.stringify(initDatesState));
+                        }
+
+                    }).catch(function (error) {
+                        // handle error
+                    })
+                }
+            }));
+        })
+    </script>
+{% endblock extrajs %}

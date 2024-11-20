@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: wagtail-generic-chooser
+Version: 0.6.1
+Summary: A toolkit for custom chooser popups in Wagtail
+Home-page: https://github.com/wagtail/wagtail-generic-chooser
+Author: Matthew Westcott
+Author-email: matthew.westcott@torchbox.com
+License: BSD
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.1
+Classifier: Framework :: Django :: 4.2
+Classifier: Framework :: Wagtail
+Classifier: Framework :: Wagtail :: 4
+Classifier: Framework :: Wagtail :: 5
+License-File: LICENSE
+Requires-Dist: requests (<3.0,>=2.11.1)
+
+
+        Base classes for building chooser popups and form widgets for the Wagtail admin,
+        matching Wagtail's built-in choosers and backed by either models or a REST API
+    

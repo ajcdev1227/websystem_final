@@ -1,0 +1,16 @@
+{% extends 'layouts/meeting_base.html' %}
+
+{% load static wagtailcore_tags %}
+
+{% block content %}
+<div class="px-3">
+    <div class="page-heading min-height-200 mb-2 mb-md-3">
+        <div class="booking-title">
+            <h2 class="text-white">{{ self.title }}</h2>
+            <p class="text-white">{{ self.description|richtext }}</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

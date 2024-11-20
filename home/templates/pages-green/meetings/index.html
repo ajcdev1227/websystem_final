@@ -1,0 +1,62 @@
+{% extends 'layouts/base-green.html' %}
+{% load static %}
+{% load main_tags %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="container-header px-2 pt-4 pb-0">
+
+
+    <nav class="navbar-main navbar-expand-lg px-0 shadow-none premium-green" id="navbarBlur" navbar-scroll="true">
+        <div class="container-fluid py-2 px-1 d-flex align-items-center">
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 py-1" id="navbar">
+                <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-5 me-sm-6 me-5 d-flex align-items-center">
+
+                    <li class="fs-5 text-white active" aria-current="page">
+                        Welcome Back! {{ user.email }}
+                    </li>
+                </ol>
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center text-white">
+                     <div class="ms-md-auto pe-md-3 d-flex align-items-center text-white">
+
+
+
+
+                    </div>
+                     <li class="nav-item dropdown pe-md-3 d-flex align-items-center">
+{#                        <a href="" class="btn btn-default text-white bg-gradient btn-soft-info">#}
+{#                            + Create Meeting#}
+{#                        </a>#}
+
+                         <form action="{% url 'meetings_create' %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-default text-white bg-gradient btn-soft-info">+ Create Meeting</button>
+                         </form>
+                    </li>
+                     <li class="nav-item dropdown pe-3 d-flex align-items-center">
+                        <a href="" class="btn btn-default text-white bg-gradient btn-soft-info">
+                            My Calendar
+                        </a>
+                    </li>
+
+                </div>
+            </div>
+        </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+{% endblock %}

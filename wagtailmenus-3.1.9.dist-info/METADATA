@@ -1,0 +1,111 @@
+Metadata-Version: 2.1
+Name: wagtailmenus
+Version: 3.1.9
+Summary: An app to help you manage menus in your Wagtail projects more consistently.
+Home-page: https://github.com/jazzband/wagtailmenus/tree/stable/3.1.x
+Download-URL: https://github.com/jazzband/wagtailmenus/tarball/v3.1.9
+Author: Andy Babic
+Author-email: ababic@rkh.co.uk
+License: MIT
+Keywords: wagtail cms model utility
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Classifier: Framework :: Django :: 4.1
+Classifier: Framework :: Django :: 4.2
+Classifier: Framework :: Wagtail :: 2
+Classifier: Framework :: Wagtail :: 3
+Classifier: Framework :: Wagtail :: 4
+Classifier: Framework :: Wagtail :: 5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.8
+License-File: LICENSE.txt
+Requires-Dist: django-cogwheels ==0.3
+Provides-Extra: deployment
+Provides-Extra: development
+Requires-Dist: wagtail >=2.15 ; extra == 'development'
+Requires-Dist: wagtail-modeladmin >=1.0 ; extra == 'development'
+Requires-Dist: django-debug-toolbar ; extra == 'development'
+Requires-Dist: django-extensions ; extra == 'development'
+Requires-Dist: ipdb ; extra == 'development'
+Requires-Dist: werkzeug ; extra == 'development'
+Requires-Dist: beautifulsoup4 <4.10,>=4.8 ; extra == 'development'
+Requires-Dist: coverage >=4.5 ; extra == 'development'
+Requires-Dist: django-webtest <1.10,>=1.9 ; extra == 'development'
+Provides-Extra: docs
+Requires-Dist: pyenchant >=2.0 ; extra == 'docs'
+Requires-Dist: Sphinx >=1.7.4 ; extra == 'docs'
+Requires-Dist: sphinxcontrib-spelling >=1.4 ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme >=0.3 ; extra == 'docs'
+Provides-Extra: testing
+Requires-Dist: beautifulsoup4 <4.10,>=4.8 ; extra == 'testing'
+Requires-Dist: coverage >=4.5 ; extra == 'testing'
+Requires-Dist: django-webtest <1.10,>=1.9 ; extra == 'testing'
+
+.. image:: https://jazzband.co/static/img/badge.svg
+   :target: https://jazzband.co/
+   :alt: Jazzband
+
+.. image:: https://img.shields.io/pypi/v/wagtailmenus.svg
+   :target: https://pypi.python.org/pypi/wagtailmenus
+   :alt: PyPI Download
+
+.. image:: https://img.shields.io/pypi/v/wagtailmenus.svg
+    :alt: PyPi Version
+    :target: https://pypi.python.org/pypi/wagtailmenus
+
+.. image:: https://github.com/jazzband/wagtailmenus/actions/workflows/test.yml/badge.svg
+    :alt: Build Status
+    :target: https://github.com/jazzband/wagtailmenus/actions/workflows/test.yml
+
+.. image:: https://codecov.io/gh/jazzband/wagtailmenus/branch/master/graph/badge.svg
+    :alt: Code coverage
+    :target: https://codecov.io/gh/jazzband/wagtailmenus
+
+.. image:: https://readthedocs.org/projects/wagtailmenus/badge/?version=latest
+    :alt: Documentation Status
+    :target: http://wagtailmenus.readthedocs.io/en/latest/
+
+
+============
+wagtailmenus
+============
+
+wagtailmenus is an extension for Torchbox's `Wagtail CMS <https://github.com/torchbox/wagtail>`_ to help you manage and render multi-level navigation and simple flat menus in a consistent, flexible way.
+
+The current version is tested for compatibility with the following:
+
+- Wagtail versions >= 4.1
+- Python versions 3.8 to 3.11
+
+.. image:: https://raw.githubusercontent.com/jazzband/wagtailmenus/master/docs/source/_static/images/repeating-item.png
+
+New to wagtailmenus?
+====================
+
+Start by reading our `Overview and key concepts <http://wagtailmenus.readthedocs.io/en/stable/overview.html>`_ page.
+It will give you a better understand of how the app works, and help you decide whether it is a good fit for your project.
+
+
+How do I use it?
+================
+
+For everything you need to get up and running with wagtailmenus, `view the official documentation <http://wagtailmenus.readthedocs.io/>`_.
+
+
+Contributing
+============
+
+Instructions on how to contribute can be found `here <https://wagtailmenus.readthedocs.io/en/stable/contributing/index.html>`_.
+
+As we are members of a `JazzBand project <https://jazzband.co/projects>`_, `wagtailmenus` contributors should adhere to the `Contributor Code of Conduct <https://jazzband.co/about/conduct>`_.

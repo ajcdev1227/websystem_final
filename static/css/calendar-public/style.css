@@ -1,0 +1,115 @@
+/*PROFILE FOR OUTSIDE USERS*/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+.container {
+  max-width: 500px;
+  margin: 5px auto;
+  padding: 20px;
+}
+
+.profile-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  display: flex;
+}
+
+.profile-card img {
+  width:50px;
+  height:50px;
+  margin-top:15px;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h1 {
+  color: #333;
+  text-align:center;
+  font-size:1.7rem;
+}
+
+.profile-info p {
+  margin: 0;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.location {
+  font-weight: bold;
+}
+
+.bio {
+  color: #777;
+  font-style: italic;
+}
+
+.contact-info p {
+  margin-bottom: 5px;
+}
+
+.contact-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+
+.event-types-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top:20px;
+  margin-bottom:25px;
+  justify-content: center;
+  text-align:left;
+}
+
+.event-type {
+  width:475px;
+  padding: 2px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  display: flex;
+}
+
+.event-type-icon {
+  /*width: 80px;*/
+  margin-right: 20px;
+  padding:15px;
+}
+
+
+.event-type-details {
+  flex: 1;
+  padding:1px;
+}
+
+.event-type-details h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.event-type-details p {
+  margin: 0;
+  margin-bottom: 5px;
+}
+.book-meeting-btn
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.book-meeting-btn button
+{
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #366e20;
+  color: #fff;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .container {
+            margin: auto;
+            width: 575px;
+            padding: 32px;
+            align-items: flex-start;
+            gap: 30px;
+            border-radius: 15px;
+            background: #FFF;
+            box-shadow: 0 4px 40px 0 #0000001A;
+        }
+
+        .title {
+            text-align: center;
+            color: #141414;
+            font-size: 30px;
+            font-family: Poppins, serif;
+            font-weight: 600;
+        }
+
+        .text {
+            margin-top: 20px;
+            color: #141414;
+            font-size: 21px;
+            font-family: Poppins, serif;
+            font-weight: 500;
+        }
+
+        .btn-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn {
+            border-radius: 9px;
+            background: #FF0080;
+            padding: 12px;
+            margin-top: 20px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            color: #fff;
+        }
+
+        .btn-primary:hover, .btn.bg-gradient-primary:hover {
+            background-color: #cb0c9f;
+            border-color: #cb0c9f;
+        }
+
+        .bg-gradient-primary {
+            background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="title">
+        Notice! Information about your WebSystem Meeting.
+    </div>
+    <div class="text">
+        Your meeting URL information has changed<br>
+        See below for the new link.
+    </div>
+
+    <div class="text">
+        Thank you, <br>
+        The WebSystem team.
+    </div>
+
+    <div class="text">
+        Time: {{ meeting.time }} - {{ meeting.end_time }}, {{ meeting.date }}
+    </div>
+
+    <div>
+        <a href="{{ schema }}://{{ domain }}/meeting/{{meeting.meeting_link }}">
+            {{ schema }}://{{ domain }}/meeting/{{meeting.meeting_link }}
+        </a>
+    </div>
+
+{#    <div class="btn-container">#}
+{#        <a style="color: white" href="{{ schema }}://{{ domain }}/meeting/{{meeting.meeting_link }}"#}
+{#           class="btn btn-primary bg-gradient-primary">Click This Link</a>#}
+{#    </div>#}
+</div>
+</body>
+</html>

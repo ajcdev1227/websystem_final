@@ -1,0 +1,57 @@
+{% extends 'as_admin/layouts/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+
+    <style>
+        .table thead th {
+            padding: 0.5em;
+        }
+
+    </style>
+{% endblock extrastyle %}
+{% block content %}
+    <div class="container-fluid py-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show alert-sm {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}"
+                     role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">×</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            <h3>{{ article.title }}</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-end">
+                    <span>
+                        Author: {{ article.user.username }}
+                    </span>
+                    &nbsp;&nbsp;&nbsp;
+                    <span>
+                        {{ article.created_on }}
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                {% if article.file %}
+                    <div class="text-center mt-5">
+                        <img class="img-class rounded border border-info p-2" src="/media/img/article/{{ article.file }}" alt="article" height="350">
+                    </div>
+                {% endif %}
+            <div style="white-space: pre-line">
+                {{ article.content }}
+            </div>
+            </div>
+        </div>
+        {#{% include "includes/footer.html" %}#}
+    </div>
+{% endblock content %}
+
+{% block extrascript %}
+
+{% endblock extrascript %}

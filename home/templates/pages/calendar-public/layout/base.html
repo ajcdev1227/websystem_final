@@ -1,0 +1,45 @@
+{% load i18n static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="dashboard page" />
+  <title>{{ profile.title }}'s Page</title>
+    <link rel="stylesheet" href="{% static '/css/calendar-public/style.css' %}" />
+  <link rel="stylesheet" href="{% static '/css/calendar-public/style2.css' %}" />
+
+  <link rel="stylesheet" href="{% static 'css/nucleo-icons.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/nucleo-svg.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/argon-dashboard.min.css' %}" />
+
+  {% block extrastyle %}{% endblock %}
+</head>
+
+<body>
+{#  <header>#}
+{#    <div class="container">#}
+{#      <div class="card">#}
+{#        <img src="{% static '/images/avatar.svg' %}" width="80" alt="Profile Picture">#}
+{#        <div class="profile-info">#}
+{#          <h1>{{ profile.title }}'s </h1>#}
+{#          <h1>Booking Page</h1>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </header>#}
+  <main>{% block content %}{% endblock %}</main>
+
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="{% static 'js/argon-dashboard.min.js' %}"></script>
+
+  <script src="{% static 'js/calendar-public/calendly-copy.js' %}"></script>
+  {% block extrascript %}{% endblock %}
+</body>
+</html>

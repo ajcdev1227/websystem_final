@@ -1,0 +1,36 @@
+{% extends 'layouts/meeting_base.html' %}
+
+{% load static %}
+
+<head>
+    <title>{{ user.email }}'s Page</title>
+</head>
+
+{% block content %}
+
+<div style="display:flex;justify-content:center;">
+    <img src="{% static 'images/avatar.svg' %}" width="80"/>
+</div>
+
+{% for meeting in visible_meetings %}
+<div class="container-fluid mt-3">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title"></h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Location: {{ location }}</p>
+            <p class="card-text">Date: {{ date }}</p>
+            <p class="card-text">Duration: {{ duration }}</p>
+            {% if meeting.is_hidden %}
+                <p class="card-text text-danger">Hidden</p>
+            {% else %}
+                <p class="card-text text-success">Visible</p>
+            {% endif %}
+            <a href="{% url 'booking_calendar' %}" class="btn btn-primary">View Calendar</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

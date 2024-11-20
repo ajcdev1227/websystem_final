@@ -1,0 +1,18 @@
+{% load main_tags %}
+{% if data %}
+    <div class="dd" data-plugin="nestable">
+        <ol class="dd-list">
+            {% for item in data %}
+                <li class="dd-item dd-item-alt" data-id="{{ item.id }}">
+                    <div class="dd-handle"></div>
+                    <div class="dd-content">{{ item.name }}</div>
+                    {% with item.children as child_data %}
+                        {% if child_data %}
+                            {% generate_nested_list child_data %}
+                        {% endif %}
+                    {% endwith %}
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endif %}

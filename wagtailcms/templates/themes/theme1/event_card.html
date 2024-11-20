@@ -1,0 +1,27 @@
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+<div class="col-md-6 col-lg-4 h-100 mb-4">
+    <div class="card w-100 h-100">
+        <a href="{% pageurl event %}" title="{{ event.title }}" class="ratio ratio-16x9">
+            {% if event.featured_image %}
+            {% image event.featured_image fill-550x310 class="card-img-top img-fluid" %}
+            {% else %}
+            <img src="{% static 'images/default_blog_cover.jpg' %}" class="card-img-top img-fluid" loading="lazy" alt="{{ event.title }}">
+            {% endif %}
+        </a>
+        <div class="card-body">
+            <h5 class="text-heading">{{ event.title }}</h5>
+            <p class="text-paragraph">
+                {% if event.intro_description %}
+                {{ event.intro_description|richtext }}
+                {% else %}
+                Read more about {{ event.title }}
+                {% endif %}
+            </p>
+
+            {% if upcoming_event and event.show_register_button %}
+            <a href="{% pageurl event %}#form" class="btn btn-primary">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

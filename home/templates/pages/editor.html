@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}Site Builder{% endblock %}
+
+{% block extrastyle %}
+    <style>
+        .btn-add-section {
+            position: fixed;
+            bottom: 10px;
+            right: 15px;
+            font-size: 18pt;
+        }
+    </style>
+{% endblock extrastyle %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show alert-sm {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}"
+                     role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">×</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <div class="bg-gray-200 py-1">
+                <span>Page Editor </span>|
+                <span class="text-info">{{ page }}</span>
+            </div>
+        </div>
+
+        {% if submission_cnt %}
+            <div class="row" width="100%" style="height: calc(100vh - 6.75rem)">
+                <iframe src="{% url 'vvveb_edit' page.id %}"></iframe>
+            </div>
+        {% else %}
+            <div class="row" width="100%" style="height: calc(100vh - 6.75rem)">
+                <iframe src="{% url 'vvveb' page.id %}"></iframe>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

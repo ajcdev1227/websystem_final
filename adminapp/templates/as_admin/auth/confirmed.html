@@ -1,0 +1,53 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+{% block title %}
+    Confirmed
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <section x-data="step1_form" class="bg-primary" style="height: 100vh">
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-3 col-md-6">
+                        <div class="card mt-7">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <h5 class="text-center">Confirmed</h5>
+                                <p class="text-center">You're kickoff has been scheduled.</p>
+                                <hr>
+                                <h5 class="text-center">Kickoff meeting with WebSystem</h5>
+                                <p class="text-center">2:30pm - 3:30pm, Tuesday, April 6 2023</p>
+                                <p class="text-center">
+                                    <i class="fa fa-map-marker"></i> Eastern Time - US & Canada
+                                </p>
+                                <p class="text-center"><i class="fa fa-video-camera"></i> Video conferencing details to follow</p>
+                                <h6 class="text-center">A calendar invitation has sent to your email address.</h6>
+
+                                <div class="text-center mt-5">
+                                    <a class="btn btn-primary mx-auto" href="{% url 'dashboard' %}">Schedule Meeting</a>
+                                </div>
+
+                                <a href="#">{{ token }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block user_scripts %}
+
+{% endblock %}

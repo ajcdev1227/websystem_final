@@ -1,0 +1,122 @@
+{% extends 'layouts/meeting_base.html' %}
+
+{% load static wagtailcore_tags %}
+
+{% block content %}
+<div class="px-3">
+    <div class="page-heading min-height-200 mb-2 mb-md-3">
+        <div class="event-title">
+            <h2 class="text-white">Event Types</h2>
+            <p class="text-white">Create events to share for people to book on your calendar</p>
+        </div>
+        <div class="new-event-btn">
+            <button @click="$refs.headerDialog.showModal()" class="btn btn-white" type="button"><span>+</span> New</button>
+        </div>
+    </div>
+
+    <div class="main-content pt-2 pt-md-4">
+        <div class="events row mb-4">
+            {% if event_types|length > 0 %}
+            {% for event in event_types %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                        <a href="/meetings/type/{{ event.slug }}/" class="d-block">
+                            <div class="event-type-icon"><i class="bx bx-lg bx-calendar"></i></div>
+                        </a>
+                    </div>
+
+                    <div class="card-body pt-2">
+                        <span class="text-gradient text-primary text-uppercase text-xs font-weight-bold my-2">{{ event.location }}</span>
+                        <a href="/meetings/type/{{ event.slug }}/" class="card-title h5 d-block text-darker">
+                            {{ event.title }}
+                        </a>
+                        <p class="card-description mb-4">
+                            {{ event.description|richtext }}
+                        </p>
+                        <div class="author d-flex justify-content-between">
+                            <div class="name">
+                                <span>{{ event.duration_minutes }} minute meeting</span>
+                            </div>
+                            <div class="stats link-primary">
+                                <small>Copy link</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-12">
+                <div class="btn btn-rounded btn-primary">
+                    <i class="bx bx-link"></i>
+                </div>
+                <h3>Create your first event type</h3>
+                <p>
+                    Event types enable you to share links that show available times on
+                    your calendar and allow people to make bookings with you.
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- New event dialog -->
+    <dialog id='events-modal' class="centered" ref="headerDialog">
+        {% verbatim %}
+        <i v-if="createEventTypeError" style="color: red;">{{ createEventTypeError }}</i>
+        {% endverbatim %}
+
+        <form @submit.prevent="createEventType">
+            <div class="form-group">
+                <label for="new-event-type-title">Title</label>
+                <input :value="newEventTypeTitle" @input="handleNewEventTypeTitleInput" type="text" maxlength="64" id="new-event-type-title" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label" for="new-event-type-slug">URL</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="url-addon">{{ link_root }}/</span>
+                    <input v-model="newEventTypeSlug" type="text" maxlength="64" class="form-control" id="new-event-type-slug" aria-describedby="url-addon">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="new-event-type-location">Type/Location</label>
+                <select v-model="newEventTypeLocation" id="new-event-type-location" class="form-control">
+                    <option value=""></option>
+                    {% for choice in LOCATION_CHOICES %}
+                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="new-event-type-description">Description</label>
+                <textarea v-model="newEventTypeDescription" maxlength="2048" id="new-event-type-description" class="form-control" cols="60" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label" for="new-event-type-duration">Duration</label>
+                <div class="input-group">
+                    <input v-model="newEventTypeDuration" type="number" class="form-control" id="new-event-type-duration" value="15" aria-label="Recipient's username" aria-describedby="minutes-addon">
+                    <span class="input-group-text" id="minutes-addon">minutes</span>
+                </div>
+            </div>
+
+            {% verbatim %}
+            <div class="new-schedule-btns">
+                <button type="button" @click="$refs.headerDialog.close()" class='btn me-3' formmethod="dialog">Close</button>
+                <button type="submit" class="btn btn-primary" :disabled="isCreatingEventType">
+                    {{ isCreatingEventType ? 'Creating...' : 'Create' }}
+                </button>
+            </div>
+            {% endverbatim %}
+        </form>
+    </dialog>
+</div>
+{% endblock %}
+
+{% block extrascript %}
+<script src="{% static 'js/meetings_page_js/event-types.js' %}"></script>
+{% endblock %}

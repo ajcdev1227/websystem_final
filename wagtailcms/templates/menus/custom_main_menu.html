@@ -1,0 +1,16 @@
+{% load menu_tags %}
+
+<div class="navbar-nav ms-auto p-4 p-lg-0">
+    {% for item in menu_items %}
+        {% if item.has_children_in_menu %}
+            <div class="nav-item dropdown">
+                <a href="{{ item.href }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ item.text }}</a>
+                <div class="dropdown-menu border-light ml-4 m-0">
+                    {% sub_menu item template="menus/sub_menu_dropdown.html" %}
+                </div>
+            </div>
+        {% else %}
+             <a href="{{ item.href }}" class="nav-item nav-link {{ item.active_class }}">{{ item.text }}</a>
+        {% endif %}
+    {% endfor %}
+</div>

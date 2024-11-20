@@ -1,0 +1,43 @@
+{% extends "themes/theme1/base.html" %}
+
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+
+<div class="container-fluid small-page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-4 text-center mb-4 animated slideInDown">{{ self.title }}</h1>
+
+        {% if self.author and self.author.display_name %}
+        <p class="text-center text-paragraph mb-3">
+            <small>By {{ self.author.display_name }}</small>
+        </p>
+        {% endif %}
+        <p class="text-center text-paragraph mb-4">
+            <small>Published on {{self.first_published_at|date:"m-d-Y"}}</small>
+            {% if self.last_published_at %}
+            <small> | Last Updated on {{self.last_published_at|date:"m-d-Y"}} at {{ self.last_published_at|time:"H:i" }}</small>
+            {% endif %}
+        </p>
+
+        {% if self.featured_image and self.show_featured_image %}
+        <div class="w-full ratio ratio-21x9 mx-auto my-4" style="max-width: 800px;">
+            {% image self.featured_image width-900 class="card-img img-fluid" %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="w-100 mx-auto row pb-4 pb-md-5" style="max-width: 800px;">
+        {% for block in self.content %}
+            <section class="block-{{ block.block_type }} pt-3 pb-4 lg:pb-5">
+                {{ block|safe }}
+            </section>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

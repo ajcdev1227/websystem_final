@@ -1,0 +1,8 @@
+{% load menu_tags %}
+<ul class="c-topnav__container">
+  {% for item in menu_items %}
+    <li class="c-topnav__menu-item">
+      <a class="c-topnav__menu-text selected" href="{{ item.href }}"><span>{{ item.text }}</span></a>
+    </li>
+  {% endfor %}
+</ul>

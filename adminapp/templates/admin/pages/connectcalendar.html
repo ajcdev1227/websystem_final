@@ -1,0 +1,25 @@
+{% extends 'admin/layouts/base.html' %}
+{% load main_tags %}
+{% load static %}
+
+{% block title %}Meeting Config{% endblock %}
+{% block extrahead %}
+
+{% endblock extrahead %}
+{% block content %}
+    <div class="container-fluid">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Connect Your Calender" %}
+        {% endblock pagetitle %}
+        {% include 'admin/components/message.html' %}
+        <div class="row">
+            {% include 'admin/includes/meeting-config-sub-menu.html' %}
+
+            <a href="{% url 'connect_nylas' %}" class="link-primary text-decoration-underline">Connect To Nylas</a>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extrajs %}
+
+{% endblock extrajs %}

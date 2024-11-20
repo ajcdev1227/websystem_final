@@ -1,0 +1,19 @@
+# @no-cookie-jar
+# POST https://integration-api.websystemcontrol.com/api/v1/tenant/864eb8/events
+POST http://integration-api.fod:8000/api/v1/tenant/864eb8/events
+Authorization: Bearer oI4hBQO2uefvCyYZgc9NgbaSwWSwZMw2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Test Title 13",
+  "slug": "test-title-13",
+  "event_type": "seminar",
+  "location": "The World with event-id",
+  "start_time": "2024-04-23T10:00:00.000Z",
+  "end_time": "2024-04-23T10:30:00.000Z",
+  "intro_description": "This is a test event",
+  "event_url": "https://example.com/",
+  "event_id": "2093"
+}
+###

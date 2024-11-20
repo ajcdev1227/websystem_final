@@ -1,0 +1,4 @@
+<div class="color-input-widget">
+    {% include "django/forms/widgets/text.html" %}
+    <input class="color-input-widget__color-input" type="color" name="{{ widget.attrs.id }}-color" value="{{ widget.value }}" maxlength="7" id="{{ widget.attrs.id }}-color">
+</div>

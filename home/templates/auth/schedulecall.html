@@ -1,0 +1,51 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+{% block title %}
+    Schedule Call
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .sub-title {
+            width: 30%;
+        }
+
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <main class="main-content  mt-0" xmlns:x-bind="http://www.w3.org/1999/xhtml"
+          xmlns:x-on="http://www.w3.org/1999/xhtml">
+        <section x-data="step1_form">
+            <div class="page-header min-vh-75">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 mx-auto">
+                            <h5 class="sub-title mx-auto mt-6" style="text-align: center">
+                                Welcome! To get started, please schedule a kick-off with our team.
+                            </h5>
+                            <div class="text-center mt-6">
+                                <img height="380" src="{% static 'images/img-schedule.png' %}" alt="success">
+                            </div>
+                            <div class="text-center btn-continue mt-5">
+                                <a href="{% url 'chooseschedule' %}" type="button"
+                                   class="btn bg-gradient-info mt-1 mb-0">
+                                    Schedule Call
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+
+{% block user_scripts %}
+    <script>
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('step1_form', () => ({}))
+        })
+    </script>
+{% endblock %}

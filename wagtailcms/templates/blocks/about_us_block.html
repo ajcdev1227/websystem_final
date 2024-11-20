@@ -1,0 +1,33 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4 align-items-end mb-4">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                {% image value.image fill-700x700 class="img-fluid rounded" %}
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">About Us</p>
+                <h1 class="display-5 text-heading mb-4">{{ value.title }}</h1>
+                <p class="mb-4">{{ value.text }}</p>
+                <div class="border rounded p-4">
+                    <nav>
+                        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                            {% for tab in value.tabs %}
+                            <button class="nav-link fw-semi-bold{% if forloop.first %} active{% endif %}" id="nav-{{tab.title|slugify}}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{tab.title|slugify}}"
+                                type="button" role="tab" aria-controls="nav-{{tab.title|slugify}}" aria-selected="true">{{tab.title}}</button>
+                            {% endfor %}
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        {% for tab in value.tabs %}
+                        <div class="tab-pane text-paragraph fade{% if forloop.first %} show active{% endif %}" id="nav-{{tab.title|slugify}}" role="tabpanel" aria-labelledby="nav-{{tab.title|slugify}}-tab">
+                            <p>{{tab.text}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

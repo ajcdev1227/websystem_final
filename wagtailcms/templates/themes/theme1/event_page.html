@@ -1,0 +1,99 @@
+{% extends "themes/theme1/base.html" %}
+
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+
+<div class="container-fluid small-page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-xl-9">
+                <h1 class="display-4 text-left text-wrap mb-4 animated slideInDown">{{ self.title }}</h1>
+
+                {% if self.author and self.author.display_name %}
+                <p class="text-left mb-4"><small>By {{ self.author.display_name }}</small></p>
+                {% endif %}
+
+                {% if self.intro_description %}
+                <p class="text-left mb-3">Description:</p>
+                <div class="mb-4" style="max-width: 100%;">{{ self.intro_description|richtext }}</div>
+                {% endif %}
+
+                {% if self.featured_image and self.show_featured_image %}
+                <div class="w-full ratio ratio-1x1 my-4" style="max-width: 500px;">
+                    {% image self.featured_image fill-600x600 class="card-img img-fluid" %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4 col-xl-3 pt-3 pt-md-5">
+                <div class="event-info pt-3 pt-md-5 mb-4">
+                    <p><strong>Start date:</strong> {{ self.start_date }}</p>
+                    <p><strong>End date:</strong> {{ self.end_date }}</p>
+                    {{ self.information_description|richtext }}
+                </div>
+
+                {% if self.event_url %}
+                <p class="mb-4">
+                    <a href="{{ self.event_url }}" class="paragraph text-primary" target="_blank">Event site</a>
+                </p>
+                {% endif %}
+
+                {% if upcoming_event and self.show_register_button %}
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    Register
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="w-100 mx-auto row pb-4 pb-md-5" style="max-width: 800px;">
+        {% for block in self.content %}
+        <section class="block-{{ block.block_type }} pt-3 pb-4 lg:pb-5">
+            {{ block|safe }}
+        </section>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Register form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="id_event_text" name="event_text" value="{{ self.event_id }}">
+                {% for block in self.register_form %}
+                {{ block|safe }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const current_url = window.location.href;
+    if (current_url.includes("#form")) {
+        const registerModal = new bootstrap.Modal(document.getElementById('registerModal'), {
+            keyboard: false
+        });
+        registerModal.show();
+    }
+    const event_id = document.getElementById("id_event_text");
+    const form_event_id = document.getElementById("id_event_id");
+
+    if(event_id && event_id.value && form_event_id) {
+        form_event_id.value = event_id.value;
+    }
+});
+</script>
+
+{% endblock %}

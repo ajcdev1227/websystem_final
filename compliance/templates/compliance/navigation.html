@@ -1,0 +1,78 @@
+{% load static wagtailcore_tags %}
+
+{% comment %} {% if request.user.is_authenticated %}
+<li class="nav-item d-flex align-items-center">
+    <a href="" class="nav-link text-body font-weight-bold px-0">
+        <i class="fa fa-user me-sm-1"></i>
+        <span class="d-sm-inline d-none me-3">Logout</span>
+    </a>
+</li>
+{% endif %} {% endcomment %}
+
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+    <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+                <li class="breadcrumb-item text-sm text-white active ms-2" aria-current="page">
+                    {% if request.path == '/' %} Dashboard {% else %} {{ request.path|title }} {% endif %}
+                </li>
+            </ol>
+        </nav>
+
+        <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
+            <a href="javascript:;" class="nav-link p-0 text-white">
+                <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <ul class="ms-md-auto navbar-nav justify-content-end">
+                <li class="nav-item pe-3 d-flex align-items-center">
+                    <a href="{% url 'sign_out' %}" class="nav-link text-white font-weight-bold px-0"
+                        target="_blank">
+                        <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
+                        <span class="d-inline">Sign Out</span>
+                    </a>
+                </li>
+
+                <li class="nav-item pe-3 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0 notify-bar" aria-expanded="false">
+                        <span data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Compliance"><i
+                                class="fa fa-check-square cursor-pointer" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+
+                <li class="nav-item pe-3 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0 notify-bar" aria-expanded="false">
+                        <span data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Tasks"><i
+                                class="fa fa-calendar-check-o cursor-pointer" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown pe-3 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0 notify-bar"
+                        aria-expanded="false">
+                        <span data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Emails"><i
+                                class="fa fa-envelope-o cursor-pointer mt-2" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+
+                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                        <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->

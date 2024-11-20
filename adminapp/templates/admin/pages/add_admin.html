@@ -1,0 +1,61 @@
+{% extends 'admin/layouts/base.html' %}
+{% load main_tags %}
+{% load static %}
+{% block title %}Add Admin{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        {% block pagetitle %}
+            {% include "admin/includes/page-title.html" with  title="Add Admin" %}
+        {% endblock pagetitle %}
+
+        {% include 'admin/components/message.html' %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{% url 'admin' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mt-1">
+                                    <label for="firstname" class="form-label">First Name</label>
+                                    <input type="text" name="firstname" class="form-control" id="firstname">
+                                </div>
+
+                                <div class="col-md-6 mt-1">
+                                    <label for="lastname" class="form-label">Last Name</label>
+                                    <input type="text" name="lastname" class="form-control" id="lastname">
+                                </div>
+                            </div>
+
+                            <div class="mt-1">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" id="email">
+                            </div>
+
+                            <div class="mt-1">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" id="password">
+                            </div>
+
+                            <div class="mt-1">
+                                <label for="c_password" class="form-label">Confirm Password</label>
+                                <input type="password" name="confirm_password" class="form-control" id="c_password">
+                            </div>
+
+                            <div class="mt-4 d-flex justify-content-between">
+                                <a class="btn btn-success" href="javascript:history.go(-1)">Back</a>
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extrajs %}
+
+{% endblock extrajs %}

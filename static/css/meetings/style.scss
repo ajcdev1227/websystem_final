@@ -1,0 +1,10 @@
+@use "./g-style";
+@use "./body";
+@use "./sidebar";
+@use "./event_types";
+@use "./booking";
+@use "./availability";
+
+main {
+  grid-template-rows: auto auto 1fr;
+}

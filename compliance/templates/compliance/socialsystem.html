@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid py-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show alert-sm {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}"
+                     role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">×</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            <h3>Write Post</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{% url 'post_article' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="title">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Type in..." name="content" id="" cols="30"
+                                  rows="10"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="link">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="file">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {#{% include "includes/footer.html" %}#}
+    </div>
+{% endblock content %}

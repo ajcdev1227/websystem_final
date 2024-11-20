@@ -1,0 +1,67 @@
+{% extends "wagtailadmin/admin_base.html" %}
+{% load wagtailadmin_tags wagtailcore_tags i18n %}
+
+{% block furniture %}
+    <template data-wagtail-sidebar-branding-logo>{% block branding_logo %}{% endblock %}</template>
+    {% sidebar_props %}
+    <aside id="wagtail-sidebar" class="sidebar-loading" data-wagtail-sidebar aria-label="{% trans 'Sidebar' %}"></aside>
+    <main class="content-wrapper" id="main">
+        <div class="content">
+            <div class="above-sidebar w-sticky w-top-0 w-z-header">
+                <div class="above-sidebar-left-side">
+                    <p class="project-name mb-0">WebSystem</p>
+                    <div class="above-sidebar-vertical-divider"></div>
+                    <a href="{% url 'wagtailadmin_explore_root' %}" class="subapp-name mb-0">Website Engine</a>
+                </div>
+                <div class="above-sidebar-right-side">
+                    <a href="http://compliance.websystemcontrol.com" class="page-status-tag w-inline-flex w-items-center w-justify-center w-whitespace-nowrap w-px-1 compliance-link w-mr-4 mb-0">
+                        Compliance
+
+                          <!-- Compliance Count -->
+                        {% if compliance_cnt is not 0 %}
+                            <span class="rounded-icon">{{ compliance_cnt }}</span>
+                        {% endif %}
+                    </a>
+                    <a href="{% url 'logout' %}" class="w-inline-flex w-items-center w-justify-center w-whitespace-nowrap w-px-1 logout-link mb-0">
+                        {% icon name="user" classname="w-action-icon w-w-3 w-h-3 w-mr-2" %} Logout
+                    </a>
+                </div>
+            </div>
+
+            {# Always show messages div so it can be appended to by JS #}
+            <div class="messages" role="status" data-controller="w-messages" data-action="w-messages:add@document->w-messages#add" data-w-messages-added-class="new" data-w-messages-show-class="appear">
+                <ul data-w-messages-target="container">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% message_level_tag message as level_tag %}
+                            <li class="{% message_tags message %}">
+                                {% if level_tag == "error" %}
+                                    {# There is no error icon, use warning icon instead #}
+                                    {% icon name="warning" classname="messages-icon" %}
+                                {% elif message.extra_tags == "lock" %}
+                                    {% icon name="lock" classname="messages-icon" %}
+                                {% elif message.extra_tags == "unlock" %}
+                                    {% icon name="lock-open" classname="messages-icon" %}
+                                {% else %}
+                                    {% icon name=level_tag classname="messages-icon" %}
+                                {% endif %}
+                                {{ message|safe }}
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+                <template data-w-messages-target="template" data-type="success">
+                    <li class="success">{% icon name="success" classname="messages-icon" %}<span></span></li>
+                </template>
+                <template data-w-messages-target="template" data-type="error">
+                    <li class="error">{% icon name="warning" classname="messages-icon" %}<span></span></li>
+                </template>
+                <template data-w-messages-target="template" data-type="warning">
+                    <li class="warning">{% icon name="warning" classname="messages-icon" %}<span></span></li>
+                </template>
+            </div>
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+{% endblock %}

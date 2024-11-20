@@ -1,0 +1,43 @@
+{% extends 'layouts/base-green.html' %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <Style>
+
+    .bg-gradient-primary
+    {
+        background-image:linear-gradient(310deg, #D7F6F1 0%, #007074 50%) !important;
+    }
+    </Style>
+<!-- Button trigger modal -->
+    <div align="center" style="display: flex;
+    justify-content: center;
+    margin-top: 7%;">
+<button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch Social Media Tool
+</button>
+        </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message from WebSystem Software</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        The Social Media Tool is currently under construction.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,1017 @@
+{% load static wagtailuserbar webpack_loader %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<html class="js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" data-lt-installed="true" style="--headerHeight: 86.66667175292969px; --brokerCheckHeight: 40px;">
+  <head id="Head1">
+    <title>
+      {% block title %}
+        {% if self.seo_title %}
+          {{ self.seo_title }}
+        {% else %}
+          {{ self.title }}
+        {% endif %}
+      {% endblock %}
+      {% block title_suffix %}
+        {% with self.get_site.site_name as site_name %}
+          {% if site_name %}
+            - {{ site_name }}
+          {% endif %}
+        {% endwith %}
+      {% endblock %}
+    </title>
+    <style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+    </style>
+
+    <!-- Google Tag Manager -->
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- [if (gte IE 9)|!(IE)]><! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <![endif] -->
+    <meta name="generator" content="FMG Suite" />
+
+    <link rel="icon" sizes="32x32" type="image/png" href="//static.fmgsuite.com/media/WebsiteFavicon/variantSize/d8f46e29-24ab-414d-aaed-c40015ce36cd.png" />
+
+    <title>Home | Financial Group of Philadelphia, Inc.</title><meta name="robots" content="index, follow" />
+    <meta name="twitter:card" content="summary" />
+    <meta prefix="og: http://ogp.me/ns#" property="og:title" content="Home" />
+    <meta name="twitter:title" content="Home" />
+    <meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="Financial Group of Philadelphia, Inc." />
+    <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://www.philafinancial.com/" />
+
+    <script type="application/ld+json">
+        {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "@id": "http://www.philafinancial.com/",
+      "name": "Financial Group of Philadelphia, Inc.",
+      "logo": "//static.fmgsuite.com/media/TransparentLogo/variantSize/f3da09b2-397b-4357-b858-ab079e0ee74b.png",
+      "url": "http://www.philafinancial.com/",
+      "telephone": "215-396-1500",
+      "priceRange": "N/A",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "910 Floral Vale Boulevard",
+        "addressLocality": "Yardley",
+        "addressRegion": "PA",
+        "postalCode": "19067-5515",
+        "addressCountry": "US"
+      },
+      "location": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "910 Floral Vale Boulevard",
+          "addressLocality": "Yardley",
+          "addressRegion": "PA",
+          "postalCode": "19067-5515",
+          "addressCountry": "US",
+          "telephone": "215-396-1500",
+          "faxNumber": "215-396-3306"
+        }
+      ],
+      "sameAs": []
+    }
+    </script>
+
+    <link rel="stylesheet" type="text/css" media="" href="//static.fmgsuite.com/site/templates/007/dist/7ac.css?v=2.86.45.30382.447" /> <link rel="stylesheet" type="text/css" href="//static.fmgsuite.com/site/globalassets/template7/css/global-asset-styles.css" />
+
+    <style type="text/css">
+    
+    
+    
+    
+    /* #3C9BCA  #231F20 #CA6B3C */
+    :root{
+    --paletteColor1: #3C9BCA;
+    --paletteColor2: #231F20;
+    --paletteColor3: #CA6B3C;
+    
+    --paletteColor1H: 200;
+    --paletteColor1S: 57.3%;
+    --paletteColor1L: 51.4%;
+    
+    --paletteColor2H: 345;
+    --paletteColor2S: 6.1%;
+    --paletteColor2L: 12.9%;
+    
+    --paletteColor3H: 20;
+    --paletteColor3S: 57.3%;
+    --paletteColor3L: 51.4%;
+    }
+    a{
+        color:#CA6B3C;
+    }
+    h1, h2, h3, h4,
+    h1 a, h2 a, h3 a, h4 a
+    {color:#3C9BCA;}
+    
+    
+    .back-to-top{background: #CA6B3C; }
+    
+    .c-topnav__navbar {
+        background: #CA6B3C;
+    }
+    
+    .c-topnav__menu-item .c-topnav__menu-text {
+        color: #fff;
+    }
+    
+    .angleLeft,
+    .angleRight {
+        background: #fff;
+    }
+    .c-topnav__submenu {
+        background:rgba(83,94,92,1);
+    }
+    .c-topnav__menu-item:hover .c-topnav__menu-text {
+        background: #CA6B3C;
+        color: #fff;
+    }
+    
+    li.c-topnav__submenu-item a {
+        color: #fff;
+    }
+    
+    .c-circle {
+        background:rgba(47,54,52,1);
+    }
+    @media (min-width:992px) {
+    
+        .c-topbar {
+            background:#231F20;
+            color:#fff;
+        }
+        .c-topbar a {
+            color:#c1c1c1;
+        }
+        .c-topbar a:hover{
+            color:#CA6B3C;
+        }
+        .c-topnav__navbar {
+            background:none;
+        }
+    
+        .c-topnav__menu-item .c-topnav__menu-text {
+            color: #231F20;
+        }
+        .c-topnav__menu-item .c-topnav__menu-text.selected{
+            background: #CA6B3C;
+            color: #fff;
+        }
+    
+        .c-topnav__submenu {
+            background:rgba(34,34,34,.95);
+        }
+    
+        .c-topnav__menu-item:hover .c-topnav__menu-text {
+            background:#CA6B3C;
+            opacity:.80;
+        }
+    
+        .c-topnav__submenu-item:hover{
+            background:#CA6B3C;
+        }
+        
+    } /* END MEDIA */
+    
+    /*HERO*/
+    
+    
+    @media (min-width: 992px) {
+        .top-bar  {background:#231F20;}
+    }
+    
+    .c-btn {
+        color: #CA6B3C;
+        background: none;
+        border: solid 1px #CA6B3C;
+    }
+    
+    .c-btn:hover,
+    .c-btn:focus,
+    .c-btn:active {
+        text-decoration: none;
+        color: #fff;
+        background-color: #CA6B3C;
+    }
+    .c-additional__content {
+        background-color: #F8F8F5;
+    }
+    
+    .c-additional__content--small .c-accordion__link {
+        background: #CA6B3C;
+    }
+    
+    .c-additional__content nav a {
+        color: #231F20;
+    }
+    .c-additional__content nav a:hover{
+       background: #CA6B3C;
+       color: #fff;
+    }
+    
+    .c-additional__content nav .selected {
+        color: #fff;
+        background: #CA6B3C;
+    }
+    
+    .c-additional__content h4 a {
+        color: #666;
+    }
+    
+    .c-additional__content .viewAll a,
+    .c-additional__content h4 a:hover {
+        color: #231F20;
+    }
+    
+    .c-additional__content--small .panel-heading {
+        background: #CA6B3C;
+    }
+    
+    .c-matter-flag__body {
+        background: #CA6B3C;
+    }
+    .c-matter-flag__body:hover{
+        opacity:.95;
+    }
+    .c-team-member__info a{
+        color:#CA6B3C;
+    }
+    
+    footer {
+        background: #231F20;
+        color: #fff;
+    }
+    
+    footer h4 {
+        color: #fff;
+        text-decoration:underline;
+    }
+    
+    footer a {
+        color: #fff;
+    }
+    footer a:hover{
+        color: #D8D8D6;
+    }
+    .quickLinks ul a {
+        color: #fff;
+    }
+    .quickLinks ul a:hover{
+        color: #D8D8D6;
+    }
+    footer .c-socialMedia a {
+        color: #fff;
+    }
+    
+    footer .c-socialMedia a:hover {
+       color: #fff;
+    }
+    
+    
+    .article-008 th,
+    .article-012 th,
+    .article-017 th {background-color:#CA6B3C}
+    
+    /*CONTENT GATE MODAL*/
+    .c-popup__submit {
+        color:#CA6B3C; border-color:#CA6B3C; background:#CA6B3C;
+    }
+    .c-popup__submit:hover {
+        opacity:0.75;
+    }
+    
+    .c-matter__meta {
+        color: #3C9BCA;
+    }
+    
+    .c-matter__pull-quote {
+        background-color: #CA6B3C;
+        color: #fff;
+    }
+    
+    /*EVENTS
+    //==================================================*/
+    .c-event__date-box {
+        border-color: #CA6B3C;
+    }
+    .c-event-date--day {
+        color: #CA6B3C;
+    }
+
+    </style>
+
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://static.fmgsuite.com" />
+    <link rel="preconnect" href="https://static.contentres.com" />
+    <link rel="preconnect" href="https://fmg-websites-custom.s3.amazonaws.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher&amp;family=Open+Sans:wght@400;700&amp;display=swap" />
+    <link rel="stylesheet" href="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Headers/sticky/css/sticky.css" />
+    <link rel="stylesheet" href="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Headers/sticky-HomeFixed/css/sticky-HomeFixed.css" />
+    <link rel="stylesheet" href="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Sections/css/sections.css" />
+    <link rel="stylesheet" href="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Footers/aurora-footer/css/aurora-footer.css" />
+    <style>
+    :root {
+        /*Font*/
+        --headingFontFamily: 'Philosopher', sans-serif;
+        --headingTextTransform: none;
+        --headingFontWeight: normal;
+        --bodyFontFamily: 'Open Sans', sans-serif;
+        --bodyFontSize: 18px;
+        
+        /*General Colors*/
+        --headingColor: #fff;
+        --subHeaderColor: var(--paletteColor2);
+        --hyperlinkColor: #fff;
+        --hyperlinkHoverColor: var(--paletteColor3);
+        --bodyFontColor: #fff;
+        --editingBackground: var(--siteMainBackground, var(--paletteColor2));
+        
+        /*Buttons*/
+        --btnTextColor: #fff;
+        --btnTextHoverColor: #fff;
+        --btnBackgroundColor: var(--paletteColor3);
+        --btnBackgroundHoverColor: var(--paletteColor1);
+        --btnBorderColor: transparent;
+        --btnBorderHoverColor: transparent;
+        --btnBorderWidth: 4px;
+        --btnBorderRadius: var(--borderRadius);
+        
+        /*Header*/
+        --headerBackgroundColor: #f8f8f8;
+        --topBarBackgroundColor: var(--paletteColor2);
+        --topBarFontColor: #fff;
+        --topBarFontHoverColor: #e1e1e1;
+        --headerBtnTextColor: #fff;
+        --headerBtnTextHoverColor: var(--paletteColor2);
+        --headerBtnBackgroundColor: var(--paletteColor3);
+        --headerBtnBackgroundHoverColor: var(--paletteColor1);
+        --headerBtnBorderColor: var(--headerBtnBackgroundColor);
+        --headerBtnBorderHoverColor: var(--headerBtnBackgroundHoverColor);
+        --headerBtnBorderWidth: var(--btnBorderWidth);
+        --headerBtnBorderRadius: var(--btnBorderRadius);
+        --specialNavBtnFontColor: var(--btnTextColor);
+        --specialNavBtnFontHoverColor: var(--paletteColor3);
+        --specialNavBtnBackgroundColor: var(--btnBackgroundColor);
+        --specialNavBtnBackgroundHoverColor: transparent;
+        --specialNavBtnBorderColor: var(--specialNavBtnBackgroundColor);
+        --specialNavBtnBorderHoverColor: var(--paletteColor3);
+        --specialNavBtnBorderWidth: var(--btnBorderWidth);
+        --specialNavBtnBorderRadius: var(--btnBorderRadius);
+        --navArrows: #fff;
+        --navHoverArrows: #fff;
+        --headerWidth: 1500px;
+        
+        /*Logo*/
+        --logoWidth: 300px;
+        --logoWidthScroll: 250px;
+        
+        /*Navigation*/
+        --parentNavItemColor: var(--paletteColor2);
+        --parentNavItemHoverColor: var(--parentNavItemColor);
+        --parentNavItemBackgroundColor: transparent;
+        --parentNavItemBackgroundHoverColor: transparent;
+        --parentNavItemUnderlineColor:var(--paletteColor3);
+        --selectedParentNavFontColor: var(--parentNavItemHoverColor);
+        --selectedParentNavBackgroundColor: var(--parentNavItemBackgroundHoverColor);
+        --selectedNavItemUnderlineColor: var(--parentNavItemUnderlineColor);
+        --subNavFontColor: #fff;
+        --subNavFontHoverColor: #fff;
+        --subNavBackgroundColor: rgba(34,34,34,0.95);
+        --mobileSubNavBackgroundColor: transparent;
+        --subNavBackgroundHoverColor: var(--paletteColor3);
+        
+        /*Mobile Header*/
+        --mobileTopBarBackgroundColor: var(--headerBackgroundColor);
+        --expandCircleColor: var(--paletteColor2);
+        --mobileHamburgerMenuColor: var(--paletteColor2);
+        --mobileNavigationFontColor: #fff;
+        --mobileNavigationFontHoverColor: #fff;
+        --mobileNavigationBackgroundColor: transparent;
+        --mobileNavigationBackgroundHoverColor: var(--paletteColor3);
+        
+        /*Box Icons*/
+        --boxIconCircleBorder: transparent;
+        --boxIconCircleBorderWidth: 0px;
+        --boxIconCircleBackground: transparent;
+        --boxIconColor: #fff;
+        --boxIconHoverColor: #fff;
+        --boxIconCircleHoverBorder: transparent;
+        --boxIconCircleHoverBackground: transparent;
+        
+        /*Box*/
+        --boxBorderWidth: 1px;
+        --boxMinHeight: 315px;
+        --boxBorderColor: #fff;
+        --boxBorderHoverColor: var(--paletteColor1);
+        --boxBackgroundColor: transparent;
+        --boxBackgroundHoverColor: var(--paletteColor1);
+        --boxTextColor: #fff;
+        --boxTextHoverColor: #fff;
+        --boxHeadlineUnderlineHeight: 3px;
+        --boxHeadlineUnderlineColor: #fff;
+        --boxHeadlineUnderlineHoverColor: #fff;
+        --boxShadow: none;
+        --boxBorderRadius: var(--borderRadius);
+        
+        /*Footer*/
+        --footerBackgroundColor: var(--headerBackgroundColor);
+        --footerHeaderColor: #444;
+        --footerBodyColor: #444;
+        --footerHyperlinkColor: #444;
+        --footerHyperlinkHoverColor: #666;
+        --footerBodyFontSize: 14px;
+        --footerBackgroundImg: url(https://static.fmgsuite.com/media/images/68745e17-1765-47fe-890f-1a0121ddbd4a.jpg?5ff07f03-469d-4951-ab10-b91c548318a1);
+        --footerFirstBackgroundColor: hsla(var(--primaryHSL), 0.9);
+        --footerSecondBackgroundColor: hsla(var(--secondaryHSL), 0.9);
+        
+        /*Tab CSS*/
+        --tabNavTextColor: #fff;
+        --tabNavBackground: var(--paletteColor1);
+        --tabNavHoverBackground: var(--paletteColor2);
+        --tabNavBorderLeft: #fff;
+        --tabBoxBackground: var(--paletteColor1);
+        --tabBoxTextColor: #fff;
+        --tabBoxBorderLeft: #2f2f2f;
+        
+        /*FMG Content*/
+        --fmgContentFlagFontColor: #fff;
+        --fmgContentFlagFontHoverColor: #fff;
+        --fmgContentFlagBackgroundColor: var(--paletteColor3);
+        --fmgContentFlagBackgroundHoverColor: var(--paletteColor2);
+        --additionalContentBackgroundColor: #f6f6f6;
+        --additionalContentTextColor: #666;
+        --additionalContentHeadlineColor: var(--paletteColor2);
+        
+        /*Hero*/
+        --heroTextColor: #fff;
+        
+        /*Accordion*/
+        --accordionBackground: transparent;
+        --accordionHeaderBackgroundColor: var(--paletteColor1);
+        --accordionHeaderTextColor: #fff;
+        --accordionHeaderBackgroundHoverColor: var(--paletteColor2);
+        --accordionContentBackgroundColor: #fff;
+        --accordionContentTextColor: var(--bodyFontColor);
+        --accordionHeaderTextHoverColor: var(--accordionHeaderTextColor);
+        
+        /*Rotators*/
+        --rotatorNavColor: #fff;
+        --rotatorNavHoverColor: #d8d8d6;
+        --rotatorTextColor: #fff;
+        --rotatorHeadlineFontSize: 2em;
+        --rotatorHeadlineMobileFontSize: 1.5em;
+        --rotatorcustmHeight: 70vh;
+        --rotatorcustmMobileHeight: 125vw;
+        --rotatorBoxBackground: transparent;
+        --rotatorBackground: var(--paletteColor1);
+        
+        /*Team Widget*/
+        --teamMemberWidgetBackgroundColor: #fff;
+        --teamMemberWidgetTextColor: inherit;
+        --teamMemberWidgetBackgroundHoverColor: var(--paletteColor3);
+        --teamMemberWidgetTextHoverColor: #fff;
+        --teamSocialIconBackgroundColor: transparent;
+        --teamSocialIconBackgroundHoverColor: transparent;
+        --teamSocialIconColor: var(--paletteColor3);
+        --teamSocialIconHoverColor: #fff;
+        --teamSocialBoderWidth: 1px;
+        --teamSocialBoderColor: var(--paletteColor3);
+        --teamSocialBoderHoverColor: #fff;
+        
+        /*Subpage Banners*/
+        --subpageBannerImg: url("//static.fmgsuite.com/media/InlineContent/originalSize/74a04a37-8555-427a-9be7-16ad5ab08fc6.jpg");
+        --subpageBannerTextColor: #fff;
+        --subpageBannerTextPosition: left;
+        --subpageBannerFontSize: 3rem;
+        
+        /*Site Background*/
+        --bodyContainerBackground: #fff;
+        --bodyBackground: #fff;
+        --linearGradientVertical: linear-gradient(180deg, hsla(var(--secondaryHSL), 1) 35%, var(--paletteColor1) 100%);
+        --linearGradientHorizontal: linear-gradient(to right, hsla(var(--tertiaryHSL), 0.8) 43%, transparent);
+        --siteMainBackground: var(--linearGradientVertical);
+        --siteSideBackground: #fff;
+        --contentMaxWidth: 100%;
+        
+        /*Misc*/
+        --maxSectionWidth : 1500px;
+        --borderRadius: 0px;
+        --sectionMaxHeight: 60vh;
+        --mobileSectionMaxHeight: 35vh;
+        --ribbonColor: var(--paletteColor1);
+        --vistaBoxTop: #000;
+        --boxShadowEffect: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.16), 0 8px 8px rgba(0, 0, 0, 0.20);
+        --superSectionBackgroundEffect: linear-gradient(0deg,  rgba(255, 255, 255, 0.5), #fff);
+        --lineColor: #fff;
+        --lineWidth: 2px;
+        --overlayColor: hsla(var(--primaryHSL), 0.75);
+        --backToTop: var(--paletteColor3);
+        --chulaHeaderPadding: 50px;
+        --placeholderColor: #979797;
+    }
+    </style>
+    <style>
+    /* 01/31/2023 -- Homepage */
+    @media screen and (min-width: 992px) {
+        .homepage:not(.e-page__edit-mode) header.c-header:not(.scrolled) {
+            --specialNavBtnFontHoverColor: #fff;
+            --specialNavBtnBorderHoverColor: #fff;
+        }
+    }
+    
+    
+    @media screen and (min-width: 992px){
+        .homepage .c-header:not(.scrolled) .c-logo--image{
+            filter: brightness(0) invert(1);
+        }
+    }
+    
+    
+    .customFooter .customFooterAddress::before, .customFooter .customFooterContactLinks::before {
+        background: radial-gradient(circle, var(--footerBodyColor) 0%, var(--footerBodyColor) 48%,rgba(255,255,255,0) 100%);
+    }
+    
+    #mainNav .c-topnav__menu-item .c-topnav__menu-text {
+        font-weight: bold;
+    }
+    
+    .dev-heroText-Aurora {
+        --linearGradientVertical: linear-gradient(180deg, hsla(var(--primaryHSL), 0.3) 0%, var(--paletteColor2) 100%);
+    }
+    
+    .dev-bannerSection, .bannerSection {
+        --overlayColor: linear-gradient(180deg, hsla(var(--primaryHSL), 0.45) 0%, var(--paletteColor2) 100%);
+    }
+    
+    #mainNav .c-topnav__menu-item.navBtn .c-topnav__menu-text {
+        padding: 10px;
+    }
+    
+    .sideBySide-SuperSection .o-container.superContainer {
+        padding: 0;
+        width: 100%;
+    }
+    
+    .sideBySide-SuperSection {
+        --overlayColor: transparent;
+    }
+    
+    @media(min-width: 992px){
+        .sideBySide-SuperSection .o-container.superContainer {
+            flex-flow: row-reverse wrap;
+        }
+    }
+    
+    .dev-RemoveIconLink .c-box-icon--link {
+        pointer-events: none;
+    }
+    </style>
+
+    <!--  [if lt IE 9]>
+            <script type="text/javascript" src="//static.fmgsuite.com/site/templates/shared/scripts/html5shiv.min.js?v=2.86.45.30382.447"></script>
+            <script type="text/javascript" src="//static.fmgsuite.com/site/templates/shared/scripts/html5shiv-printshiv.min.js?v=2.86.45.30382.447"></script>
+            <script type="text/javascript" src="//static.fmgsuite.com/site/templates/shared/scripts/respond.js?v=2.86.45.30382.447"></script>
+            <link rel="stylesheet" type="text/css" media="" href="//static.fmgsuite.com/site/templates/bootstrap/3.3.4/css/bootstrap-disable-responsive.css?v=2.86.45.30382.447" />
+        <![endif]  -->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script async="" type="text/javascript">
+      var FMG = {
+        "RootLocation": "https://www.philafinancial.com/",
+        "SecureLocation": "https://www.fmgwebsites.com/4acc5f43-6a5f-4e06-969c-90a013d8297b/",
+        "PrimaryLocation": "https://www.philafinancial.com/",
+        "LeavingSiteDisclaimer": null,
+        "PartyPublicIdentifier": "396116",
+        "EbookBGType": "0"
+      };
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90NR43CZBZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-90NR43CZBZ');
+    </script>
+
+    <script async="" type="text/javascript">
+        //Site 24x7 RUM Code
+        var rumMOKey = "bf43c1778f8d741b80145273d2fd6586";
+        (function () {
+            if (window.performance && window.performance.timing && window.performance.navigation)
+            {
+                var site24x7_rum_beacon = document.createElement('script');
+                site24x7_rum_beacon.async = true;
+                site24x7_rum_beacon.setAttribute('src', '//static.site24x7rum.com/beacon/site24x7rum-min.js?appKey=' + rumMOKey);
+                document.getElementsByTagName('head')[0].appendChild(site24x7_rum_beacon);
+            }
+        })(window)
+    </script>
+    <script async="" src="//static.site24x7rum.com/beacon/site24x7rum-min.js?appKey=bf43c1778f8d741b80145273d2fd6586"></script>
+    <style id="mttstyle">
+        .tippy-box[data-theme~="custom"] {
+          font-size: 14px  !important;
+          max-width: 200px  !important;
+          text-align: center !important;
+          backdrop-filter: blur(2px) !important;
+          background-color: #000000b8 !important;
+          color: #ffffffff !important;
+          overflow-wrap: break-word !important;
+        }
+        .tippy-box[data-theme~='custom'][data-placement^='top'] > .tippy-arrow::before {
+          border-top-color: #000000b8 !important;
+        }
+        .tippy-box[data-theme~='custom'][data-placement^='bottom'] > .tippy-arrow::before {
+          border-bottom-color: #000000b8 !important;
+        }
+        .tippy-box[data-theme~='custom'][data-placement^='left'] > .tippy-arrow::before {
+          border-left-color: #000000b8 !important;
+        }
+        .tippy-box[data-theme~='custom'][data-placement^='right'] > .tippy-arrow::before {
+          border-right-color: #000000b8 !important;
+        }
+        .ocr_text_div{
+          position: absolute;
+          opacity: 0.7;
+          font-size: calc(100% + 1cqw);
+          overflow: hidden;
+          border: 2px solid CornflowerBlue;
+          color: transparent !important;
+          background: none !important;
+        }
+        </style>
+  </head>
+
+  <body class="homepage">
+    <div id="headerResizing" aria-hidden="true"></div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a class="back-to-top" href="#" role="button" aria-label="Click to return to the top of the page" style="display: inline;"><i class="fa fa-angle-up"></i></a>
+
+    {% wagtailuserbar %}
+    
+    {% include 'blog/components/navbar_financial.html' %}
+
+    <div class="body-container">
+      <section id="content" class="o-content__container">
+        <section class="section section_SimpleText None None dev-underlineSup">
+          {% block content %} {% endblock %}
+        </section>
+        {% comment %} <section id="section_0" class="section section_SimpleText None ScaleToFit dev-heroText-Aurora dev-scrollIn visible" style="background-image:url(//static.fmgsuite.com/media/SectionBackgroundImage/variantSize/0e5f6bd9-3c24-43a4-9c54-829c90f3d0bd.jpg)">
+          <div class="overlay">
+            <div class="o-container c-customsection__container" style="">
+              <div class="o-grid__collapse c-grid__collapse--SimpleText" data-section-type="SimpleText">
+                <div id="box1" class="c-text__section box Text u-text-align--Right">
+                  <h2 id="section1-box1-title" class="js-simple-editable" data-section-id="1" data-box-id="1" data-box-type="title">Focus On What Matters Most</h2>
+                  <div id="section1-box1-paragraph" class="box-copy js-complex-editable" data-section-id="1" data-box-id="1" data-box-type="content">
+                    <p>
+                      Financial Independence Through Financial Education<span>™</span>
+                    </p>
+                  </div>
+                  <a href="https://www.philafinancial.com/contact" class="c-btn c-text__btn sectionButtonHover" style="" data-section-id="1" data-box-id="1" data-box-type="button" data-button="" data-remove-href=""><span class="button" data-section-id="1" data-box-id="1" data-box-type="button">Let's Talk</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-socialMedia"></div>
+        </section>
+        <section id="section_1" class="section section_SimpleText None None dev-underlineSup">
+          <div class="overlay">
+            <div class="o-container c-customsection__container" style="padding-bottom:20px;">
+              <div class="o-grid__collapse c-grid__collapse--SimpleText" data-section-type="SimpleText">
+                <div id="box1" class="c-text__section box Text u-text-align--Center">
+                  <h2 id="section10-box1-title" class="js-simple-editable" data-section-id="10" data-box-id="1" data-box-type="title"><sup>Services</sup><br />How Can We Help You?</h2>
+                  <div id="section10-box1-paragraph" class="box-copy js-complex-editable" data-section-id="10" data-box-id="1" data-box-type="content">
+                    <p>We offer a wide variety of services all geared to help you with your financial goals.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section_2" class="section section_Boxes None c-box__count--3 dev-boxes-Clickable-Base dev-boxes-CustomBox-Base dev-boxes-HoverEffect-RevealText dev-boxes-Icon-Base dev-scrollIn dev-boxAnimation dev-fadeUp dev-RemoveIconLink visible">
+          <div class="overlay">
+            <div class="o-container c-customsection__container" style="padding-top:20px;padding-bottom:0px;">
+              <div class="o-grid__collapse c-grid__collapse--Boxes" data-section-type="Boxes">
+                <div id="box1" class="box c-grid__item Icon c-box-text__align--None">
+                  <div class="c-section-boxes__inner-box" data-boxes-sortable="" data-content-type="none" data-section-id="7" data-box-id="1">
+                    <div class="c-box__icon svg-wrapper png briefcase" data-icon="" data-svg="/media/icons/icons-briefcase.svg" data-section-id="7" data-box-id="1">
+                      <a href="https://www.philafinancial.com/resource-center/retirement" class="c-box-icon--link" data-remove-href=""><i class="c-box-icon c-icn--briefcase" style=""></i></a>
+                    </div>
+                    <h2 id="section7-box1-title" class="c-box__title js-simple-editable" data-section-id="7" data-box-id="1" data-box-type="title">Retirement</h2>
+                    <div id="section7-box1-paragraph" class="c-box__paragraph js-complex-editable" data-section-id="7" data-box-id="1" data-box-type="content">
+                      <p>
+                        <span style="font-weight: 400;" data-mce-style="font-weight: 400;">We can help you build a retirement strategy that is sure to keep you excited for what’s to come.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div id="box2" class="box c-grid__item Icon c-box-text__align--None">
+                  <div class="c-section-boxes__inner-box" data-boxes-sortable="" data-content-type="none" data-section-id="7" data-box-id="2">
+                    <div class="c-box__icon svg-wrapper png light_bulb" data-icon="" data-svg="/media/icons/icons-lightbulb.svg" data-section-id="7" data-box-id="2">
+                      <a href="https://www.philafinancial.com/resource-center/tax" class="c-box-icon--link" data-remove-href=""><i class="c-box-icon c-icn--lightbulb" style=""></i></a>
+                    </div>
+                    <h2 id="section7-box2-title" class="c-box__title js-simple-editable" data-section-id="7" data-box-id="2" data-box-type="title">Tax Strategy</h2>
+                    <div id="section7-box2-paragraph" class="c-box__paragraph js-complex-editable" data-section-id="7" data-box-id="2" data-box-type="content">
+                      <p>We'll help make sure that we're considering the tax implications with all your investments.</p>
+                    </div>
+                  </div>
+                </div>
+                <div id="box3" class="box c-grid__item Icon c-box-text__align--None">
+                  <div class="c-section-boxes__inner-box" data-boxes-sortable="" data-content-type="none" data-section-id="7" data-box-id="3">
+                    <div class="c-box__icon svg-wrapper png building_house" data-icon="" data-svg="/media/icons/icons-buildinghouse.svg" data-section-id="7" data-box-id="3">
+                      <a href="https://www.philafinancial.com/resource-center/estate" class="c-box-icon--link" data-remove-href=""><i class="c-box-icon c-icn--buildinghouse" style=""></i></a>
+                    </div>
+                    <h2 id="section7-box3-title" class="c-box__title js-simple-editable" data-section-id="7" data-box-id="3" data-box-type="title">Estate</h2>
+                    <div id="section7-box3-paragraph" class="c-box__paragraph js-complex-editable" data-section-id="7" data-box-id="3" data-box-type="content">
+                      <p>
+                        <span style="font-weight: 400;" data-mce-style="font-weight: 400;">With over 100 years' collective experience, we'll help secure your legacy for future generations.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section_3" class="section section_Boxes None c-box__count--3 dev-boxes-Clickable-Base dev-boxes-CustomBox-Base dev-boxes-HoverEffect-RevealText dev-boxes-Icon-Base dev-scrollIn dev-boxAnimation dev-fadeUp dev-RemoveIconLink visible">
+          <div class="overlay">
+            <div class="o-container c-customsection__container" style="padding-top:0px;padding-bottom:20px;">
+              <div class="o-grid__collapse c-grid__collapse--Boxes" data-section-type="Boxes">
+                <div id="box1" class="box c-grid__item Icon c-box-text__align--None">
+                  <div class="c-section-boxes__inner-box" data-boxes-sortable="" data-content-type="none" data-section-id="14" data-box-id="1">
+                    <div class="c-box__icon svg-wrapper png stack" data-icon="" data-svg="/media/icons/icons-stack.svg" data-section-id="14" data-box-id="1">
+                      <a href="https://www.philafinancial.com/resource-center/investment" class="c-box-icon--link" data-remove-href=""><i class="c-box-icon c-icn--stack" style=""></i></a>
+                    </div>
+                    <h2 id="section14-box1-title" class="c-box__title js-simple-editable" data-section-id="14" data-box-id="1" data-box-type="title">High-Net-Worth</h2>
+                    <div id="section14-box1-paragraph" class="c-box__paragraph js-complex-editable" data-section-id="14" data-box-id="1" data-box-type="content">
+                      <p>We have extensive experience managing high-net-worth portfolios.</p>
+                    </div>
+                  </div>
+                </div>
+                <div id="box2" class="box c-grid__item Icon c-box-text__align--None">
+                  <div class="c-section-boxes__inner-box" data-boxes-sortable="" data-content-type="none" data-section-id="14" data-box-id="2">
+                    <div class="c-box__icon svg-wrapper png pie_chart" data-icon="" data-svg="/media/icons/icons-piechart.svg" data-section-id="14" data-box-id="2">
+                      <a href="https://www.philafinancial.com/resource-center/money" class="c-box-icon--link" data-remove-href=""><i class="c-box-icon c-icn--piechart" style=""></i></a>
+                    </div>
+                    <h2 id="section14-box2-title" class="c-box__title js-simple-editable" data-section-id="14" data-box-id="2" data-box-type="title">Small Business</h2>
+                    <div id="section14-box2-paragraph" class="c-box__paragraph js-complex-editable" data-section-id="14" data-box-id="2" data-box-type="content">
+                      <p>Let us help you make sure your business is poised for growth.</p>
+                    </div>
+                  </div>
+                </div>
+                <div id="box3" class="box c-grid__item Icon c-box-text__align--None">
+                  <div class="c-section-boxes__inner-box" data-boxes-sortable="" data-content-type="none" data-section-id="14" data-box-id="3">
+                    <div class="c-box__icon svg-wrapper png team" data-icon="" data-svg="/media/icons/icons-team.svg" data-section-id="14" data-box-id="3">
+                      <a href="https://www.philafinancial.com/resource-center/lifestyle" class="c-box-icon--link" data-remove-href=""><i class="c-box-icon c-icn--team" style=""></i></a>
+                    </div>
+                    <h2 id="section14-box3-title" class="c-box__title js-simple-editable" data-section-id="14" data-box-id="3" data-box-type="title">Labor Unions</h2>
+                    <div id="section14-box3-paragraph" class="c-box__paragraph js-complex-editable" data-section-id="14" data-box-id="3" data-box-type="content">
+                      <p>We help educate Labor Unions on how to maximize their pension, retirement plans, and other benefits.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section_4" class="section section_SimpleText None None dev-afterHero">
+          <div class="overlay">
+            <div class="o-container c-customsection__container" style="padding-top:20px;padding-bottom:20px;">
+              <div class="o-grid__collapse c-grid__collapse--SimpleText" data-section-type="SimpleText">
+                <div id="box1" class="c-text__section box Text u-text-align--Center">
+                  <a href="https://www.philafinancial.com/our-services" class="c-btn c-text__btn sectionButtonHover" style="" data-section-id="11" data-box-id="1" data-box-type="button" data-button="" data-remove-href=""><span class="button" data-section-id="11" data-box-id="1" data-box-type="button">See All Services</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="sideBySide-SuperSection">
+          <div class="overlay superOverlay">
+            <div class="o-container superContainer">
+              <section id="section_5" class="section section_Form None None dev-sideBySide-SuperSection dev-form-HalfForm dev-underlineSup">
+                <div class="overlay">
+                  <div class="o-container c-customsection__container" style="">
+                    <div class="o-grid__collapse c-grid__collapse--Form" data-section-type="Form">
+                      <form action="https://www.fmgwebsites.com/4acc5f43-6a5f-4e06-969c-90a013d8297b/cms-core/forms/contactform/sectionsubmit" class="contactForm" data-form-section="" method="post" novalidate="novalidate">
+                        <input type="hidden" name="SourceUrl" value="https://www.philafinancial.com/" data-form-section-input="" />
+                        <input type="hidden" name="PreferredContactMethod" value="Email" data-form-section-input="" />
+                        <input type="hidden" name="MessageSubject" value="Message" data-form-section-input="" />
+                        <input type="hidden" name="EmailRequired" value="True" data-form-section-input="" />
+                        <input type="hidden" name="LargeTextRequired" value="False" data-form-section-input="" />
+                        <input type="hidden" name="PhoneRequired" value="False" data-form-section-input="" />
+                        <input type="hidden" name="ContentId" value="3426668" data-form-section-input="" />
+                        <input type="hidden" name="SectionId" value="8" data-form-section-input="" />
+                        <input type="hidden" name="ContentType" value="CustomSectionContent" data-form-section-input="" />
+                        <div class="c-contact__form u-text-align--Center">
+                          <div class="form-title c-form__title">
+                            <h2 id="section8-box0-title" class="title js-simple-editable" style="color:" data-section-id="8" data-box-id="0" data-box-type="title"><sup>Let's Talk.</sup> <br />Take the First Step.</h2>
+                          </div>
+                          <div class="contactName formGroup c-form__item--4">
+                            <label class="field-label" style="color:" id="CSCName0" for="Name0">Name</label>
+                            <input class="text-box single-line" id="Name0" name="Name" type="text" value="" data-msg-required="*required" data-rule-required="true" aria-labelledby="CSCName0" data-form-section-input="" aria-required="true" />
+                          </div>
+
+                          <span class="field-validation-valid" id="Email0_validationMessage" data-remove-form-markup=""></span>
+                          <div class="contactEmail formGroup c-form__item--4">
+                            <label class="field-label" style="color:" id="CSCEmail0" for="Email0">Email</label>
+                            <input class="text-box single-line invalid-email" id="Email0" name="Email" type="text" value="" data-rule-required="true" data-msg-required="*required" data-msg-phonenumber="Please specify a valid email address." aria-labelledby="CSCEmail0" data-form-section-input="" aria-required="true" />
+                          </div>
+
+                          <span class="formRobo" data-remove-form-markup=""><label id="CSCAddress0" for="Address0">Address</label><input type="text" id="Address0" name="Address" value="" aria-labelledby="CSCAddress0" /></span>
+
+                          <div class="contactPhone formGroup c-form__item--4">
+                            <label class="field-label" style="color:" id="CSCPhone0" for="Phone0">Phone</label>
+                            <input class="text-box single-line" id="Phone0" name="Phone" type="text" value="" data-msg-phonenumber="Please specify a valid phone number." aria-labelledby="CSCPhone0" data-form-section-input="" />
+                          </div>
+                          <div class="c-form__item--12 contactMessage formArea">
+                            <label class="field-label" style="color:" id="CSCMessage0" for="Message0" data-question-markup="">Message</label>
+                            <textarea cols="20" id="Message0" name="Message" rows="2" aria-labelledby="CSCMessage0" data-form-section-input=""></textarea>
+                          </div>
+                          <div class="c-form__btn form-button">
+                            <button id="Submit8-0" class="c-btn submit sectionButtonHover js-form-button-editable" data-section-id="8" data-box-id="0" data-box-type="button" aria-label="Submit form" style="">Next Steps</button>
+                            <div class="msg formSuccess" data-remove-form-markup="">Thank you!</div>
+                            <div class="msg formError" data-remove-form-markup="">Oops!</div>
+                          </div>
+                        </div>
+                        <div class="c-submit__loading" data-remove-form-markup=""></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="section_6" class="section section_FullWidth None None dev-sideBySide-SuperSection dev-form-HalfImg">
+                <div class="overlay">
+                  <div class="o-container c-customsection__container" style="">
+                    <div class="o-grid__collapse c-grid__collapse--FullWidth" data-section-type="FullWidth">
+                      <div id="section13-box0-content" class="c-rich-text__section welcome js-complex-editable" data-section-id="13" data-box-id="0" data-box-type="content">
+                        <div class="imgContainer">
+                          <img src="//static.fmgsuite.com/media/InlineContent/originalSize/6f0f32bc-2b1b-4764-a3da-4a7056e4e826.jpg" class="inline-image" data-id="6f0f32bc-2b1b-4764-a3da-4a7056e4e826" data-mce-src="//static.fmgsuite.com/media/InlineContent/originalSize/6f0f32bc-2b1b-4764-a3da-4a7056e4e826.jpg" width="934" height="625" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div> {% endcomment %}
+      </section>
+    </div>
+
+    {% comment %} <div class="footer-container">
+      <footer>
+        <section class="o-container c-footer__container">
+          <div class="o-grid__collapse">
+            <div class="customFooter">
+              <div class="customFooterAddress">
+                <h4>Visit</h4><div class="moonlight-address_block">
+                  <p class="moonlight-address1">910 Floral Vale Boulevard</p>
+                  <p>
+                    <span class="moonlight-city">Yardley,</span>
+                    <span class="moonlight-region">PA</span>
+                    <span class="moonlight-postalcode">19067-5515</span>
+                  </p>
+                </div>
+              </div>
+              <div class="footerLogo">
+                <img id="agentLogo" src="//static.fmgsuite.com/media/TransparentLogo/variantSize/f3da09b2-397b-4357-b858-ab079e0ee74b.png" class="c-logo--image img-responsive" alt="Financial Group of Philadelphia, Inc. Home" /><div class="c-socialMedia"></div>
+                <p>
+                  <a href="mailto:michael@philafinancial.com">michael@philafinancial.com</a>
+                </p>
+              </div>
+              <div class="customFooterContactLinks">
+                <h4>Connect</h4><p class="moonlight-phone">
+                  Office:&nbsp;<a href="tel:2153961500">215-396-1500</a>
+                </p>
+                <p class="moonlight-fax">
+                  Fax: <span>215-396-3306</span>
+                </p>
+              </div>
+            </div>
+            <div class="c-footer__contact">
+              <div class="contact">
+                <h4>Contact</h4>
+                <div class="moonlight-contact-information"></div>
+              </div>
+            </div>
+            <div class="c-footer__quick-links">
+              <section class="quickLinks">
+                <h4>Quick Links</h4>
+                <ul>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/retirement">Retirement</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/investment">Investment</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/estate">Estate</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/insurance">Insurance</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/tax">Tax</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/money">Money</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/lifestyle">Lifestyle</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/articles">All Articles</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/videos">All Videos</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/calculators">All Calculators</a>
+                  </li>
+                  <li>
+                    <a href="https://www.philafinancial.com/resource-center/presentations">All Presentations</a>
+                  </li>
+                </ul>
+              </section>
+            </div>
+            <div class="c-footer__disclosure">
+              <section class="note">
+                <p class="boker-check-disclaimer">
+                  Check the background of your financial professional on FINRA's <a href="//brokercheck.finra.org/" target="_blank" rel="noopener noreferrer">BrokerCheck</a>.
+                </p>
+
+                <p class="globalDisclosure">The content is developed from sources believed to be providing accurate information. The information in this material is not intended as tax or legal advice. Please consult legal or tax professionals for specific information regarding your individual situation. Some of this material was developed and produced by FMG Suite to provide information on a topic that may be of interest. FMG Suite is not affiliated with the named representative, broker - dealer, state - or SEC - registered investment advisory firm. The opinions expressed and material provided are for general information, and should not be considered a solicitation for the purchase or sale of any security.</p>
+
+                <p class="globalPersonalInformationLink">
+                  We take protecting your data and privacy very seriously. As of January 1, 2020 the <a href="https://www.caprivacy.org/" target="_blank">California Consumer Privacy Act (CCPA)</a> suggests the following link as an extra measure to safeguard your data: <a href="https://www.philafinancial.com/donotsellmypersonalinformation" target="_self">Do not sell my personal information</a>.
+                </p>
+
+                <p class="globalCopyright">Copyright 2023 FMG Suite.</p>
+                <p class="globalDisclaimer"></p>
+                <p>
+                  Securities offered through Lion Street Financial, LLC (LSF), member <a href="http://www.finra.org/">FINRA</a>, <a href="https://www.sipc.org/">SIPC</a>. Investment advisory products and services offered through Lion Street Advisors, LLC (LSA), an investment adviser registered with the SEC. Financial Group of Philadelphia, Inc, and the above firms are not affiliated. LSF and LSA do not provide tax or legal advice. This site is published for residents of the United States only. Representatives may only conduct business with residents of the states and jurisdictions in which they are properly registered. Therefore, a response to a request for information may be delayed until appropriate registration is obtained or exemption from registration is determined. Not all of services referenced on this site are available in every state and through every advisor listed.
+                </p>
+                <p>
+                  <a href="https://lionstreet.com/wp-content/uploads/2021/05/Lion-Street-Financial-Form-CRS.pdf">Lion Street Financial</a>, <a href="https://lionstreet.com/wp-content/uploads/2021/05/Lion-Street-Advisors-Form-CRS-2020-10-30.pdf">Lion Street Advisors</a>,
+                </p>
+                <p>
+                  <br />
+                </p>
+                <p></p>
+              </section>
+            </div>
+          </div>
+          <div class="o-grid__collapse">
+            <div class="c-footer__custom"></div>
+          </div>
+          <div class="rule2">&nbsp;</div>
+        </section>
+      </footer>
+    </div> {% endcomment %}
+
+    <!-- /container -->
+
+    <script type="text/javascript" src="//static.fmgsuite.com/site/templates/007/dist/scripts.js?v=2.86.45.30382.447"></script>
+    <script type="text/javascript" src="//static.fmgsuite.com/site/globalassets/template7/js/global-asset-scripts.js"></script>
+
+    <script type="text/javascript" src="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Sections/js/sections.js"></script>
+    <script type="text/javascript" src="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Sections/js/subpageBanner.js"></script>
+    <script type="text/javascript" src="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Headers/sticky/js/sticky.js"></script>
+    <script type="text/javascript" src="https://fmg-websites-custom.s3.amazonaws.com/building-blocks/Footers/aurora-footer/js/aurora-footer.js"></script>
+    <script>
+    //Special Nav button in navigation line
+    var navBtnTitle = 'Contact';
+    $('#mainNav .c-topnav__menu-item .c-topnav__menu-text span:contains(' + navBtnTitle + ')').parent().parent().addClass('navBtn');
+    </script>
+
+    <!-- [if gt IE 8]><! -->
+    <!-- <![endif] -->
+    <!--  [if lt IE 9]>
+            <script type="text/javascript" src="//static.fmgsuite.com/site/templates/global/js/excanvas.min.js?v=2.86.45.30382.447"></script>
+            <script type="text/javascript" src="//static.fmgsuite.com/site/templates/shared/scripts/jquery.flot-0.8.3.js?v=2.86.45.30382.447"></script>
+            <script type="text/javascript" src="//static.fmgsuite.com/site/templates/shared/scripts/jquery.flot.time.min.js?v=2.86.45.30382.447"></script>
+        <![endif]  -->
+  </body>
+  <demoair-container id="demoairRecorderContainer"></demoair-container>
+</html>

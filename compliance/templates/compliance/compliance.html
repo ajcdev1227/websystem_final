@@ -1,0 +1,229 @@
+{% extends 'compliance/base.html' %}
+
+{% load static main_tags %}
+
+{% block title %}Compliance{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-1">
+
+    {% if posts|length is not 0 or query != '' %}
+
+    <div class="row">
+        <div class="d-flex flex-row-reverse mb-4">
+            <form method="GET">
+                <div class="d-flex align-items-center">
+                    <input class="form-control input-field me-2" style="padding-top:10px;padding-bottom:10px;line-height:18px;" type="search" name="q" value="{{ request.GET.q }}"
+                        placeholder="Search Here..." aria-label="Search">
+                    <button class="btn btn-default bg-white btn-sm text-sm mb-0" style="padding-top:10px;padding-bottom:10px;line-height:20px;" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="table-responsive align-items-center">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
+                                Page Title
+                            </th>
+                            <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
+                                Page ID
+                            </th>
+                            <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
+                                Submitter Email
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">
+                                Date/Time
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">
+                                Status
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7 px-md-7">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    {% if total_cases > 0 %}
+                    <tbody>
+                        {% for post in posts %}
+                        <tr>
+                            <td class="text-sm font-weight-bold">
+                                <a class="page-link text-sm" style="color:#0c63e4;" href="/preview/{{ post.uuid }}" target="_blank">
+                                    {{ post.resource_title }} <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <td class="text-sm font-weight-bold">
+                                <a class="page-link text-sm" style="color:#0c63e4">{{ post.type }}:{{ post.resource_key }}</a>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                                {% if post.tenant is None %}
+                                <i>Unavailable</i>
+                                {% else %}
+                                {{ post.tenant.tenant_name }}
+                                {% endif %}
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                                {% if post.updated_ts is None %}
+                                {{ post.created_ts }}
+                                {% else %}
+                                {{ post.updated_ts }}
+                                {% endif %}
+                            </td>
+                            <td class="align-middle text-center">
+                                {% if post.status == 'approved' %}
+                                <span class="badge badge-sm bg-gradient-success">{{ post.status }}</span>
+                                {% elif post.status == 'rejected' %}
+                                <span class="badge badge-sm bg-gradient-danger">{{ post.status }}</span>
+                                {% else %}
+                                <span class="badge badge-sm bg-gradient-primary">pending</span>
+                                {% endif %}
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                                {% if post.status == 'rejected' %}
+                                <button type="button" class="btn bg-gradient-danger btn-block mb-3"
+                                    onclick="openRejectReasonModal('{{ post.officer_notes }}')">View Reason</button>
+                                {% elif post.status != 'approved' and can_manage_cases %}
+                                <div class="px-md-1" style="display: flex;">
+                                    <div class="px-3 pt-sm-4">
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="action" value="approve" />
+                                            <input type="hidden" name="case-uuid" value="{{ post.uuid }}" />
+                                            <input type="submit" value="Approve" class="btn bg-gradient-success btn-block mb-3" />
+                                        </form>
+                                    </div>
+                                    <div class="px-0 pt-sm-4">
+                                        <button type="button" class="btn bg-gradient-danger btn-block mb-3 "
+                                            onclick="openRejectModal('{{ post.uuid }}')">
+                                            Reject
+                                        </button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    {% else %}
+                    <tbody>
+                        <tr>
+                            <td class="text-center py-4" colspan="6">No results were found for your search.</td>
+                        </tr>
+                    </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+
+        <div class="mx-auto">
+            {% if posts.has_other_pages %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if posts.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="?page={{ posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                            ‹
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#!">
+                            ‹
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for num in posts.paginator.page_range %}
+                    {% if posts.number == num %}
+                    <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a></li>
+                    {% elif num > posts.number|add:'-4' and num < posts.number|add:'4' %}
+                    <li class="page-item"><a class="page-link"
+                            href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% elif num == 1 or num == posts.paginator.num_pages %}
+                    <li class="page-item"><a class="page-link"
+                            href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% elif num == posts.number|add:'-5' or num == posts.number|add:'5' %}
+                    <li class="page-item divider"><span>...</span></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="?page={{ posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                            ›
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#!">
+                            ›
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <h1 class="text-center mt-10">Nothing available yet.</h1>
+    </div>
+    {% endif %}
+    {# {% include "includes/footer.html" %}#}
+</div>
+
+
+<div class="col-md-4">
+    <!-- Reject Reason Modal -->
+    <div class="modal fade" id="reject-reason-modal" tabindex="-1" role="dialog" aria-labelledby="reject-reason-modal-title"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rejection Reason</h5>
+                </div>
+                <div class="modal-body">
+                    <pre id="reject-reason-text"></pre>
+                    <i id="reject-reason-placeholder">No reason provided by reviewer.</i>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reject Modal -->
+    <div class="modal fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="reject-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reject Case</h5>
+                </div>
+                <form action="" method="POST" id="reject-form">
+                    <input type="hidden" name="action" value="reject" />
+                    <input type="hidden" name="case-uuid" id="reject-form-case-uuid" value="" />
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="reject-form-reason" class="col-form-label">Reason (Optional)</label>
+                            <textarea class="form-control" id="reject-form-reason" name="reason"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" id="reject-form-close"
+                            data-bs-dismiss="modal">Close</button>
+                        <input type="submit" class="btn bg-gradient-primary" id="reject-form-submit"
+                            data-label-default="Submit Rejection Notice" data-label-submitting="Submitting..." value="" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

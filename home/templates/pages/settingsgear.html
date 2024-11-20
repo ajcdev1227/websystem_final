@@ -1,0 +1,266 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<style>
+    .customer {
+        background: #EAFAF0;
+        border-radius: 15px;
+        padding: 8px 16px;
+        font-size: 12pt;
+        margin-bottom: 1rem;
+    }
+
+    .customer .id {
+        padding: 3px;
+        color: #84C58B;
+        background: #d2f5df;
+        border-radius: 10px;
+    }
+
+    .help-text {
+        color: #dedede;
+        font-size: 13px;
+    }
+</style>
+{% endblock extrastyle %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    {% url 'settingsgear' as settings_gear_url %}
+    <form class="row" method="POST" action="{{ settings_gear_url }}">
+        <div class="col-md-8 col-lg-8">
+            <div class="customer">
+                Customer ID: <span class="id">{{ user.customer_id }}</span>
+            </div>
+
+            <h4>Profile Information</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        {{ user_form.first_name }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        {{ user_form.last_name }}
+                    </div>
+                    <p class="help-text">If you are licensed CA insurance producer or agent, you are required to include your California license number in the format "Last Name, License #123456"</p>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        {{ company_form.company }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="members">How many members in company?</label>
+                        {{ user_form.c_members }}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Tenant URL</label>
+                        {{  user_form.domain_url }}
+                    </div>
+                </div>
+            </div>
+
+            <h4>Contact Information</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Primary Email</label>
+                        {{ user_form.email }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Primary Phone
+                        </label>
+                        {{ user_form.phonenumber }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="secondary_email">
+                            Secondary Email
+                        </label>
+                        {{ user_form.secondary_email }}
+                    </div>
+                </div>
+            </div>
+
+            <h4>Onboarding Information</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>User's URL</label>
+                        <input readonly class="bg-white" type="text" value="{{ user.tenant_option.tenant_url }}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>DNS Settings</label>
+                        <input readonly class="bg-white" type="text" value="{{ user.tenant_option.dns_settings }}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>What color palette they use</label>
+                        <input readonly class="bg-white" type="text" value="{{ user.tenant_option.color_palette }}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Plan</label>
+                        <input readonly class="bg-white" type="text" value="{{ user.tenant_option.plan }}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Billing Information</label>
+                        <input readonly class="bg-white" type="text" value="{{ user.tenant_option.billing_info }}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Youtube account link</label>
+                        <input readonly class="bg-white" type="text" value="{{ user.tenant_option.youtube_acc_link }}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Twilio account</label>
+                        <input readonly class="bg-white" type="text" value="{{ user.tenant_option.twilio_acc }}">
+                    </div>
+                </div>
+            </div>
+
+            {# Wagtail CMS Part #}
+            <h4>Company Information</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Display Email</label>
+                        {{ settings_form.display_email }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Display Phone</label>
+                        {{ settings_form.display_phone }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Display Address</label>
+                        {{ settings_form.display_address }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Working Hours</label>
+                        {{ settings_form.working_hours }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Copyright Text</label>
+                        {{ settings_form.footer_copyright }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Website Creator</label>
+                        {{ settings_form.footer_developer }}
+                    </div>
+                </div>
+            </div>
+
+            <h4>Social Media</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        {{ settings_form.facebook }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Twitter</label>
+                        {{ settings_form.twitter }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Instagram</label>
+                        {{ settings_form.instagram }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Linkedin</label>
+                        {{ settings_form.linkedin }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>YouTube</label>
+                        {{ settings_form.youtube }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Github</label>
+                        {{ settings_form.github }}
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+        </div>
+
+        <div class="col-md-4">
+            <h5>Connect Social Media</h5>
+            <h6>Facebook</h6>
+            <h6>Linkedin</h6>
+            <h6>Twitter</h6>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+(function() {
+ let email = document.getElementById("id_email");
+
+})();
+</script>
+{% endblock %}

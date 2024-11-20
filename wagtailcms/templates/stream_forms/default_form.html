@@ -1,0 +1,58 @@
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="bg-white border rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                        <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Get In Touch</p>
+                        <h1 class="display-5 mb-5">{{ value.form.title }}</h1>
+                    </div>
+                    <form class="form-card" {% if form.is_multipart %}enctype="multipart/form-data" {% endif %}
+                        action="{{ value.form_action }}" method="post">
+                        {% csrf_token %}
+                        {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+                        <div class="row">
+                            {% for field in form.visible_fields %}
+                            <div class="col-12 mb-4 mb-md-5">
+                                {% include 'stream_forms/partials/form_field.html' %}
+                            </div>
+                            {% endfor %}
+
+                            <div class="col-12 text-center mb-4">
+                                <input class="btn btn-primary py-3 px-5 animated slideInDown w-100" type="submit"
+                                    value="{{ value.form.submit_button_text }}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let formFloatingDivs = document.querySelectorAll('.form-floating');
+    formFloatingDivs.forEach(function(div) {
+        let inputElement = div.querySelector("input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='tel'], input[type='url'], input[type='date'], input[type='time'], textarea");
+        let selectElement = div.querySelector("select");
+        let choiceElement = div.querySelectorAll("input[type='checkbox'], input[type='radio']");
+
+        if (inputElement) {
+            inputElement.classList.add('form-control');
+        }
+        if (selectElement) {
+            selectElement.classList.add('form-select');
+        }
+        if (choiceElement.length > 0) {
+            div.className = "form-check position-relative";
+            let checkboxLabel = div.querySelector(":scope > label");
+            let onlyOneCheckBox = div.querySelector(":scope > input[type='checkbox']");
+            if (checkboxLabel && !onlyOneCheckBox) {
+                checkboxLabel.classList.add('checkbox-main-label');
+            }
+            for (let i = 0; i < choiceElement.length; i++) {
+                choiceElement[i].classList.add('form-check-input');
+            }
+        }
+    });
+</script>

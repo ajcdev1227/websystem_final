@@ -1,0 +1,5 @@
+<div class="form-floating mb-4">
+    {{ field }}
+    {{ field.label_tag }}
+    {% if field.errors %}<span class="help-text">{{ field.errors }}</span>{% endif %}
+</div>

@@ -1,0 +1,16 @@
+{% load static %}
+
+{#<div class="container"  style="margin-top: {{ self.top_margin }}; margin-bottom: {{ self.bottom_margin }}; margin-left: {{ self.left_margin }}; margin-right: {{ self.right_margin }}">#}
+{#<h2>{{ self.heading_text }}</h2>#}
+{#</div>#}
+
+<style>
+    h2
+    {
+        text-align:center;
+        {#text-decoration:underline;#}
+    }
+</style>
+<div class="container">
+    <h2>{{ self.heading_text }}</h2>
+</div>

@@ -1,0 +1,14 @@
+{% load static %}
+
+{#<div class="container"  style="margin-top: {{ self.top_margin }}; margin-bottom: {{ self.bottom_margin }}; margin-left: {{ self.left_margin }}; margin-right: {{ self.right_margin }} text-align='center'"><p>{{ self.paragraph }}</p></div>#}
+<style>
+    p
+    {
+        text-align:center;
+        font-style:bold;
+        font-size:25px;
+    }
+</style>
+<div class="container">
+    <p>{{ self.paragraph }}</p>
+</div>

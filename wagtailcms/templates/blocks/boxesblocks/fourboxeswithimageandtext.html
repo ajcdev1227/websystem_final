@@ -1,0 +1,42 @@
+{% load wagtailimages_tags %}
+
+
+{% load static %}
+
+
+<div class="container" style="margin-top: {{ self.top_margin }}; margin-bottom: {{ self.bottom_margin }}; margin-left: {{ self.left_margin }}; margin-right: {{ self.right_margin }}"  >
+    <div class="row d-flex">
+        <div class="col-md-3 ">
+            {% image self.image_1 fill-640x480 class="img-fluid" %}
+            <h2 class="d-flex align-items-center justify-content-center">{{ self.heading_1 }}</h2>
+            <p class="lead ">{{ self.paragraph_1 }}</p>
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="{{ self.button_link_1 }}" class="btn btn-primary ">{{ self.button_text_1 }}</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            {% image self.image_2 fill-640x480 class="img-fluid" %}
+            <h2 class="d-flex align-items-center justify-content-center">{{ self.heading_2 }}</h2>
+            <p class="lead">{{ self.paragraph_2 }}</p>
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="{{ self.button_link_2 }}" class="btn btn-primary ">{{ self.button_text_2 }}</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            {% image self.image_3 fill-640x480 class="img-fluid" %}
+            <h2 class="d-flex align-items-center justify-content-center">{{ self.heading_3 }}</h2>
+            <p class="lead">{{ self.paragraph_3 }}</p>
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="{{ self.button_link_3 }}" class="btn btn-primary ">{{ self.button_text_3 }}</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            {% image self.image_4 fill-640x480 class="img-fluid" %}
+            <h2 class="d-flex align-items-center justify-content-center">{{ self.heading_4 }}</h2>
+            <p class="lead">{{ self.paragraph_4 }}</p>
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="{{ self.button_link_4 }}" class="btn btn-primary ">{{ self.button_text_4 }}</a>
+            </div>
+        </div>
+    </div>
+</div>

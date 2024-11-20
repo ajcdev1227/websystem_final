@@ -1,0 +1,15 @@
+{% extends "themes/theme1/base.html" %}
+
+{% load static %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+
+    {% for block in self.body %}
+
+        {{ block }}
+
+    {% endfor %}
+
+{% endblock content %}

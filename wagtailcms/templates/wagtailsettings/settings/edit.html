@@ -1,0 +1,55 @@
+{% extends "wagtailadmin/base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum@1.8.0/css/spectrum.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/spectrum@1.8.0/js/spectrum.min.js"></script>
+
+<header class="w-header w-header--hasform">
+    <div class="row">
+        <div class="left">
+            <div class="col">
+                <h1 class="w-header__title" id="header-title">
+                    <svg class="icon icon-image w-header__glyph" aria-hidden="true">
+                        <use href="#icon-desktop"></use>
+                    </svg>
+                    Theme Settings
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="nice-padding">
+    <h2>Select the theme for your site </h2>
+    {% if theme_setting_form %}
+    <form method="post" action="{% url 'theme_setting' %}">
+        {% csrf_token %}
+        {{ theme_setting_form }}
+        <br>
+        <br>
+        <button type="submit" class="button">Save</button>
+    </form>
+    {% else %}
+    <p>No themes available.</p>
+    {% endif %}
+</div>
+
+<style>
+    .customized-input-field {
+        display: block;
+        width: 100%;
+        max-width: 500px;
+        margin-top: 6px;
+        margin-bottom: 1.625rem;
+    }
+
+    .customized-color-field {
+        display: block;
+        width: 50px;
+        margin-top: 6px;
+        margin-bottom: 1.625rem;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+/* Custom jsCalendar styling */
+.jsCalendar.material-theme.gray thead {
+    background-color: #444444;
+}
+.jsCalendar.material-theme.gray thead .jsCalendar-nav-left:hover,
+.jsCalendar.material-theme.gray thead .jsCalendar-nav-right:hover {
+    background-color: #232323;
+}
+
+.jsCalendar.gray tbody td.jsCalendar-current {
+    background-color: #444444;
+}
+.jsCalendar.gray ::-moz-selection {
+    background: #444444;
+}
+.jsCalendar.gray ::selection {
+    background: #444444;
+}
+
+/* Main page CSS */
+.event-info-container {
+     text-align: center;
+}
+.event-info-title {
+    text-decoration: underline;
+}
+.event-info-description {
+    background-color: rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: calc(50vw - 16rem);
+    padding: 1rem;
+    text-align: left;
+    width: 30rem;
+    white-space: pre-line;
+}
+
+.event-calendar-container {
+    height: 370px;
+}
+.event-calendar {
+    display: inline-block;
+    height: 100%;
+}
+.event-calendar-available-times {
+    display: inline-block;
+    min-width: 14rem;
+    height: calc(100% - 4rem);
+    overflow: auto;
+    position: relative;
+    bottom: 3.5rem;
+}
+.event-calendar-available-time {
+    display: block;
+    width: calc(100% - 1rem);
+    font-size: 1rem;
+    border: 0.1rem solid rgb(128, 128, 128);
+    padding: 0.3rem;
+    margin: 0.1rem;
+    background: rgba(0, 0, 0, 0.05);
+}
+.event-calendar-available-time-selected {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.event-confirm-container {
+    padding-bottom: 3rem;
+}

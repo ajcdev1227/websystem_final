@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: wagtail-adminsortable
+Version: 0.1
+Summary: Generic drag-and-drop sorting for the List Views in the Wagtail Admin interface.
+Home-page: https://github.com/Lh4cKg/wagtail-admin-sortable
+Author: Lasha Gogua
+Author-email: gogualasha@gmail.com
+License: MIT
+Description-Content-Type: text/markdown
+Keywords: django,wagtail
+Platform: OS Independent
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Wagtail :: 1
+Classifier: Framework :: Wagtail :: 2
+Requires-Dist: wagtail (>=1.8)
+
+# wagtail-admin-sortable
+Generic drag-and-drop ordering for objects in the Wagtail admin interface
+
+
